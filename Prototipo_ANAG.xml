@@ -1,0 +1,309 @@
+<Schema name="Prototipo_ANAG">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="medico">
+    <Hierarchy name="medico_geo" visible="true" hasAll="true" primaryKey="MATRICOLA" caption="Medico per Distretto">
+      <Table name="VDIM_MEDICO" schema="DWH" alias="VDIM_MEDICO_geo">
+      </Table>
+      <Level name="distretto" visible="true" column="DISTRETTO_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Medico">
+      </Level>
+      <Level name="nome" visible="true" column="MATRICOLA" nameColumn="NOME_MEDICO" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome Medico">
+        <Property name="cod_fisc" column="COD_FISC" type="String">
+        </Property>
+        <Property name="matricola" column="MATRICOLA" type="String">
+        </Property>
+        <Property name="pin_azienda" column="PIN_AZIENDA" type="String">
+        </Property>
+        <Property name="flag_attivo" column="FLAG_ATTIVO" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="medico_type" visible="true" hasAll="true" primaryKey="MATRICOLA" caption="Medico per Tipo">
+      <Table name="VDIM_MEDICO" schema="DWH" alias="VDIM_MEDICO_type">
+      </Table>
+      <Level name="tipo" visible="true" column="TIPO_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Medico">
+      </Level>
+      <Level name="nome" visible="true" column="MATRICOLA" nameColumn="NOME_MEDICO" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome Medico">
+        <Property name="cod_fisc" column="COD_FISC" type="String">
+        </Property>
+        <Property name="matricola" column="MATRICOLA" type="String">
+        </Property>
+        <Property name="pin_azienda" column="PIN_AZIENDA" type="String">
+        </Property>
+        <Property name="flag_attivo" column="FLAG_ATTIVO" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="medico_flag" visible="true" hasAll="true" primaryKey="MATRICOLA" caption="Medico in Attivit&#224;">
+      <Table name="VDIM_MEDICO" schema="DWH" alias="VDIM_MEDICO_flag">
+      </Table>
+      <Level name="attivo" visible="true" column="FLAG_ATTIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="In Attivit&#224;">
+      </Level>
+      <Level name="nome" visible="true" column="MATRICOLA" nameColumn="NOME_MEDICO" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome Medico">
+        <Property name="cod_fisc" column="COD_FISC" type="String">
+        </Property>
+        <Property name="matricola" column="MATRICOLA" type="String">
+        </Property>
+        <Property name="pin_azienda" column="PIN_AZIENDA" type="String">
+        </Property>
+        <Property name="flag_attivo" column="FLAG_ATTIVO" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_nascita" caption="Data Nascita">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_REMOTO" schema="DWH">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Nascita">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_NOME" ordinalColumn="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Nascita">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" nameColumn="DATA_NOME" ordinalColumn="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Nascita">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_base" caption="Et&#224; - fasce Base">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_10" caption="Et&#224; - fasce di 10 anni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="F10" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia 10">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="luogo_r" caption="Luogo Residenza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" schema="DWH" alias="VDIM_LUOGHI_r">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Residenza">
+      </Level>
+      <Level name="Provincia" visible="true" column="PROVINCIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provincia Residenza">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Residenza">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Residenza">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="luogo_d" caption="Luogo Domicilio">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" schema="DWH" alias="VDIM_LUOGHI_d">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Domicilio">
+      </Level>
+      <Level name="Provincia" visible="true" column="PROVINCIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provincia Domicilio">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Domicilio">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Domicilio">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="luogo_n" caption="Luogo Nascita">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" schema="DWH" alias="VDIM_LUOGHI_n">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Nascita">
+      </Level>
+      <Level name="Provincia" visible="true" column="PROVINCIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provincia Nascita">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Nascita">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Nascita">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="tipo_assistito" caption="Tipo Assistito">
+    <Hierarchy visible="true" hasAll="true" primaryKey="COD_TIPO_ASSISTITO">
+      <Table name="VDIM_TIPO_ASSISTITO" schema="DWH">
+      </Table>
+      <Level name="tipo_ass" visible="true" column="DES_TIPO_ASSISTITO" ordinalColumn="COD_TIPO_ASSISTITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Assistito">
+        <Property name="cod_tipo" column="COD_TIPO_ASSISTITO" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Anagrafica" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_ANAGRAFICA" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="sesso">
+      <Hierarchy name="sesso" visible="true" hasAll="true" caption="Sesso">
+        <Table name="VCUBE_ANAGRAFICA" schema="DWH">
+        </Table>
+        <Level name="sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="dettagli">
+      <Hierarchy name="dettaglio" visible="true" hasAll="true" caption="Dettagli Assistito">
+        <Table name="VCUBE_ANAGRAFICA" schema="DWH">
+        </Table>
+        <Level name="cod_fiscale" visible="true" column="COD_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+          <Property name="cognome" column="COGNOME" type="String">
+          </Property>
+          <Property name="nome" column="NOME" type="String">
+          </Property>
+          <Property name="data_nascita" column="DATA_NASCITA" type="String">
+          </Property>
+          <Property name="luogo_nascita" column="COMUNE_NASCITA" type="String">
+          </Property>
+          <Property name="sesso" column="SESSO" type="String">
+          </Property>
+          <Property name="nome_medico" column="MED_NOME" type="String">
+          </Property>
+          <Property name="data_variazione" column="DATA_VARIAZIONE" type="String">
+          </Property>
+          <Property name="ind_res" column="IND_RES" caption="indirizzo_residenza">
+          </Property>
+          <Property name="cap_res" column="CAP_RES" caption="CAP residenza">
+          </Property>
+          <Property name="ind_dom" column="IND_DOM" caption="indirizzo domicilio">
+          </Property>
+          <Property name="cap_dom" column="CAP_DOM" caption="CAP domicilio">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="cognome_nome" visible="true" hasAll="true" caption="Dettagli Assistito">
+        <Table name="VCUBE_ANAGRAFICA" schema="DWH">
+        </Table>
+        <Level name="cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cognome">
+        </Level>
+        <Level name="nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="luogo_r" name="luogo_r" visible="true" foreignKey="COD_LUOGO_RESIDENZA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="luogo_d" name="luogo_d" visible="true" foreignKey="COD_LUOGO_DOMICILIO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_nascita" name="t_nascita" visible="true" foreignKey="DATA_NASCITA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="luogo_n" name="luogo_n" visible="true" foreignKey="COD_LUOGO_NASCITA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="medico" name="medico" visible="true" foreignKey="MED_MATRICOLA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="tipo_assistito" name="tipo_assistito" visible="true" foreignKey="COD_TIPO_ASSISTITO" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Numero" column="PIN_AZIENDA" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="eta_media" column="ETA" datatype="Integer" aggregator="avg" caption="Eta&#39; Media" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Esenzioni" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_ESENZIONI" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="esenzione" caption="Esenzione">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_ESENZIONI" schema="DWH">
+        </Table>
+        <Level name="prefisso_cod" visible="true" column="PREFISSO_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="cod_esenzione" visible="true" column="COD_ESENZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="cod_naz" visible="true" column="COD_NAZ_RICETTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <Property name="descrizione" column="DES_ESENZIONE" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="sesso" caption="Sesso">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_ESENZIONI" schema="DWH">
+        </Table>
+        <Level name="sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="dettagli" caption="Dettagli Assistito">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_ESENZIONI" schema="DWH">
+        </Table>
+        <Level name="cod_fiscale" visible="true" column="COD_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+          <Property name="cognome" column="COGNOME" type="String">
+          </Property>
+          <Property name="nome" column="NOME" type="String">
+          </Property>
+          <Property name="data_nascita" column="DATA_NASCITA" type="String">
+          </Property>
+          <Property name="luogo_nascita" column="COMUNE_NASCITA" type="String">
+          </Property>
+          <Property name="sesso" column="SESSO" type="String">
+          </Property>
+          <Property name="nome_medico" column="MED_NOME" type="String">
+          </Property>
+          <Property name="data_variazione" column="DATA_VARIAZIONE" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="luogo_r" name="luogo_r" visible="true" foreignKey="COD_LUOGO_RESIDENZA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="luogo_d" name="luogo_d" visible="true" foreignKey="COD_LUOGO_DOMICILIO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_nascita" name="t_nascita" visible="true" foreignKey="DATA_NASCITA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="luogo_n" name="luogo_n" visible="true" foreignKey="COD_LUOGO_NASCITA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="medico" name="medico" visible="true" foreignKey="MED_MATRICOLA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="tipo_assistito" name="tipo_assistito" visible="true" foreignKey="COD_TIPO_ASSISTITO" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="custom_condition">
+      <Hierarchy visible="true" hasAll="true" caption="custom condition">
+        <Table name="VCUBE_ESENZIONI" schema="DWH">
+        </Table>
+        <Level name="custom" visible="true" column="CUSTOM_CONDITION" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="num_esenzioni" column="SESSO" aggregator="count" caption="Nr. Esenzioni" visible="true">
+    </Measure>
+    <Measure name="num_esenti" column="PIN_AZIENDA" datatype="Numeric" aggregator="distinct count" caption="Nr. Esenti" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

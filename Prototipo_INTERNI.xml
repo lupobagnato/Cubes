@@ -1,0 +1,148 @@
+<Schema name="Prototipo_INTERNI">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="_T_DataPrest" caption="Data Prestazione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_data_prest">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_AnnoMesePrest" caption="Data Prestazioni" description="usato da Prestazioni_Interni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_anno_mese">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_t_mese">
+      </Table>
+      <Level name="Mese_Filtro" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Prestazioni_Interni" caption="Specialistica per Interni" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_INTERNI" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="EROGATORE" highCardinality="false" name="Erogatore_geo">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_EROGATORI" schema="DWH" alias="erogatori_g">
+        </Table>
+        <Level name="erogatore_distr" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto erogatore">
+        </Level>
+        <Level name="erogatore_amb" visible="true" column="EROGATORE_COD" ordinalColumn="EROGATORE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ambulatorio erogatore" captionColumn="EROGATORE_DES">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="EROGATORE" highCardinality="false" name="Erogatore_clin">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_EROGATORI" schema="DWH">
+        </Table>
+        <Level name="Branca" visible="true" column="BRANCA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Branca erogatore">
+        </Level>
+        <Level name="Disciplina" visible="true" column="DISCIPLINA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Disciplina erogatore">
+        </Level>
+        <Level name="Ambulatorio" visible="true" column="EROGATORE_COD" ordinalColumn="EROGATORE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ambulatorio erogatore" captionColumn="EROGATORE_DES">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="RICHIEDENTE" highCardinality="false" name="Richiedente_geo">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_RICHIEDENTI" schema="DWH" alias="richiedenti_g">
+        </Table>
+        <Level name="richiedente_distr" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto richiedente">
+        </Level>
+        <Level name="richiedente_amb" visible="true" column="RICHIEDENTE_COD" ordinalColumn="RICHIEDENTE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Struttura richiedente" captionColumn="RICHIEDENTE_DES">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="RICHIEDENTE" highCardinality="false" name="Richiedente_clin">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_RICHIEDENTI" schema="DWH" alias="richiedenti_c">
+        </Table>
+        <Level name="Branca" visible="true" column="BRANCA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Branca richiedente">
+        </Level>
+        <Level name="Disciplina" visible="true" column="DISCIPLINA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Disciplina richiedente">
+        </Level>
+        <Level name="Ambulatorio" visible="true" column="RICHIEDENTE_COD" ordinalColumn="RICHIEDENTE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Struttura richiedente" captionColumn="RICHIEDENTE_DES">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="COD_PREST" highCardinality="false" name="Prestazione">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_NOM_INTERNI" schema="DWH">
+        </Table>
+        <Level name="Gruppo" visible="true" column="DES_GRUPPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Classe" visible="true" column="DES_CLASSE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Prestazione" visible="true" column="PRESTAZIONE_COD" ordinalColumn="PRESTAZIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="PRESTAZIONE_DES">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="COD_PREST" highCardinality="false" name="CodPrest" caption="Codice Prestazione">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_NOM_INTERNI" schema="DWH">
+        </Table>
+        <Level name="Codice" visible="true" column="PRESTAZIONE_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="T_AnnoMesePrest" name="T_AnnoMesePrest" visible="true" foreignKey="PRIMO_GIORNO_MESE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="PRIMO_GIORNO_MESE" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="AUX" name="Origine" caption="Origine dati">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_INTERNI" schema="DWH" alias="">
+        </Table>
+        <Level name="Origine" visible="true" column="ORIGINE" uniqueMembers="false">
+        </Level>
+        <Level name="aux" visible="true" column="AUX" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="numero" column="NUMERO" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="importo" column="IMPORTO" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

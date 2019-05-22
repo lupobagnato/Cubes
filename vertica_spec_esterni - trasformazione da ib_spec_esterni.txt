@@ -1,0 +1,1 @@
+Schema name="ib_spec_esterni"		--->	Schema name="vertica_spec_esterni"			(questo deve essere uguale al nome file)

@@ -1,0 +1,520 @@
+<Schema name="vertica_cup">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_preno">
+    <Hierarchy name="t_preno_data" visible="true" hasAll="true" primaryKey="GG_DATEKEY" caption="Data Prenotazione">
+      <Table name="VDIM_TEMPO_PASSATO">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Prenotazione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Prenotazione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Prenotazione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="t_preno_giorno" visible="true" hasAll="true" primaryKey="GG_DATEKEY" caption="Giorno Prenotazione">
+      <Table name="VDIM_TEMPO_PASSATO">
+      </Table>
+      <Level name="tipo_giorno" visible="true" column="TIPO_GIORNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Tipo Giorno">
+      </Level>
+      <Level name="giorno_nome" visible="true" column="GIORNO_NOME" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Settimana">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_app" caption="Data Appuntamento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO" alias="vdim_tempo_App">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Appuntamento">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Appuntamento" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Appuntamento" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="t_app_rel" caption="Data Appuntamento Relativa">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO" alias="vdim_tempo_R">
+      </Table>
+      <Level name="relative_time" visible="true" column="RELATIVE_TIME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tempo relativo App." description="Appuntamenti divisi in Passati, Presenti e Futuri" captionColumn="RELATIVE_TIME_DES">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_ann" caption="Data Annullamento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" alias="vdim_tempo_Ann">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Ann">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Ann" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Ann" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="catalogo" caption="Prestazioni Catalogo">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRST0">
+      <Table name="VDIM_ELENCO_PREST_ISES">
+      </Table>
+      <Level name="cod_amm" visible="true" column="PREST_AMM_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Prestazione Amministrativa">
+        <Property name="descrizione" column="PREST_AMM_DES" type="String">
+        </Property>
+        <Property name="tariffa" column="TARIFFA" type="String">
+        </Property>
+      </Level>
+      <Level name="cod_ises" visible="true" column="PRST0" nameColumn="DESCRIZIONE" ordinalColumn="DESCRIZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Prestazione ISES">
+        <Property name="codice" column="PRST0" type="String" caption="codice ises">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="monit_min" caption="Prestazioni Monit. Ministero">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRST0">
+      <Table name="VDIM_ELENCO_PREST_ISES">
+      </Table>
+      <Level name="tipo_ministero" visible="true" column="TIPO_MINISTERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Ministero">
+      </Level>
+      <Level name="cod_amm" visible="true" column="PREST_AMM_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Prestazione Amministrativa">
+        <Property name="descrizione" column="PREST_AMM_DES" type="String">
+        </Property>
+        <Property name="tariffa" column="TARIFFA" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="erogante" caption="Struttura Erogante">
+    <Hierarchy visible="true" hasAll="true" primaryKey="COD_STZ">
+      <Table name="VDIM_STRUTTURE_ISES">
+      </Table>
+      <Level name="struttura" visible="true" column="STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="cod_str" visible="true" column="COD_STR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="cod Struttura">
+      </Level>
+      <Level name="unita" visible="true" column="UNITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="cod_uni" visible="true" column="COD_UNI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="cod Unit&#224;">
+      </Level>
+      <Level name="stanza" visible="true" column="STANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="cod_stz" visible="true" column="COD_STZ" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="cod Stanza">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="pub_priv" caption="Struttura Erogante">
+    <Hierarchy visible="true" hasAll="true" primaryKey="COD_STZ">
+      <Table name="VDIM_STRUTTURE_ISES" alias="strutture_pub_priv">
+      </Table>
+      <Level name="tipo_struttura" visible="true" column="TIPO_STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="struttura Pubblica o Privata">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Med_Pres" caption="Medico Prescrittore">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_MEDICO" alias="medici_pres">
+      </Table>
+      <Level name="tipo" visible="true" column="TIPO_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Prescrittore">
+      </Level>
+      <Level name="nome" visible="true" column="COD_FISC" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Medico Prescrittore" captionColumn="NOME_MEDICO">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_base" caption="Et&#224; - fasce Base">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_10" caption="Et&#224; - fasce di 10 anni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA">
+      </Table>
+      <Level name="fascia" visible="true" column="F10" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia 10">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="anagrafica" caption="Anagrafica Assistito">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ID_ANAG_ISES">
+      <Table name="VDIM_ANAG_ISES">
+      </Table>
+      <Level name="Cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Cod_Fiscale" visible="true" column="CODICE_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+        <Property name="Matricola" column="MATRICOLA" type="String">
+        </Property>
+        <Property name="id_anag_ises" column="ID_ANAG_ISES" type="String">
+        </Property>
+      </Level>
+      <Level name="data_nascita" visible="true" column="DATA_NASCITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Data Nascita">
+      </Level>
+      <Level name="Sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Indirizzo" visible="true" column="INDIRIZZO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="CAP" visible="true" column="CAP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Comune" visible="true" column="COMUNE_RESIDENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="comune_residenza">
+      </Level>
+      <Level name="Telefono" visible="true" column="TELEFONO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Cellulare" visible="true" column="CELLULARE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Email" visible="true" column="EMAIL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="prestazioni" caption="Prestazioni Nom. Spec.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRESTAZIONE_COD">
+      <Table name="VDIM_NOM_ESTERNI">
+      </Table>
+      <Level name="Gruppo" visible="true" column="DES_GRUPPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Classe" visible="true" column="DES_CLASSE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Prestazione" visible="true" column="PRESTAZIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Codice" visible="true" column="PRESTAZIONE_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="vertica_cup_cube" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_CUP_PRESTAZIONI">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="WORKSTATION" highCardinality="false" name="DegenDim">
+      <Hierarchy name="dettagli" visible="true" hasAll="true" caption="Dettagli Appuntamento">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="operatore" visible="true" column="OPERATORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Operatore prenotazione">
+        </Level>
+        <Level name="id" visible="true" column="CODICE_ESTERNO_PRENOTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Appuntamento">
+          <Property name="ora" column="HH_MM_APP" type="String" caption="ora appuntamento">
+          </Property>
+          <Property name="codice_impegnativa" column="CODICE_IMPEGNATIVA" type="String">
+          </Property>
+          <Property name="appuntamento_originale" column="APPUNTAMENTO_ORIGINALE" type="String">
+          </Property>
+          <Property name="appuntamento_nuovo" column="APPUNTAMENTO_NUOVO" type="String">
+          </Property>
+          <Property name="operatore_ann" column="OPERATORE_ANN" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="priorita" visible="true" hasAll="true" caption="Priorit&#224;">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="flag_priorita" visible="true" column="FLAG_PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Priorit&#224; Valorizzata">
+        </Level>
+        <Level name="priorita" visible="true" column="PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Priorit&#224;">
+        </Level>
+        <Level name="classe_priorita" visible="true" column="CLASSE_PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Classe Priorit&#224; (codice)">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="esenzione" visible="true" hasAll="true" caption="Esenzione">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="esenzione_cod" visible="true" column="ESENZIONE_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Esenzione">
+        </Level>
+        <Level name="esenzione_des" visible="true" column="ESENZIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Esenzione">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="attesa_ok" visible="true" hasAll="true" caption="TA nei limiti">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="attesa_ok" visible="true" column="ATTESA_OK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="attesa ok">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="entro_30" visible="true" hasAll="true" caption="TA nei limiti">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="entro_30" visible="true" column="ENTRO_30" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="entro 30 gg">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="entro_60" visible="true" hasAll="true" caption="TA nei limiti">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="entro_60" visible="true" column="ENTRO_60" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="entro 60 gg">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="ricetta" visible="true" hasAll="true" caption="Ricetta">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="codice_impegnativa" visible="true" column="CODICE_IMPEGNATIVA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Impegnativa">
+          <Property name="questito_diagnostico" column="QUESITO_DIAGNOSTICO" type="String" caption="Quesito Diagnostico">
+          </Property>
+        </Level>
+        <Level name="ese_cod_dema" visible="true" column="ESE_COD_DEMA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Codice Esenzione passato dal SAR">
+        </Level>
+        <Level name="NRE" visible="true" column="DEM_NRE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="NRE passato dal SAR">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="flag_rossa" visible="true" hasAll="true" caption="Ricetta">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="flag_rossa_des" visible="true" column="FLAG_ROSSA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="solo Dema e Rosse Elettroniche (le Rosse senza NRE risultano n/d)">
+        </Level>
+        <Level name="flag_rossa_cod" visible="true" column="FLAG_ROSSA_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="0: Dema 1: Rossa Elettronica  n/d: non passate dal SAR">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Riprenotazione" visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="flag_riprenotazione" visible="true" column="FLAG_RIPRENOTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="dice se l&#39;appuntamento &#232; la riprenotazione di uno annullato ">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Tipo_Accesso" visible="true" hasAll="true" caption="Tipo Accesso">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="tipo_accesso" visible="true" column="TIPO_ACCESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Accesso">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Annullamento" visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="annullato" visible="true" column="ANNULLATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Appuntamento Annullato">
+        </Level>
+        <Level name="annullato_dopo" visible="true" column="ANNULLATO_DOPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Annullamento Tardivo">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Spostamento" visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="flag_spostamento" visible="true" column="FLAG_SPOSTAMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="dice se &#232; un appuntamento annulato successivamente riprenotato">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Garanzia_TA" visible="true" hasAll="true" caption="Garanzia TA">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="rifiuta_1a_disp" visible="true" column="RIFIUTA_1A_DISP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Prima disp. rifiutata" description="indica se l&#39;assistito ha rifiutato la 1a data disponibile">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Branca_1_des" visible="true" hasAll="true" caption="Branca Prestazione" description="Le prestazioni multi branca non hanno una Branca ISTAT associata: definiti dei default in base alla Lista codici branca (nella v_Prestazioni), il Codice Branca non ha default, resta &#34;n/d&#34;">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="branca_des" visible="true" column="BRANCA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Branca  (ISTAT)" description="E&#39; la branca della PRESTAZIONE - ATTENZIONE : ci sono molti casi di unit&#224; che erogano prestazioni appartenenti a branche diverse dalla propria">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Branca_3_lista" visible="true" hasAll="true" caption="Branca Prestazione">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="branca_lista" visible="true" column="BRANCA_LISTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Lista codici branca (Ises)" description="Lista di tutte le branche associabili ad una prestazioni (codifica di ISES)">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Branca_2_cod" visible="true" hasAll="true" caption="Branca Prestazione">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="branca_cod" visible="true" column="BRANCA_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Branca (ISTAT)" description="codice ministeriale della Branca associata alla prestazione (per tutte le multibranca, nel db di ISES &#232; n/d)">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="erogato_info_cup" visible="true" hasAll="true" caption="Erogato" description="dati da Erogato (record_T via colonna info_cup)">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="t_info_cup" visible="true" column="T_INFO_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="erogato_strutt" visible="true" hasAll="true" caption="Erogato">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="t_strutt" visible="true" column="T_STRUTT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="dettaglio_ora" visible="true" hasAll="true" caption="Dettagli Appuntamento">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="ora" visible="true" column="HH_MM_APP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ora appuntamento">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="ora_prenotazione" visible="true" hasAll="true" caption="Orario Prenotazione">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="fascia_ora_preno" visible="true" column="FASCIA_ORA_PRENO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia Oraria prenotazione">
+        </Level>
+        <Level name="hh_mm_preno" visible="true" column="HH_MM_PRENO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ora prenotazione">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="t_app" name="t_app" visible="true" foreignKey="DATA_APPUNTAMENTO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_preno" name="t_preno" visible="true" foreignKey="DATA_PRENOTAZIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="erogante" name="erogante" visible="true" foreignKey="COD_STZ" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="pub_priv" name="pub_priv" visible="true" foreignKey="COD_STZ" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="catalogo" name="catalogo" visible="true" foreignKey="PRST0" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_app_rel" name="t_app_rel" visible="true" foreignKey="DATA_APPUNTAMENTO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_ann" name="t_ann" visible="true" foreignKey="DATA_ANN" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="WORKSTATION" highCardinality="false" name="terminale_pren" caption="Terminale Prenotazione">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="tipo" visible="true" column="TIPO_SPORTELLO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="punto" visible="true" column="PUNTO_PRENOTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="sportello" visible="true" column="SPORTELLO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="terminale" visible="true" column="WORKSTATION" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="WORKSTATION_ANN" highCardinality="false" name="terminale_ann" caption="Terminale Annullamento">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="tipo_ann" visible="true" column="TIPO_SPORTELLO_ANN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="punto_ann" visible="true" column="PUNTO_PRENOTAZIONE_ANN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="sportello_ann" visible="true" column="SPORTELLO_ANN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="terminale_ann" visible="true" column="WORKSTATION_ANN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="monit_min" name="monit_min" visible="true" foreignKey="PRST0" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Med_Pres" name="Med_Pres" visible="true" foreignKey="CF_PRESCRITTORE" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="APPN0" highCardinality="false" name="custom_1">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="custom_1" visible="true" column="CUSTOM_COND_1" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="anagrafica" name="anagrafica" visible="true" foreignKey="ID_ANAG_ISES" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="APPN0" highCardinality="false" name="custom_2">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_CUP_PRESTAZIONI">
+        </Table>
+        <Level name="custom_2" visible="true" column="CUSTOM_COND_2" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="prestazioni" name="prestazioni" visible="true" foreignKey="COD_PREST">
+    </DimensionUsage>
+    <Measure name="Num" column="APPN0" aggregator="count" caption="Prestazioni" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="gg_attesa" column="GG_ATTESA" aggregator="sum" caption="Giorni Attesa" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="appuntamenti" column="APPN0" aggregator="distinct-count" caption="Appuntamenti" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="ex-ante_Tot" column="EXANTE_TOT" aggregator="sum" description="Monitoraggio Ex-ante : tutti i  &#34;primi accessi&#34;" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure per Ex ante]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="ex-ante_B" column="EXANTE_B" aggregator="sum" description="Monitoraggio Ex-ante :  &#34;primi accessi &#34; B che non rifiutano 1a disp." visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure per Ex ante]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="ex-ante_B_Ok" column="EXANTE_B_OK" aggregator="sum" description="Monitoraggio Ex-ante :  B entro i tempi" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure per Ex ante]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="ex-ante_D" column="EXANTE_D" aggregator="sum" description="Monitoraggio Ex-ante :  &#34;primi accessi &#34; D che non rifiutano 1a disp." visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure per Ex ante]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="ex-ante_D_Ok" column="EXANTE_D_OK" aggregator="sum" description="Monitoraggio Ex-ante :  D entro i tempi" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure per Ex ante]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="ex-post_P" column="EXPOST_P" aggregator="sum" description="tutte le P (da usare nel Monitoraggio ex-Post)" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+</Schema>

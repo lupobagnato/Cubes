@@ -1,0 +1,681 @@
+<Schema name="Accessi_Prestazioni_PS" description="VCUBE_Accessi_PS + VCUBE_Prestazioni_PS">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Dimissione" caption="Data Dimissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_dim">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Dimissione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Dimissione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Dimissione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Arrivo" caption="Data Arrivo">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_arr">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno arrivo">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese arrivo" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno arrivo" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_t_mese">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Triage" caption="Priorit&#224; Triage">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_COLORI_PS" schema="DWH" alias="colori_tri">
+      </Table>
+      <Level name="colore_tri" visible="true" column="ID_COLORE" nameColumn="COLORE" ordinalColumn="PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Colore Tri">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Visita" caption="Priorit&#224; Visita">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_COLORI_PS" schema="DWH" alias="colori_vis">
+      </Table>
+      <Level name="colore_vis" visible="true" column="ID_COLORE" nameColumn="COLORE" ordinalColumn="PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Colore Vis">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Dimissione" caption="Priorit&#224; Dimissione">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_COLORI_PS" schema="DWH" alias="colori_dim">
+      </Table>
+      <Level name="colore_dim" visible="true" column="ID_COLORE" nameColumn="COLORE" ordinalColumn="PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Colore Dim">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Relative_Week">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_rel">
+      </Table>
+      <Level name="week" visible="true" column="RELATIVE_WEEK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_base" caption="Et&#224; - fasce Base">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_10" caption="Et&#224; - fasce di 10 anni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="F10" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia 10">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Mmg" caption="Medico di Base">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_MEDICO" schema="DWH">
+      </Table>
+      <Level name="distretto" visible="true" column="DISTRETTO_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto MMG">
+      </Level>
+      <Level name="nome" visible="true" column="COD_FISC" nameColumn="NOME_MEDICO" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome MMG">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Problema_princ" caption="Problema Principale">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_PROBLEMA_PS" schema="DWH">
+      </Table>
+      <Level name="tipo" visible="true" column="TIPO_PROBLEMA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Problema" description="campo usato nel Flusso PS">
+      </Level>
+      <Level name="problema" visible="true" column="ID_PROBLEMA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Problema" description="problema caricato in Patidok al Triage" captionColumn="PROBLEMA">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Residenza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" alias="VDIM_LUOGHI_r">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Stato Residenza">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Residenza">
+      </Level>
+      <Level name="Provincia" visible="true" column="PROVINCIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provincia Residenza">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Residenza">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Residenza">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="triage_snow">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO" primaryKeyTable="accessi_x_triage">
+      <Join leftKey="ID_COLORE_TRIAGE" rightKey="ID_COLORE">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH" alias="accessi_x_triage">
+        </Table>
+        <Table name="VDIM_COLORI_PS" schema="DWH" alias="codici_triage">
+        </Table>
+      </Join>
+      <Level name="tri_snow" visible="true" table="codici_triage" column="COLORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Esito">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="Ricovero" visible="true" column="FLAG_RICOVERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Esito_Accesso" visible="true" column="ESITO_ACCESSO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Property name="codice_esito" column="ESITO_ACCESSO_COD" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Stabilimento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="Stabilimento" visible="true" column="DESC_COD_UO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Cod_Stabilimento" visible="true" column="COD_UO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Mezzo Accesso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="Mezzo" visible="true" column="MEZZO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipo Evento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="Tipo_Evento" visible="true" column="TIPO_EVENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Evento" description="nel flusso PS &#232; &#34;causa di accesso al triage&#34;">
+        <Property name="cod_tipo_evento" column="COD_TIPO_EVENTO" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Reparto Ricovero">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="presidio" visible="true" column="PRESIDIO_RICOVERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Presidio Ricovero">
+      </Level>
+      <Level name="reparto" visible="true" column="REP_RICOVERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparto Ricovero">
+        <NameExpression>
+          <SQL dialect="generic">
+            <![CDATA[decode( Nvl(vcube_accessi_ps.REP_RICOVERO,'x'), 'x',Null, vcube_accessi_ps.des_rep_ric || ' [' || vcube_accessi_ps.rep_ricovero || ']'  )]]>
+          </SQL>
+        </NameExpression>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="OBI">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="OBI" visible="true" column="FLAG_OBI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Sala">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="Sala" visible="true" column="SALA_VISITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Medico_PS" caption="Medico di PS">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="Medico" visible="true" column="MEDICO_PS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Medico di PS">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Diagnosi">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="diagnosi_grp" visible="true" column="DIAGNOSI_GRP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Gruppo" description="Codice Gruppo (primi 3 caratteri del codice diagnosi)">
+      </Level>
+      <Level name="diagnosi_cod" visible="true" column="DIAGNOSI_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Diagnosi">
+      </Level>
+      <Level name="diagnosi_des" visible="true" column="DIAGNOSI_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Diagnosi">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="giorno_arrivo" caption="Giorno di arrivo">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="tipo giorno" visible="true" column="TIPO_GIORNO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="giorno" visible="true" column="GIORNO" ordinalColumn="GIORNO_ORD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ora_arrivo" caption="Tempo di arrivo">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="fascia oraria" visible="true" column="FASCIA_ORARIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia Oraria arrivo">
+      </Level>
+      <Level name="ora" visible="true" column="ORA_ARRIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ora arrivo">
+      </Level>
+      <Level name="hhmm" visible="true" column="HHMM_ENTRATA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Orario arrivo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ticket" caption="Ticket">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="pos_ticket" visible="true" column="POSIZIONE_TICKET" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Posizione Ticket">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="dettagli" caption="Dettagli Accesso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="nrocaso" visible="true" column="NROCASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Numero Caso">
+        <Property name="cognome" column="COGNOME" type="String">
+        </Property>
+        <Property name="nome" column="NOME" type="String">
+        </Property>
+        <Property name="datanascita" column="DATANASCITA" type="String">
+        </Property>
+        <Property name="cod_fiscale" column="COD_FISCALE" type="String">
+        </Property>
+        <Property name="hhmm_entrata" column="HHMM_ENTRATA" type="String" caption="Ore - Minuti entrata">
+        </Property>
+        <Property name="indirizzo" column="INDIRIZZO" type="String">
+        </Property>
+        <Property name="indirizzo_2" column="INDIRIZZO_2" type="String">
+        </Property>
+        <Property name="telefono" column="TELEFONO" type="String">
+        </Property>
+        <Property name="cra" column="CRA" type="String" caption="Cod. regionale">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Stato_Paziente" caption="Stato paziente al Triage">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="stato_paziente" visible="true" column="STATO_PAZIENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Stato Paziente">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="infermiere" caption="Infermiere Triage">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="infermiere" visible="true" column="INFERMIERE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Infermiere">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="dolore" caption="Valutazione del dolore">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="flag_dolore" visible="true" column="FLAG_DOLORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Valutazione effettuata">
+      </Level>
+      <Level name="scala" visible="true" column="SCALA_DOLORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Scala utilizzata">
+      </Level>
+      <Level name="valore" visible="true" column="VALORE_DOLORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Punteggio">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="flag_ENI_STP" caption="Stranieri Non Iscritti" description="campo valorizzato in base ai primi 3 caratteri del Cod. Reg. Assistito">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="flag_ENI_STP" visible="true" column="FLAG_ENI_STP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="campo valorizzato in base ai primi 3 caratteri del Cod. Reg. Assistito">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="trasferimento1">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO" caption="Trasferimento">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="motivo_trasf" visible="true" column="MOTIVO_TRASF" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Motivo Trasferimento">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="trasferimento2">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO" caption="Trasferimento">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="istituto_trasf" visible="true" column="ISTITUTO_TRASF" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Istituto Trasferimento">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="provenienza" caption="Provenienza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NROCASO">
+      <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+      </Table>
+      <Level name="prov" visible="true" column="PROVENIENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provenienza">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Accessi" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+    </Table>
+    <DimensionUsage source="T_Dimissione" name="T_Dimissione" visible="true" foreignKey="DATADIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Arrivo" name="T_Arrivo" visible="true" foreignKey="DATAENTRATA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATADIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Triage" name="Triage" visible="true" foreignKey="ID_COLORE_TRIAGE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Visita" name="Visita" visible="true" foreignKey="ID_COLORE_VISITA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimissione" name="Dimissione" visible="true" foreignKey="ID_COLORE_DIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Problema_princ" name="Problema_princ" visible="true" foreignKey="ID_PROBLEMA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Relative_Week" name="Relative_Week" visible="true" foreignKey="DATADIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Mmg" name="Mmg" visible="true" foreignKey="MMG_COD_FISC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="LUOGO_COD" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="triage_snow" name="triage_snow" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Esito" name="Esito" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Stabilimento" name="Stabilimento" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Mezzo Accesso" name="Mezzo Accesso" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo Evento" name="Tipo Evento" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Reparto Ricovero" name="Reparto Ricovero" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="OBI" name="OBI" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Sala" name="Sala" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Medico_PS" name="Medico_PS" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Diagnosi" name="Diagnosi" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="giorno_arrivo" name="giorno_arrivo" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ora_arrivo" name="ora_arrivo" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Ticket" name="Ticket" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettagli" name="dettagli" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Stato_Paziente" name="Stato_Paziente" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="infermiere" name="infermiere" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dolore" name="dolore" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="flag_ENI_STP" name="flag_ENI_STP" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="trasferimento1" name="trasferimento1" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="trasferimento2" name="trasferimento2" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="provenienza" name="provenienza" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="accessi" column="NROCASO" aggregator="count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="imp_ticket" column="IMPORTO_TICKET" datatype="Numeric" formatString="#,###.00" aggregator="sum" caption="importo ticket" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="min_attesa" column="MINUTI_ATTESA" aggregator="sum" caption="NON VISIBILE3" visible="false">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="min_perm" column="MINUTI_PERMANENZA" aggregator="sum" caption="NON VISIBILE4" visible="false">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <CalculatedMember name="attesa" formatString="#,###" caption="attesa media" description="Media minuti di attesa fra Triage e Visita" formula="[Measures].[min_attesa]  / [Measures].[accessi]" dimension="Measures" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </CalculatedMember>
+    <CalculatedMember name="permanenza" formatString="#,###" caption="permanenza media" description="Media minuti di permanenza fra Triage e Dimissione" formula="[Measures].[min_perm]  / [Measures].[accessi]" dimension="Measures" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </CalculatedMember>
+  </Cube>
+  <Cube name="Prestazioni" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_PRESTAZIONI_PS" schema="DWH">
+    </Table>
+    <DimensionUsage source="T_Dimissione" name="T_Dimissione" visible="true" foreignKey="DATADIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Arrivo" name="T_Arrivo" visible="true" foreignKey="DATAENTRATA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATADIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Triage" name="Triage" visible="true" foreignKey="ID_COLORE_TRIAGE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Visita" name="Visita" visible="true" foreignKey="ID_COLORE_VISITA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimissione" name="Dimissione" visible="true" foreignKey="ID_COLORE_DIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Problema_princ" name="Problema_princ" visible="true" foreignKey="ID_PROBLEMA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="LUOGO_COD" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="triage_snow" name="triage_snow" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Esito" name="Esito" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Stabilimento" name="Stabilimento" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Mezzo Accesso" name="Mezzo Accesso" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo Evento" name="Tipo Evento" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Reparto Ricovero" name="Reparto Ricovero" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="OBI" name="OBI" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Sala" name="Sala" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Medico_PS" name="Medico_PS" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Diagnosi" name="Diagnosi" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="giorno_arrivo" name="giorno_arrivo" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ora_arrivo" name="ora_arrivo" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Ticket" name="Ticket" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettagli" name="dettagli" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Stato_Paziente" name="Stato_Paziente" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="infermiere" name="infermiere" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dolore" name="dolore" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="flag_ENI_STP" name="flag_ENI_STP" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="trasferimento1" name="trasferimento1" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="trasferimento2" name="trasferimento2" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="provenienza" name="provenienza" visible="true" foreignKey="NROCASO" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Prestazione">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_PRESTAZIONI_PS" schema="DWH">
+        </Table>
+        <Level name="cod_min" visible="true" column="COD_PREST_FLUSSI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="cod_prest" visible="true" column="COD_PRESTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="prestazione" visible="true" column="DESC_PRESTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Erogatore">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_PRESTAZIONI_PS" schema="DWH">
+        </Table>
+        <Level name="flag_Consulenza" visible="true" column="FLAG_CONSULENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Erogatore" visible="true" column="EROGATORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="prestazioni" column="NROPREST" aggregator="count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="accessi_distinct" column="NROCASO" aggregator="distinct-count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+  <VirtualCube enabled="true" name="Acc_Prest" caption="Vcube Accessi e Prestazioni" visible="true">
+    <VirtualCubeDimension visible="true" highCardinality="false" name="T_Dimissione">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="T_Arrivo">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="T_MeseFiltro">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Triage">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Visita">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Dimissione">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="fasce_eta_base">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="fasce_eta_10">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Problema_princ">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Residenza">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="triage_snow">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Esito">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Stabilimento">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Mezzo Accesso">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Tipo Evento">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Reparto Ricovero">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="OBI">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Sala">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Medico_PS">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Diagnosi">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="giorno_arrivo">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="ora_arrivo">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Ticket">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="dettagli">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="Stato_Paziente">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="infermiere">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="dolore">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="flag_ENI_STP">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="trasferimento1">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="trasferimento2">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension visible="true" highCardinality="false" name="provenienza">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension cubeName="Prestazioni" visible="true" highCardinality="false" name="Prestazione">
+    </VirtualCubeDimension>
+    <VirtualCubeDimension cubeName="Prestazioni" visible="true" highCardinality="false" name="Erogatore">
+    </VirtualCubeDimension>
+    <VirtualCubeMeasure cubeName="Accessi" name="[Measures].[accessi]" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </VirtualCubeMeasure>
+    <VirtualCubeMeasure cubeName="Prestazioni" name="[Measures].[prestazioni]" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </VirtualCubeMeasure>
+    <VirtualCubeMeasure cubeName="Prestazioni" name="[Measures].[accessi_distinct]" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </VirtualCubeMeasure>
+  </VirtualCube>
+</Schema>

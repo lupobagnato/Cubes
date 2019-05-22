@@ -1,0 +1,445 @@
+<Schema name="UVMO">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Ingresso" caption="Data Ingresso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_1">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Ingresso">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Ingresso" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Ingresso" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Dimissione" caption="Data Dimissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_2">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Dimissione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Dimissione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Dimissione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Ordine" caption="Data Ordine">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_3">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Ordine">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Ordine" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Ordine" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Chiusura" caption="Data Chiusura">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_4">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Chiusura">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Chiusura" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Chiusura" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Sociale" caption="Data Valutazione Soc.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_5">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Val. Soc.">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Val. Soc." captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Val. Soc." captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_CaricoSoc" caption="Data Presa in carico Soc.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_5">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Presa in carico Soc.">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Presa in carico Soc." captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Presa in carico Soc." captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_ProblSoc" caption="Data Problematica Soc.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_5">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Problematica Soc.">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Problematica Soc." captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Problematica Soc." captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_InvioComune" caption="Data invio al Comune">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_5">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno invio al Comune">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese invio al Comune" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno invio al Comune" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_5">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_base" caption="Et&#224; - fasce Base">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_10" caption="Et&#224; - fasce di 10 anni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="F10" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia 10">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Residenza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" alias="VDIM_LUOGHI_r">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Stato Residenza">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Residenza">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Residenza">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Residenza">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="esito" caption="Esito della valutazione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="COD">
+      <Table name="VDIM_ESITO_UVMO" schema="DWH">
+      </Table>
+      <Level name="Esito" visible="true" column="DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Esito Dettagliato" visible="true" column="DES_DETT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Codice Esito" visible="true" column="COD" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="richiedente" caption="Struttura Richiedente">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="RICHIEDENTE DES" visible="true" column="RICHIEDENTE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Richiedente">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="erogatore" caption="Struttura Erogante">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="EROGATORE DES" visible="true" column="EROGATORE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Erogatore">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="dettagli" caption="Dettagli Caso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="ID CASO" visible="true" column="ID_CASO" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="nosologico">
+      </Level>
+      <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="cognome">
+      </Level>
+      <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="nome">
+      </Level>
+      <Level name="DATA NASCITA" visible="true" column="DATA_NASCITA" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data di nascita">
+      </Level>
+      <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="sesso">
+      </Level>
+      <Level name="COD FISC" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="codice fiscale">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="aged" caption="Punteggio Aged">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="aged_def" visible="true" column="AGED_DEF" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Aged valorizzato">
+      </Level>
+      <Level name="aged_soglie" visible="true" column="AGED_SOGLIE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="soglie Aged">
+      </Level>
+      <Level name="aged" visible="true" column="AGED_PUNTEGGIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Aged">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="brass" caption="Punteggio Brass">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="brass_def" visible="true" column="BRASS_DEF" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Brass valorizzato">
+      </Level>
+      <Level name="brass_soglie" visible="true" column="BRASS_SOGLIE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="soglie Brass">
+      </Level>
+      <Level name="brass" visible="true" column="BRASS" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Brass">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="sociale" caption="Valutazione Sociale">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="soc_def" visible="true" column="SOCIALE_DEF" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Val. Sociale eseguita">
+      </Level>
+      <Level name="sociale" visible="true" column="SOCIALE_PUNTI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Punteggio Sociale">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ass_sociale" caption="Valutazione Sociale">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VCUBE_UVMO" schema="DWH">
+      </Table>
+      <Level name="assistente" visible="true" column="ASSISTENTE_SOC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Assistente Sociale">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="UVMO" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_UVMO" schema="DWH">
+    </Table>
+    <DimensionUsage source="esito" name="esito" visible="true" foreignKey="ESITO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="richiedente" name="richiedente" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="erogatore" name="erogatore" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettagli" name="dettagli" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Ingresso" name="T_Ingresso" visible="true" foreignKey="DATA_INGRESSO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Dimissione" name="T_Dimissione" visible="true" foreignKey="DATA_DIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Ordine" name="T_Ordine" visible="true" foreignKey="DATA_ORDINE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Chiusura" name="T_Chiusura" visible="true" foreignKey="DATA_CHIUSURA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Sociale" name="T_Sociale" visible="true" foreignKey="DATA_VAL_SOC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_CaricoSoc" name="T_CaricoSoc" visible="true" foreignKey="DATA_CARICO_SOC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_ProblSoc" name="T_ProblSoc" visible="true" foreignKey="DATA_PROBL_SOC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_InvioComune" name="T_InvioComune" visible="true" foreignKey="DATA_INVIO_COMUNE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_DIMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="RESIDENZA_COD" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="aged" name="aged" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="brass" name="brass" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="sociale" name="sociale" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ass_sociale" name="ass_sociale" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Nr. Casi" column="ID_CASO" formatString="#" aggregator="count">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="media AGED" column="AGED_PUNTI_NUMERICO" formatString="#0.00" aggregator="avg">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="media BRASS" column="BRASS" formatString="#0.00" aggregator="avg">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="media SOC" column="PUNTI_SOC_NUMERICO" formatString="#0.00" aggregator="avg">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="somma_aged" column="AGED_PUNTI_NUMERICO" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="min_aged" column="AGED_PUNTI_NUMERICO" aggregator="min" visible="false">
+    </Measure>
+    <Measure name="gg_degenza" column="GG_DEGENZA" formatString="##0.0" aggregator="avg" caption="gg Degenza" description="data Dimissione - data Ingresso" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="gg_segnalazione" column="GG_SEGNALAZIONE" formatString="##0.0" aggregator="avg" caption="gg x Segnalazione" description="data Ordine - data Ingresso" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+</Schema>

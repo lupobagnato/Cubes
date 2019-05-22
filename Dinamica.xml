@@ -1,0 +1,124 @@
+<Schema name="Dinamica">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Reparto">
+    <Hierarchy visible="true" hasAll="true" primaryKey="REPARTO_COD">
+      <Table name="VDIM_REPARTI" schema="DWH">
+      </Table>
+      <Level name="Presidio" visible="true" column="PRESIDIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Reparto" visible="true" column="REPARTO_COD" nameColumn="REPARTO_DES" ordinalColumn="REPARTO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Dinamica" caption="Dinamica Ospedaliera" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_DINAMICA" schema="DWH">
+    </Table>
+    <DimensionUsage source="Reparto" name="Reparto" visible="true" foreignKey="REPARTO" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="TimeDimension" visible="true" foreignKey="PRIMO_GG_DATA" highCardinality="false" name="AnnoMese_calc" caption="z AnnoMese per calcoli (non usare)">
+      <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+        <Table name="VDIM_TEMPO" schema="DWH">
+        </Table>
+        <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="z_anno">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[yyyy]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+        <Level name="Mese" visible="true" column="YYYYMM_CHARKEY" nameColumn="ANNO_MESE_NOME" ordinalColumn="YYYYMM_CHARKEY" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="z_mese">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[yyyy-MM]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="MESE" highCardinality="false" name="Mese_filtro" caption="filtro sul Mese (multi anno)">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DINAMICA" schema="DWH">
+        </Table>
+        <Level name="mese_filtro" visible="true" column="MESE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[MM]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="ANNOMESE_RIF" highCardinality="false" name="AnnoMese" caption="Anno e Mese">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DINAMICA" schema="DWH">
+        </Table>
+        <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[yyyy]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+        <Level name="Mese" visible="true" column="ANNOMESE_RIF" nameColumn="ANNOMESE_NOME" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[yyyyMM]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="entrati" column="ENTRATI_TOT" aggregator="sum" caption="Entrati" description="Accettazioni + Trasferimenti in ingresso" visible="true">
+    </Measure>
+    <Measure name="usciti" column="USCITI_TOT" aggregator="sum" caption="Usciti" description="Dimessi + Trasferimenti in uscita" visible="true">
+    </Measure>
+    <Measure name="giornate" column="GIORNATE_ORD" aggregator="sum" caption="Giornate Ord" visible="true">
+    </Measure>
+    <Measure name="pl_ord" column="PL_ORD" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="pl_dh" column="PL_DH" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="pl_ds" column="PL_DS" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="gg_possibili" column="GG_POSSIBILI" aggregator="sum" caption="GG possibili" visible="true">
+    </Measure>
+    <Measure name="gg_mese" column="GG_MESE" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="presenti_mese" column="PRESENTI_MESE" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="giornate_day" column="GIORNATE_DAY" aggregator="sum" caption="Giornate Day" visible="true">
+    </Measure>
+    <Measure name="in_out_1g" column="IN_OUT_1G" aggregator="sum" caption="In-Out 1 g" description="in/out stesso giorno (sono ESCLUSI dai calcoli della Dinamica)" visible="true">
+    </Measure>
+    <Measure name="input_tra" column="INPUT_TRA" aggregator="sum" caption="Trasf in" description="Trasferimenti in ingresso" visible="true">
+    </Measure>
+    <Measure name="output_tra" column="OUTPUT_TRA" aggregator="sum" caption="Trasf out" description="Trasferimenti in uscita" visible="true">
+    </Measure>
+    <Measure name="deceduti" column="DECEDUTI" aggregator="sum" caption="Deceduti" visible="true">
+    </Measure>
+    <Measure name="dimessi" column="OUTPUT_DIM" aggregator="sum" caption="Dimessi" description="usciti per Dimissione (esclusi in/out stesso giorno)" visible="true">
+    </Measure>
+    <Measure name="num_sdo" aggregator="sum" caption="numero SDO Ordinarie" description="Dimessi + in/out stesso giorno" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[output_dim + nvl(in_out_1g,0)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <CalculatedMember name="occ_media" caption="Occ. media" description="[giornate]  / [gg_possibili]" formula="[Measures].[giornate]  / ([Measures].[gg_possibili]) " dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="pl_ord_medi" caption="PL ord medi" formula="IIf(([AnnoMese_calc].CurrentMember.Level IS [AnnoMese_calc].[Mese]), [Measures].[pl_ord], Avg(Descendants([AnnoMese_calc].CurrentMember,[AnnoMese_calc].[Mese]), [Measures].[pl_ord]))" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="pl_dh_medi" caption="PL dh medi" formula="IIf(([AnnoMese_calc].CurrentMember.Level IS [AnnoMese_calc].[Mese]), [Measures].[pl_dh], Avg(Descendants([AnnoMese_calc].CurrentMember,[AnnoMese_calc].[Mese]), [Measures].[pl_dh]))" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="pl_ds_medi" caption="PL ds medi" formula="IIf(([AnnoMese_calc].CurrentMember.Level IS [AnnoMese_calc].[Mese]), [Measures].[pl_ds], Avg(Descendants([AnnoMese_calc].CurrentMember,[AnnoMese_calc].[Mese]), [Measures].[pl_ds]))" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="deg_media" caption="Deg. media" description="[giornate]  / [usciti]" formula="[Measures].[giornate] / [Measures].[usciti]" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="ind_rot" caption="Rotazione" description="[entrati]  /  [pl_ord_medi]" formula="[Measures].[entrati] / [Measures].[pl_ord_medi]" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="ind_tourn" caption="Tourn Over" description="([gg_possibili] - [giornate]  ) /  [entrati]" formula="([Measures].[gg_possibili] - [Measures].[giornate]  )/ [Measures].[entrati]" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="presenza_media" caption="Presenza media" formula="IIf(([AnnoMese_calc].CurrentMember.Level IS [AnnoMese_calc].[Mese]), [Measures].[presenti_mese], Avg(Descendants([AnnoMese_calc].CurrentMember,[AnnoMese_calc].[Mese]), [Measures].[presenti_mese]))" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>

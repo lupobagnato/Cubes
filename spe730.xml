@@ -1,0 +1,351 @@
+<Schema name="spe730">
+  <Dimension visible="true" highCardinality="false" name="mega_deg_dim" description="Mega Degenerate dimension prodotta creando il cubo nella PUC">
+    <Hierarchy name="ID" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="ID ORIGINE" visible="true" column="ID_ORIGINE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ID RECORD" visible="true" column="ID_RECORD" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="FLAGOPERAZIONE" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="FLAGOPERAZIONE" visible="true" column="FLAGOPERAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NUMDOCUMENTO" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="NUMDOCUMENTO" visible="true" column="NUMDOCUMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SOGEI ERR TIPO" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="SOGEI ERR TIPO" visible="true" column="SOGEI_ERR_TIPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="SOGEI ERR COD" visible="true" column="SOGEI_ERR_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="SOGEI ERR DES" visible="true" column="SOGEI_ERR_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SOGEI DATA ACC" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="SOGEI DATA ACC" visible="true" column="SOGEI_DATA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SOGEI PROT ACC" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="SOGEI PROT ACC" visible="true" column="SOGEI_PROT_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SOGEI FLAG" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="SOGEI FLAG" visible="true" column="SOGEI_FLAG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="FLAGFIELD" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="FLAGFIELD" visible="true" column="FLAGFIELD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="TIPOSPESA" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="TIPOSPESA" visible="true" column="TIPOSPESA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="FLAGTIPOSPESA" visible="true" column="FLAGTIPOSPESA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Errori_da_PDI" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="ERR_FLAG" visible="true" column="ERR_FLAG" uniqueMembers="false">
+      </Level>
+      <Level name="ERR COD" visible="true" column="ERR_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ERR DES" visible="true" column="ERR_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ERR FIELD" visible="true" column="ERR_FIELD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ERR NUMBER" visible="true" column="ERR_NUMBER" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="STATO PAGAMENTO" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="STATO PAGAMENTO" visible="true" column="STATO_PAGAMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="FASCIA CONTR" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="FASCIA CONTR" visible="true" column="FASCIA_CONTR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="WORKSTATION" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="WORKSTATION" visible="true" column="WORKSTATION" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="TIPO ISES" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="TIPO ISES" visible="true" column="TIPO_ISES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NOTE" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="NOTE" visible="true" column="NOTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="UNITA ORG" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="UNITA ORG" visible="true" column="UNITA_ORG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="CFCITTADINO" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="CFCITTADINO" visible="true" column="CFCITTADINO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="INTESTATARIO" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="INTESTATARIO" visible="true" column="INTESTATARIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="CODICE IMPEGNATIVA" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="CODICE IMPEGNATIVA" visible="true" column="CODICE_IMPEGNATIVA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="STATO" visible="true" hasAll="true" primaryKey="DATAEMISSIONE">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="STATO" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="RIMBORSO" visible="true" hasAll="true">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="id_doc_collegato" visible="true" column="ID_DOC_COLLEGATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="rim_numdocumento" visible="true" column="RIM_NUMDOCUMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="rim_dataemissione" visible="true" column="RIM_DATAEMISSIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="spare" visible="true" hasAll="true">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="spare_field" visible="true" column="SPARE_FIELD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="spesa_rim" visible="true" hasAll="true">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="spesa_rimborsata" visible="true" column="SPESA_RIMBORSATA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="deduplicata" visible="true" hasAll="true">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="deduplicata" visible="true" column="DEDUPLICATA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ric. deduplicata" description="num ricevuta modificato in fase di caricamento perch&#233; duplicato nel gestionale">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NUM_RICEVUTA" visible="true" hasAll="true">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="NUM_RICEVUTA" visible="true" column="NUM_RICEVUTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SIGLA" visible="true" hasAll="true">
+      <Table name="VCUBE_730" schema="DWH">
+      </Table>
+      <Level name="SIGLA" visible="true" column="SIGLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_emissione" caption="Data Emissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_r">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Emissione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Emissione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Emissione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_invio_sogei" caption="Data Invio Sogei">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_d">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Invio Sogei">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Invio Sogei" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Invio Sogei" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_ins" caption="Data ins">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_l">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno ins">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese ins" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno ins" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_t_mese">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="false" highCardinality="false" name="Anagrafe_Contatti" caption="Anagrafe" description="dati anagrafici provenienti da Anagrafe piu&#39; Anagrafe Contatti">
+    <Hierarchy name="anag_dettaglio" visible="true" hasAll="true" primaryKey="PIN_AZIENDA" caption="Anagrafe Contatti">
+      <Table name="VDIM_ANAG_ESTESA" alias="anag_estesa_1">
+      </Table>
+      <Level name="cod_fiscale" visible="true" column="COD_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Fiscale da Anagrafe" description="C.F pi&#249; Dati Anagrafici di dettaglio">
+        <Property name="data_decesso" column="DATA_DECESSO" type="Date" caption="Data decesso da Anagrafe">
+        </Property>
+        <Property name="comune_residenza" column="COMUNE_RESIDENZA" type="String" caption="Comune Residenza da Anagrafe">
+        </Property>
+        <Property name="ind_residenza" column="RESIDENZA" type="String">
+        </Property>
+        <Property name="comune_domicilio" column="COMUNE_DOMICILIO" type="String">
+        </Property>
+        <Property name="ind_domicilio" column="DOMICILIO" type="String">
+        </Property>
+        <Property name="origine" column="ORIGINE" type="String" caption="Origine dato Anagrafico">
+        </Property>
+      </Level>
+      <Level name="pin_azienda" visible="true" column="PIN_AZIENDA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Pin Azienda">
+      </Level>
+      <Level name="cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="anag_tipo_ass" visible="true" hasAll="true" primaryKey="PIN_AZIENDA" primaryKeyTable="anag_estesa_2" caption="Anagrafe Contatti" description="Snow Flake dimension">
+      <Join leftKey="COD_TIPO_ASSISTITO" rightKey="COD_TIPO_ASSISTITO">
+        <Table name="VDIM_ANAG_ESTESA" schema="DWH" alias="anag_estesa_2">
+        </Table>
+        <Table name="VDIM_TIPO_ASSISTITO" schema="DWH">
+        </Table>
+      </Join>
+      <Level name="tipo_assistito_des" visible="true" table="VDIM_TIPO_ASSISTITO" column="DES_TIPO_ASSISTITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Assistito">
+      </Level>
+      <Level name="tipo_ass_cod" visible="true" table="anag_estesa_2" column="COD_TIPO_ASSISTITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Assistito Codice" description="codice Tipo Assistito da Anagrafe">
+      </Level>
+      <Level name="origine" visible="true" table="anag_estesa_2" column="ORIGINE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Origine dati Anagrafici" description="Origine dei dati Anagrafe o Anagrafe Contatti">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="spe730" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_730" schema="DWH">
+    </Table>
+    <DimensionUsage source="mega_deg_dim" name="mega_deg_dim" visible="true" foreignKey="ID_ORIGINE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_emissione" name="t_emissione" visible="true" foreignKey="DATAEMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATAEMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_invio_sogei" name="t_invio_sogei" visible="true" foreignKey="SOGEI_DATA_ACC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_ins" name="t_ins" visible="true" foreignKey="DATA_INS" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Anagrafe_Contatti" name="Anagrafe_Contatti" visible="true" foreignKey="PIN_AZIENDA" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="ID RECORD" column="ID_RECORD" formatString="#" aggregator="count" caption="Numero">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="IMPORTO" column="IMPORTO" aggregator="sum" caption="Tot. Importi">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="SALDO" column="SALDO" aggregator="sum" caption="Saldo" description="i rimborsi sono conteggiati col meno" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+</Schema>

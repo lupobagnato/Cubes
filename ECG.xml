@@ -1,0 +1,28 @@
+<Schema name="ECG">
+  <Cube name="ECG" visible="true" cache="true" enabled="true">
+    <Table name="v_export_ecg" schema="CED">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="Erog_des" highCardinality="false" name="erog" caption="Medico">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="v_export_ecg" schema="CED">
+        </Table>
+        <Level name="Erog_des" visible="true" column="Erog_des" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Medico">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="Rich_cod" highCardinality="false" name="rich" caption="Richiedente">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="v_export_ecg" schema="CED">
+        </Table>
+        <Level name="Rich_tipo" visible="true" column="Rich_tipo" type="String" uniqueMembers="false" caption="Tipo Richiedente">
+        </Level>
+        <Level name="Rich_des" visible="true" column="Rich_des" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Struttura Richiedente">
+          <Property name="Rich_cod" column="Rich_cod">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Numero_Referti" column="Numero_Referti" datatype="Integer" aggregator="sum" caption="referti" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

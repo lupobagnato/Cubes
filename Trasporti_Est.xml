@@ -1,0 +1,199 @@
+<Schema name="Trasporti_Est">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Data" caption="Data Trasporto">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_data">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_mese">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Data_Rich" caption="Data Richiesta">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_data_rich">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Richiesta">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Richiesta" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Richiesta" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Autorizzazione">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="DIR_AUTORIZZAZIONE" visible="true" column="DIR_AUTORIZZAZIONE" uniqueMembers="false" caption="Direzione Autorizzazione">
+      </Level>
+      <Level name="AUTORIZZATORE" visible="true" column="AUTORIZZATORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Autorizzatore">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dettagli">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cognome Assistito">
+      </Level>
+      <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome Assistito">
+      </Level>
+      <Level name="RICETTA" visible="true" column="RICETTA" uniqueMembers="false" caption="Ricetta">
+      </Level>
+      <Level name="NUM_CASO" visible="true" column="NUM_CASO" uniqueMembers="false" caption="Numero Caso">
+        <Property name="DIAGNOSI" column="DIAGNOSI">
+        </Property>
+        <Property name="ORA_RICHIESTA" column="ORA_RICHIESTA">
+        </Property>
+        <Property name="ORA_TRASPORTO" column="ORA_TRASPORTO">
+        </Property>
+        <Property name="DATA_ACC" column="DATA_ACC">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Destinazione">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="TIPO_DEST" visible="true" column="TIPO_DEST" uniqueMembers="false" caption="Tipo Destinazione">
+      </Level>
+      <Level name="DESTINAZIONE" visible="true" column="DESTINAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Destinazione">
+      </Level>
+      <Level name="DESTINAZIONE_DETT" visible="true" column="DESTINAZIONE_DETT" uniqueMembers="false" caption="Dettaglio Destinazione">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Medico da Ricettario" caption="Medico da Ricettario">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="MED_TIPO_MEDICO" visible="true" column="MED_TIPO_MEDICO" uniqueMembers="false">
+      </Level>
+      <Level name="MED COD DISTRETTO" visible="true" column="MED_COD_DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="MED COD FISC" visible="true" column="MED_COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="MED COGNOME" visible="true" column="MED_COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="MED NOME" visible="true" column="MED_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="MED_ORIGINE_ANAGRAFE" visible="true" column="MED_ORIGINE_ANAGRAFE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="MED_FLAG_ATTIVO" visible="true" column="MED_FLAG_ATTIVO" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Medico Caricato">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="nome Med ripulito" visible="true" column="MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Medico">
+      </Level>
+      <Level name="nome Med originale" visible="true" column="MEDICO_ORIG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Motivo">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="MOTIVO" visible="true" column="MOTIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Motivo">
+      </Level>
+      <Level name="MOTIVO_DETT" visible="true" column="MOTIVO_DETT" uniqueMembers="false" caption="Dettaglio Motivo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Tipo Ambulanza" caption="Tipo Ambulanza">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="TIPO AMBULANZA" visible="true" column="TIPO_AMBULANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Ambulanza">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Tipo Assistito" caption="Tipo Assistito">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+      </Table>
+      <Level name="TIPO ASSISTITO" visible="true" column="TIPO_ASSISTITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Assistito">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Trasporti_Esterni" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_TRASPORTI_EST" schema="DWH">
+    </Table>
+    <DimensionUsage source="Autorizzazione" name="Autorizzazione" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dettagli" name="Dettagli" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Destinazione" name="Destinazione" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Medico da Ricettario" name="Medico da Ricettario" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Medico Caricato" name="Medico Caricato" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Motivo" name="Motivo" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo Ambulanza" name="Tipo Ambulanza" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo Assistito" name="Tipo Assistito" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Data" name="T_Data" visible="true" foreignKey="DATA_TRASPORTO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_TRASPORTO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Data_Rich" name="T_Data_Rich" visible="true" foreignKey="DATA_RICHIESTA" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Num Richieste" column="NUM_CASO" formatString="#" aggregator="count">
+    </Measure>
+    <Measure name="Num Trasporti" column="QTA" formatString="#" aggregator="sum">
+    </Measure>
+  </Cube>
+</Schema>

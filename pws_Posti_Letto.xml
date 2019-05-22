@@ -1,0 +1,30 @@
+<Schema name="Schema_PL">
+  <Cube name="posti_letto" caption="Posti Letto" cache="true" enabled="true">
+    <Table name="V_PL_TEST" schema="HSP">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="COD_REP" highCardinality="false" name="Reparto">
+      <Hierarchy hasAll="true" primaryKey="COD_REP">
+        <Table name="REPARTI_HSP" schema="HSP">
+        </Table>
+        <Level name="Presidio" column="COD_PRESIDIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Reparto" column="COD_REP" nameColumn="DESCR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="DISCIPLINA" highCardinality="false" name="Disciplina">
+      <Hierarchy name="Hierarchy_DISC" hasAll="true" primaryKey="CODICE">
+        <Table name="V_DISCIPLINE_REPARTI" schema="HSP">
+        </Table>
+        <Level name="Disciplina" column="CODICE" nameColumn="DISCIPLINA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Ordinari" column="POSTI_ORD" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Day Hospital" column="POSTI_DH" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Day Surgery" column="POSTI_DS" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

@@ -1,0 +1,101 @@
+<Schema name="Organigramma">
+  <Cube name="Dipendenti" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_DIPENDENTI" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="cdc" caption="Centro di Costo">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="dipartimento" visible="true" column="DIPARTIMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="1&#176; livello (Dipartimento)">
+        </Level>
+        <Level name="str_compl" visible="true" column="STRUTTURA_C" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="2&#176; livello (Str. Complessa)">
+        </Level>
+        <Level name="str_sempl" visible="true" column="STRUTTURA_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="3&#176; livello (Str. Semplice)">
+        </Level>
+        <Level name="cdc" visible="true" column="CDC20_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="4&#176; livello (Centro di Costo)">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="dettagli" caption="Dettagli dipendente">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="cod_fisc" visible="true" column="CODICE_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+        </Level>
+        <Level name="Cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Matricola" visible="true" column="MATRICOLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="Sesso">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="Sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="Natura" caption="Natura Rapporto">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="natura" visible="true" column="NATURA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Natura">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="pos_funz" caption="Posizione Funzionale">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="pos_funz" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Posizione">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="tipo_rapp" caption="Tipo Rapporto">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="Tipo" visible="true" column="TIPO_RAPPORTO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="Stato">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="Stato" visible="true" column="STATO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="tipo_ruolo">
+      <Hierarchy visible="true" hasAll="true" caption="altro" description="Altri codici di cui non si conosce il significato">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="tipo_ruolo" visible="true" column="TIPO_RUOLO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo ruolo">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CDC20" highCardinality="false" name="tipo_servizio">
+      <Hierarchy visible="true" hasAll="true" caption="altro">
+        <Table name="VCUBE_DIPENDENTI" schema="DWH">
+        </Table>
+        <Level name="tipo_servizio" visible="true" column="TIPO_SERVIZIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo servizio">
+          <Property name="asl1" column="LINK_ASL1">
+          </Property>
+          <Property name="google" column="LINK_GOOGLE">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="num" column="CODICE_FISCALE" aggregator="count" caption="Numero" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+</Schema>

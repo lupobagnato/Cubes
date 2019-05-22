@@ -1,0 +1,860 @@
+<Schema name="vertica_spec_esterni">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_DataErogPrest" caption="Data Erogazione" description="Erogazione effettiva della singola Prestazione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" alias="tempo_data_prest">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Erogazione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Erogazione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Erogazione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_DataRicPrest" caption="Data da Ricetta" description="Data della Ricetta a cui appartiene la prestazione (erogazione dell&#39;ultima prestazione), &#232; la data usata nel Flusso Regionale">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" alias="tempo_data_ric">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno da Ricetta">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese da Ricetta" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno da Ricetta" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_DataPreno" caption="Data Prenotazione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" alias="tempo_data_preno">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Prenotazione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Prenotazione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Prenotazione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" alias="tempo_mese_filtro">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro (data Prestazione da Ricetta)" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_DataLoad" caption="Data Acquisizione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" alias="tempo_data_load">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Load">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Load" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Load" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_base" caption="Et&#224; - fasce Base">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" alias="eta_base">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta_10" caption="Et&#224; - fasce di 10 anni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" alias="eta_10">
+      </Table>
+      <Level name="fascia" visible="true" column="F10" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia 10">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Mmg" caption="Medico di Base">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_MEDICO" alias="medici_mmg">
+      </Table>
+      <Level name="distretto" visible="true" column="DISTRETTO_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto MMG">
+      </Level>
+      <Level name="nome" visible="true" column="COD_FISC" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome MMG" captionColumn="NOME_MEDICO">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Med_Pres" caption="Medico Prescrittore">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VDIM_MEDICO" alias="medici_pres">
+      </Table>
+      <Level name="tipo" visible="true" column="TIPO_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Prescrittore">
+      </Level>
+      <Level name="nome" visible="true" column="COD_FISC" ordinalColumn="NOME_MEDICO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Medico Prescrittore" captionColumn="NOME_MEDICO">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Erogatore" caption="Erogatore" description="Struttura che ha erogato la prestazione  (Unit&#224; erogante Record_T)">
+    <Hierarchy name="eroga" visible="true" hasAll="true" primaryKey="EROGATORE_COD" caption="Erogatore">
+      <Table name="VDIM_EROGATORI_ESTERNI">
+      </Table>
+      <Level name="specialita" visible="true" column="SPECIALITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Specialit&#224;">
+      </Level>
+      <Level name="erogatore" visible="true" column="EROGATORE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Erogatore">
+      </Level>
+      <Level name="erogatore cod" visible="true" column="EROGATORE_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Erogatore">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="sede" visible="true" hasAll="true" primaryKey="EROGATORE_COD" caption="Erogatore">
+      <Table name="VDIM_EROGATORI_ESTERNI" alias="erogatori_esterni_sede">
+      </Table>
+      <Level name="sede" visible="true" column="SEDE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Sede" description="desunta dalla prima parola della descrizione">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Erogatore Ric" caption="Erogatore STS11 (da Ricetta)" description="Codice Stuttura associato alla ricetta, potrebbe NON aver erogato tutte le prestazioni presenti sulla ricetta (Struttura Record_S)">
+    <Hierarchy name="specialita" visible="true" hasAll="true" primaryKey="AMBULATORIO_COD" caption="Erogatore STS11">
+      <Table name="VDIM_AMBULATORI_STS11">
+      </Table>
+      <Level name="specialita_sts" visible="true" column="DISCIPLINA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Specialit&#224; Amb. STS11">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="amb_des" visible="true" hasAll="true" primaryKey="AMBULATORIO_COD" caption="Erogatore STS11">
+      <Table name="VDIM_AMBULATORI_STS11">
+      </Table>
+      <Level name="ambulatorio_sts" visible="true" column="AMBULATORIO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ambulatorio STS11">
+        <Property name="amb_cod" column="AMBULATORIO_COD" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="distretto" visible="true" hasAll="true" primaryKey="AMBULATORIO_COD" caption="Erogatore STS11">
+      <Table name="VDIM_AMBULATORI_STS11">
+      </Table>
+      <Level name="DISTRETTO" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto  Amb. STS11">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="amb_tipo" visible="true" hasAll="true" primaryKey="AMBULATORIO_COD" caption="Erogatore STS11">
+      <Table name="VDIM_AMBULATORI_STS11">
+      </Table>
+      <Level name="TIPO DES" visible="true" column="TIPO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Erogatore STS11">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="amb_cod" visible="true" hasAll="true" primaryKey="AMBULATORIO_COD" caption="Erogatore STS11">
+      <Table name="VDIM_AMBULATORI_STS11">
+      </Table>
+      <Level name="cod_sts11" visible="true" column="AMBULATORIO_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="cod STS11">
+        <Property name="amb_des" column="AMBULATORIO_DES" type="String" caption="amb_des">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="sts11_obsoleto" visible="true" hasAll="true" primaryKey="AMBULATORIO_COD" caption="Erogatore STS11">
+      <Table name="VDIM_AMBULATORI_STS11">
+      </Table>
+      <Level name="obsoleto" visible="true" column="OBSOLETO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="codice Obsoleto">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Sesso" caption="Sesso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="Sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Onere e Esenzioni" caption="Onere Prestazione e Esenzioni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="ON PREST" visible="true" column="ON_PREST" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Onere Prestazione">
+      </Level>
+      <Level name="POS TICKET" visible="true" column="POS_TICKET" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Posizione Ticket">
+      </Level>
+      <Level name="TIPOESENZIONE" visible="true" column="TIPOESENZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Esenzione">
+      </Level>
+      <Level name="CODESENZIONE" visible="true" column="CODESENZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Esenzione">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Branca Ricetta">
+    <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="Branca Ricetta" visible="true" column="BRANCA_RICETTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Canale Accesso inline" caption="Canale di Accesso inline" description="Test x InLine Table, non usata (non c&#39;e&#39; la corrispondente Dimension Usage)">
+    <Hierarchy visible="true" hasAll="true" primaryKey="COD">
+      <InlineTable alias="CodCanale">
+        <ColumnDefs>
+          <ColumnDef name="COD" type="String">
+          </ColumnDef>
+          <ColumnDef name="DES" type="String">
+          </ColumnDef>
+        </ColumnDefs>
+        <Rows>
+          <Row>
+            <Value column="COD">
+              <![CDATA[ME]]>
+            </Value>
+            <Value column="DES">
+              <![CDATA[Medico di base]]>
+            </Value>
+          </Row>
+          <Row>
+            <Value column="COD">
+              <![CDATA[SS]]>
+            </Value>
+            <Value column="DES">
+              <![CDATA[Medico specialista]]>
+            </Value>
+          </Row>
+          <Row>
+            <Value column="COD">
+              <![CDATA[AD]]>
+            </Value>
+            <Value column="DES">
+              <![CDATA[Accesso diretto]]>
+            </Value>
+          </Row>
+          <Row>
+            <Value column="COD">
+              <![CDATA[PS]]>
+            </Value>
+            <Value column="DES">
+              <![CDATA[Pronto soccorso]]>
+            </Value>
+          </Row>
+          <Row>
+            <Value column="COD">
+              <![CDATA[OB]]>
+            </Value>
+            <Value column="DES">
+              <![CDATA[Osservazione Breve Intensiva]]>
+            </Value>
+          </Row>
+          <Row>
+            <Value column="COD">
+              <![CDATA[AL]]>
+            </Value>
+            <Value column="DES">
+              <![CDATA[Altro]]>
+            </Value>
+          </Row>
+        </Rows>
+      </InlineTable>
+      <Level name="Canale" visible="true" column="COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Canale di Accesso" captionColumn="DES">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Disciplina">
+    <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="Disciplina prestazione" visible="true" column="DISCIPLINA_PREST" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Flag prescritto MMG" caption="Prescritto dal Medico di Base">
+    <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="FLAG PRESCRITTO MMG" visible="true" column="FLAG_PRESCRITTO_MMG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Prescritto da MMG">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Operatore Sanitario">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="Erog_Sanitario" visible="true" column="EROG_SANITARIO_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Operatore">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ID Cup" caption="ID da CUP">
+    <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="ID Agenda" visible="true" column="ID_AGENDA_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ID Prenotazione" visible="true" column="ID_PRENOTAZIONE_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Prestazioni">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRESTAZIONE_COD">
+      <Table name="VDIM_NOM_ESTERNI">
+      </Table>
+      <Level name="Gruppo" visible="true" column="DES_GRUPPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Classe" visible="true" column="DES_CLASSE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Prestazione" visible="true" column="PRESTAZIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Codice" visible="true" column="PRESTAZIONE_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dettagli Ricetta">
+    <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="RIC" visible="true" column="RIC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ricetta">
+        <Property name="HISTORY" column="HISTORY" type="String">
+        </Property>
+        <Property name="FIX_HISTORY" column="FIX_HISTORY" type="String">
+        </Property>
+        <Property name="LOAD_DATE" column="LOAD_DATE" type="String">
+        </Property>
+        <Property name="LAST_MODIF" column="LAST_MODIF" type="String">
+        </Property>
+      </Level>
+      <Level name="RIC APPLICATIVO" visible="true" column="RIC_APPLICATIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ric da applicativo">
+      </Level>
+      <Level name="PROV_APPLICATIVO" visible="true" column="PROV_APPLICATIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provenienza da applicativo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ID Tracciatone" caption="ID da Tracciatone">
+    <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="ID ORIGINE" visible="true" column="ID_ORIGINE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ID Origine">
+      </Level>
+      <Level name="ID CASO" visible="true" column="ID_CASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ID Caso">
+      </Level>
+      <Level name="ID RIGA" visible="true" column="ID_RIGA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ID Riga">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Accettazione ricetta" caption="Accettazione ricetta">
+    <Hierarchy name="codice_pc" visible="true" hasAll="true" primaryKey="STRUTT" caption="Accettazione ricetta">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="COD_PC" visible="true" column="COD_PC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod PC accettazione">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="provenienza" visible="true" hasAll="true" primaryKey="STRUTT" caption="Accettazione ricetta">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="PROV_APPLICATIVO" visible="true" column="PROV_APPLICATIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provenienza da applicativo" description="Cod Provenienza inserito nell&#39;applicativo di origine (Accreditati: data quality su ClassePriorit&#224;)">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ric_app" visible="true" hasAll="true" primaryKey="STRUTT" caption="Accettazione ricetta">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="RIC_APPLICATIVO" visible="true" column="RIC_APPLICATIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ricetta da Applicativo" description="Cod Ricetta inserito nell&#39;applicativo di origine (Accreditati: data quality su Data Prenotazione)">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dettagli Assistito">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="cod_fisc" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+      </Level>
+      <Level name="Cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Data_nasc" visible="true" column="DATA_NASC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Data di nascita">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="cod_reg" caption="cod Reg e  ASL da Record_S">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO" description="codici Reg e  ASL inseriti in Record_S">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="COD_REG" visible="true" column="COD_REG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="COD_USL" visible="true" column="COD_USL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="cod_com" caption="cod Comune da Record_S">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO" description="codice Comune inserito in Record_S">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="COD_COM" visible="true" column="COD_COM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Residenza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" alias="VDIM_LUOGHI_r">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Stato Residenza">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Residenza">
+      </Level>
+      <Level name="Provincia" visible="true" column="PROVINCIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provincia Residenza">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Residenza">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Residenza">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Canale Accesso" caption="Canale di Accesso" description="Canale Accesso (Name Expression che usa un CASE)">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="canale" visible="true" column="CANALE_ACCESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Canale di Accesso">
+        <NameExpression>
+          <SQL dialect="generic">
+            <![CDATA[case CANALE_ACCESSO
+when 'ME' then 'Medico di base'
+when  'SS' then 'Medico specialista'
+when  'AD' then 'Accesso diretto'
+when  'PS' then 'Pronto soccorso'
+when  'OB' then 'OBI'
+when  'AL' then 'Altro'
+else CANALE_ACCESSO
+end]]>
+          </SQL>
+        </NameExpression>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Asl" caption="ASL e Regione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="REGASL_COD">
+      <Table name="VDIM_ASL">
+      </Table>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione ASL">
+      </Level>
+      <Level name="Asl" visible="true" column="ASL_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Agenda" caption="CUP - Agenda">
+    <Hierarchy visible="true" hasAll="true" primaryKey="COD_STZ">
+      <Table name="VDIM_STRUTTURE_ISES">
+      </Table>
+      <Level name="flag_prenotato" visible="true" column="COD_STZ" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="flag_Prenotato" description="&#34;Si&#34; se esiste l&#39;Agenda (Key Expression)">
+        <KeyExpression>
+          <SQL dialect="generic">
+            <![CDATA[case COD_STR
+when 0 then  'No'
+else 'Si'
+end]]>
+          </SQL>
+        </KeyExpression>
+      </Level>
+      <Level name="struttura" visible="true" column="STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Struttura CUP">
+      </Level>
+      <Level name="struttura_cod" visible="true" column="COD_STR" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="codice Struttura">
+      </Level>
+      <Level name="unita" visible="true" column="UNITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Unit&#224; CUP">
+      </Level>
+      <Level name="unita_cod" visible="true" column="COD_UNI" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="codice Unit&#224;">
+      </Level>
+      <Level name="stanza" visible="true" column="STANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Agenda CUP">
+      </Level>
+      <Level name="stanza_cod" visible="true" column="COD_STZ" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="codice Agenda">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Prenotazione" caption="CUP - Prenotazione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="Priorita" visible="true" column="PRIORITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Classe Priorit&#224;" description="Priorit&#224; Prenotazione, &#34;Screening&#34; o &#34;Altro&#34;">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Info_cup" caption="CUP - Abbinamento" description="modalit&#224; di abbinamento Erogato --&#62; Prenotato">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="tipo_uso" visible="true" column="INFO_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="uso dati CUP" description="utilizzo delle info da CUP nei flussi (Key Expression)">
+        <KeyExpression>
+          <SQL dialect="generic">
+            <![CDATA[case 
+when INFO_CUP = 'n/d' then 'D - nessuno'
+when substr(ID_ORIGINE,1,1) = '0' then 'C - Accr. (solo per campi Null)'
+when substr(INFO_CUP,1,1) in ('1','2','3') then 'A - valori nel flusso'
+else 'B - solo statistica'
+end]]>
+          </SQL>
+        </KeyExpression>
+      </Level>
+      <Level name="info_cup" visible="true" column="INFO_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="abbinamento CUP" description="algoritmo con cui l&#39;erogato &#232; collegato al prenotato (info_cup)">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Esenzione">
+    <Hierarchy name="esenzione_cod" visible="true" hasAll="true" primaryKey="ANNO" caption="Esenzione">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="esenzione_cod" visible="true" column="CODESENZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Esenzione">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="esenzione_des" visible="true" hasAll="true" primaryKey="ANNO" caption="Esenzione">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="esenzione_des" visible="true" column="ESENZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Esenzione">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="z_chk_esenzione" visible="true" hasAll="true" primaryKey="ANNO" caption="Esenzione">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="chk_esenz" visible="true" column="CHK_ESENZ" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ese in Anagrafe" description="esito sintetico della ricerca in Anagrafe Esenzioni (Chk_Esenzione)">
+      </Level>
+      <Level name="chk_esenz_dett" visible="true" column="CHK_ESENZ_DETT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ese in Anagrafe - dettaglio" description="esito dettagliato della ricerca in Anagrafe Esenzioni (Chk_Esenzione)">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Stanza" caption="stanza Patidok">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="Stanza" visible="true" column="ATTIVITAEROGATA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Formato Ricetta" description="Rossa, Dema, Virtuale">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ANNO">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="tipo_formato" visible="true" column="FORMATO_RICETTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <KeyExpression>
+          <SQL dialect="generic">
+            <![CDATA[case 
+when FORMATO_RICETTA like 'Virtuale%'  then 'Virtuali'
+when substr(FORMATO_RICETTA,1,3) = 'Err' then 'Formati Err'
+when substr(FORMATO_RICETTA,1,3) = 'Ric' then 'Formati Ok'
+else FORMATO_RICETTA
+end]]>
+          </SQL>
+        </KeyExpression>
+      </Level>
+      <Level name="formato_ricetta" visible="true" column="FORMATO_RICETTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Formato Ricetta">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Spare" caption="spare e sperimentali" description="campi di prova (solo Admins)">
+    <Hierarchy name="Chk_esenz" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="chk_esenz" visible="true" column="CHK_ESENZ" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Info_cup" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="uso" visible="true" column="INFO_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="uso info_cup" description="err xch&#233; &#232; una Name Expression">
+        <NameExpression>
+          <SQL dialect="generic">
+            <![CDATA[case 
+when INFO_CUP = 'n/d' then 'D - nessuno'
+when substr(ID_ORIGINE,1,1) = '0' then 'C - Accr. (solo per campi Null)'
+when substr(INFO_CUP,1,1) in ('1','2','3') then 'A - valori nel flusso'
+else 'B - solo statistica'
+end]]>
+          </SQL>
+        </NameExpression>
+      </Level>
+      <Level name="info_cup" visible="true" column="INFO_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="tipo_accesso" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="tipo_accesso" visible="true" column="TIPO_ACCESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="garanzia_tm" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="garanzia_tm" visible="true" column="GARANZIA_TM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Cur" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="cur_cod" visible="true" column="CUR_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="cur_des" visible="true" column="CUR_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Serve anche per distinguere i codici CUR Null da quelli che non esistono sulla tabella di Ises">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Spare_1" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="spare_1" visible="true" column="SPARE_1" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Spare_2" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="spare_2" visible="true" column="SPARE_2" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Spare_3" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="spare_3" visible="true" column="SPARE_3" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Spare_4" visible="true" hasAll="true" primaryKey="ANNO" caption="spare e sperimentali">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="spare_4" visible="true" column="SPARE_4" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="MEF" caption="invii MEF" description="info su Invii al MEF">
+    <Hierarchy name="primo" visible="true" hasAll="true" primaryKey="ANNO" caption="invii MEF">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="art50_primo" visible="true" column="ART50_PRIMO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="primo invio MEF">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ultimo" visible="true" hasAll="true" primaryKey="ANNO" caption="invii MEF">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="arto50_ultimo" visible="true" column="ART50_ULTIMO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ultimo invio MEF">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="flag_inviato" visible="true" hasAll="true" primaryKey="ANNO" caption="invii MEF">
+      <Table name="VIB_SPEC_ESTERNI">
+      </Table>
+      <Level name="inviato" visible="true" column="ART50_PRIMO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <KeyExpression>
+          <SQL dialect="generic">
+            <![CDATA[(case when ART50_PRIMO is null then 'no' else 'si' end)]]>
+          </SQL>
+        </KeyExpression>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CUR" caption="CUR" description="Catalogo CUR preso da ISES (tabella CATALOGO_UNICO_PON)">
+    <Hierarchy name="cur1" visible="true" hasAll="true" primaryKey="CUR_COD" caption="Catalogo CUR">
+      <Table name="VDIM_CUR">
+      </Table>
+      <Level name="cod" visible="true" column="CUR_COD" uniqueMembers="false" caption="codice CUR">
+      </Level>
+      <Level name="des" visible="true" column="CUR_DES" uniqueMembers="false" caption="prestazione CUR">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="cur2" visible="true" hasAll="true" primaryKey="CUR_COD" caption="Catalogo CUR">
+      <Table name="VDIM_CUR" alias="erogatori_esterni_sede">
+      </Table>
+      <Level name="pngla" visible="true" column="FLAG_PNGLA" uniqueMembers="false" caption="flag PNGLA" description="&#34;Si&#34; per le prestazioni incluse nel PNGLA">
+      </Level>
+      <Level name="nr_ordine" visible="true" column="NR_ORDINE_TIPO" uniqueMembers="false" caption="nr ord Tipologia" description="Numero d&#39;ordine della Tipologia Min">
+      </Level>
+      <Level name="tipo_min" visible="true" column="TIPO_MINISTERO" uniqueMembers="false" caption="tipologia Ministeriale" description="Tipologia nel monitoraggio ministeriale dei TA">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="spec_esterni" visible="true" cache="true" enabled="true">
+    <Table name="VIB_SPEC_ESTERNI">
+    </Table>
+    <DimensionUsage source="T_DataErogPrest" name="T_DataErogPrest" visible="true" foreignKey="EROG_DATA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_PREST" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_DataPreno" name="T_DataPreno" visible="true" foreignKey="DATA_PRENO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Mmg" name="Mmg" visible="true" foreignKey="MMG_CF" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Med_Pres" name="Med_Pres" visible="true" foreignKey="MED_PRES_CF" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_base" name="fasce_eta_base" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta_10" name="fasce_eta_10" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Onere e Esenzioni" name="Onere e Esenzioni" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Branca Ricetta" name="Branca Ricetta" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Canale Accesso" name="Canale Accesso" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Disciplina" name="Disciplina" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Flag prescritto MMG" name="Flag prescritto MMG" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Prestazioni" name="Prestazioni" visible="true" foreignKey="COD_PREST" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dettagli Assistito" name="Dettagli Assistito" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Erogatore Ric" name="Erogatore Ric" visible="true" foreignKey="STRUTT" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Erogatore" name="Erogatore" visible="true" foreignKey="UNITAEROGANTE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ID Tracciatone" name="ID Tracciatone" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ID Cup" name="ID Cup" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dettagli Ricetta" name="Dettagli Ricetta" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Sesso" name="Sesso" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Accettazione ricetta" name="Accettazione ricetta" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="cod_reg" name="cod_reg" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="cod_com" name="cod_com" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="LUOGO_COD" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Asl" name="Asl" visible="true" foreignKey="REGASL_COM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Agenda" name="Agenda" visible="true" foreignKey="COD_STZ" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Prenotazione" name="Prenotazione" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Esenzione" name="Esenzione" visible="true" foreignKey="CODESENZIONE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Operatore Sanitario" name="Operatore Sanitario" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_DataRicPrest" name="T_DataRicPrest" visible="true" foreignKey="DATA_PREST" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_DataLoad" name="T_DataLoad" visible="true" foreignKey="LOAD_DATE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Stanza" name="Stanza" visible="true" foreignKey="ATTIVITAEROGATA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Formato Ricetta" name="Formato Ricetta" visible="true" foreignKey="FORMATO_RICETTA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Spare" name="Spare" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Info_cup" name="Info_cup" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="MEF" name="MEF" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CUR" name="CUR" visible="true" foreignKey="CUR_COD">
+    </DimensionUsage>
+    <Measure name="IMPORTO" column="IMPORTO" formatString="#" aggregator="sum" caption="Importo">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="QUANTITA" column="QUANTITA" formatString="#" aggregator="sum" caption="Prestazioni">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Prenotazioni" column="QTA_CUP" aggregator="sum" caption="Prestazioni_CUP" description="numero di prestazioni che riportano un codice Prenotazione ISES (vale solo per gli applicativi integrati col CUP)" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Ricette" column="RIC" aggregator="distinct-count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure_distinct]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Pazienti" column="COD_FISC" aggregator="distinct-count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure_distinct]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Casi" column="ID_CASO" aggregator="distinct-count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure_distinct]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="records" column="ANNO" aggregator="count" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure_tech]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="spare_mis" column="SPARE_MIS" aggregator="sum" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure_tech]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="spare_mis1" column="SPARE_MIS1" aggregator="sum" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure_tech]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+</Schema>

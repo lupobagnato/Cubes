@@ -1,0 +1,108 @@
+<Schema name="indicatore_prescr_elettr">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="TEMPO" caption="Periodo di riferimento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="tipo" caption="Tipo Ricetta">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRIMO_GIORNO_MESE">
+      <Table name="VCUBE_PRESCRIZIONI_ELE" schema="DWH">
+      </Table>
+      <Level name="tipo" visible="true" column="TIPO_IMPEGNATIVA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Ricetta">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="MEDICO" caption="Medico prescrittore">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRIMO_GIORNO_MESE">
+      <Table name="VCUBE_PRESCRIZIONI_ELE" schema="DWH">
+      </Table>
+      <Level name="MED PRES" visible="true" column="MED_PRES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Medico">
+        <CaptionExpression>
+          <SQL dialect="generic">
+            <![CDATA[COGNOME || ' ' || NOME]]>
+          </SQL>
+        </CaptionExpression>
+        <OrdinalExpression>
+          <SQL dialect="generic">
+            <![CDATA[COGNOME || ' ' || NOME]]>
+          </SQL>
+        </OrdinalExpression>
+        <Property name="cognome" column="COGNOME">
+        </Property>
+        <Property name="nome" column="NOME">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CDC">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRIMO_GIORNO_MESE">
+      <Table name="VCUBE_PRESCRIZIONI_ELE" schema="DWH">
+      </Table>
+      <Level name="CDC" visible="true" column="CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="dettagli_medico">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PRIMO_GIORNO_MESE">
+      <Table name="VCUBE_PRESCRIZIONI_ELE" schema="DWH">
+      </Table>
+      <Level name="origine" visible="true" column="ORIGINE" uniqueMembers="false">
+      </Level>
+      <Level name="tipo_medico" visible="true" column="TIPO_MEDICO" uniqueMembers="false">
+      </Level>
+      <Level name="cf_medico" visible="true" column="MED_PRES" uniqueMembers="false">
+      </Level>
+      <Level name="lista_spec" visible="true" column="LISTA_SPEC_ATTIVE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ldap_name" visible="true" column="LDAP_NAME" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="indicatore_prescr_elettr" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_PRESCRIZIONI_ELE" schema="DWH">
+    </Table>
+    <DimensionUsage source="TEMPO" name="TEMPO" visible="true" foreignKey="PRIMO_GIORNO_MESE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="tipo" name="tipo" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="MEDICO" name="MEDICO" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CDC" name="CDC" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettagli_medico" name="dettagli_medico" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="RIC ELE" column="RIC_ELE" formatString="#" aggregator="sum" caption="Ricette Elettroniche" description="Ricette Elettroniche nel mese">
+    </Measure>
+    <Measure name="RIC EROGATE" column="RIC_EROGATE" formatString="#" aggregator="sum" caption="Ricette Erogate" description="Ricette Erogate nel mese">
+    </Measure>
+    <Measure name="MEDIA RIC EROGATE" column="MEDIA_RIC_EROGATE" formatString="#" aggregator="sum" caption="Media Erogato" description="Media mensile erogato da inizio anno">
+    </Measure>
+  </Cube>
+  <Role name="grBiAdmins">
+    <SchemaGrant access="all">
+    </SchemaGrant>
+  </Role>
+  <Role name="grBiUsers">
+    <SchemaGrant access="all">
+      <CubeGrant cube="indicatore_prescr_elettr" access="all">
+        <HierarchyGrant hierarchy="[dettagli_medico]" access="none">
+        </HierarchyGrant>
+      </CubeGrant>
+    </SchemaGrant>
+  </Role>
+</Schema>

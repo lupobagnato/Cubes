@@ -1,0 +1,79 @@
+<Schema name="Prototipo_Incassi_CUP">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_emissione" caption="Data Incasso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Incasso">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Incasso" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Incasso" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Incassi_CUP" caption="Incassi CUP" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_INCASSI_CUP" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNOMESE" highCardinality="false" name="DegenDim">
+      <Hierarchy name="dettagli" visible="true" hasAll="true" caption="Dettagli">
+        <Level name="workstation" visible="true" column="WORKSTATION" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="operatore" visible="true" column="OPERATORE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="id_documento" visible="true" column="DCMN0" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="unita_org" visible="true" hasAll="true">
+        <Table name="VCUBE_INCASSI_CUP" schema="DWH">
+        </Table>
+        <Level name="unita" visible="true" column="UNITA_ORG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Unit&#224; Organizzativa">
+        </Level>
+        <Level name="unita_cod" visible="true" column="COD_UNITA_ORG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="motivo" visible="true" hasAll="true" caption="Motivo incasso">
+        <Level name="tipo_motivo" visible="true" column="TIPO_MOTIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Prestazione">
+        </Level>
+        <Level name="motivo_op" visible="true" column="MOTIVO_OPERAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Prestazione">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="fascia" visible="true" hasAll="true" caption="Fascia contrattuale">
+        <Level name="fascia_contrattuale" visible="true" column="FASCIA_CONTRATTUALE" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="fascia Cod">
+        </Level>
+        <Level name="fascia_contr_des" visible="true" column="FASCIA_CONTR_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="fascia Des">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="tipo_operazione" visible="true" hasAll="true" caption="Operazione">
+        <Level name="tipo_operazione" visible="true" column="TIPO_OPERAZIONE" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="tipo Operazione">
+        </Level>
+        <Level name="tipo_documento" visible="true" column="TIPO_DOCUMENTO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="tipo Documento">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="CCP" visible="true" hasAll="true" caption="Pagamenti con CCP">
+        <Level name="flag_CCP" visible="true" column="FLAG_CCP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Pagato con CCP">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="t_emissione" name="t_emissione" visible="true" foreignKey="DATA_EMISSIONE" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Num" column="DCMN0" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="importo" column="SALDO" datatype="Numeric" formatString="#,##0.00" aggregator="sum" caption="Importo" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

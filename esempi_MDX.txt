@@ -1,0 +1,52 @@
+select [measures] on columns
+, [Canale].children on rows
+from [Dett_Ricette]
+
+select [d_Reparti.h_Reparti].[tutti] 
+on columns from [Posti_Letto]
+
+select {[Measures].[PL_ordinari], [Measures].[PL_dh]}
+on columns from [Posti_Letto]
+
+select 
+{[Measures].[PL_ordinari], [Measures].[PL_dh]} on columns,
+[d_Reparti.h_Reparti].[tutti] on rows
+from [Posti_Letto]
+
+select 
+{[Measures].[PL_ordinari], [Measures].[PL_dh], [Measures].[PL_ds]} on columns
+from [Posti_Letto_2]
+
+select 
+[Measures].members on columns
+from [Posti_Letto_2]
+
+select {[Measures].Members} ON COLUMNS,
+  [d_Reparti.h_Presidio].[Tutti].Children ON ROWS
+from [Posti_Letto_2]
+
+select 
+[Measures].members on columns,
+{[d_Reparto.h_Presidio].members} ON ROWS
+from [SDO]
+
+select 
+{[Measures].[numero]} ON columns, 
+{[d_Reparto.h_Presidio].[Tutti]} ON rows 
+from [Sdo]
+
+select {[Measures].[numero]} ON columns
+from [Sdo]
+where [d_Reparto.h_Presidio].[SR]
+										SELECT   "REPARTI_HSP"."COD_PRESIDIO" AS "c0",
+										         COUNT ("SDO_PER_SPD"."NUM_PRAT") AS "m0"
+										    FROM "REPARTI_HSP", "SDO_PER_SPD"
+										   WHERE "SDO_PER_SPD"."REP_DIM" = "REPARTI_HSP"."COD_REP"
+										     AND "REPARTI_HSP"."COD_PRESIDIO" = 'SR'
+										GROUP BY "REPARTI_HSP"."COD_PRESIDIO"
+										
+select 
+[Measures].members on columns,
+[d_CodRep.h_CodRep].[tutti] on rows
+from [c_PL]
+										

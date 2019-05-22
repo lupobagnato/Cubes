@@ -1,0 +1,294 @@
+<Schema name="Chiamate_SIA">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Apertura" caption="Data Apertura">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_CHARKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_1">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Apertura">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Apertura" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Apertura" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Dimissione" caption="Data Dimissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_CHARKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_2">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Dimissione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Dimissione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Dimissione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Chiusura" caption="Data Chiusura">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_CHARKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_4">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Chiusura">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Chiusura" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Chiusura" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_CHARKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="dim_tempo_5">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CDC">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="CDC" visible="true" column="CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CHIUSA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="CHIUSA" visible="true" column="CHIUSA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Tipo_giorno_ap" caption="Data Apertura">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="tipo_giorno" visible="true" column="TIPO_GIORNO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="tipo Giorno" description="Giorno Feriale / Festivo">
+      </Level>
+      <Level name="nome_giorno" visible="true" column="GG_SETTIMANA_NOME" ordinalColumn="GG_SETTIMANA_NUMERO" uniqueMembers="false" caption="nome Giorno">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DATA CHIUSURA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="DATA CHIUSURA" visible="true" column="DATA_CHIUSURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="INVENTARIO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="INVENTARIO" visible="true" column="INVENTARIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="IP">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="IP" visible="true" column="IP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="MAIL">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="MAIL" visible="true" column="MAIL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="NUMERO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="NUMERO" visible="true" column="NUMERO" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="OGGETTO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="ARGOMENTO" visible="true" column="ARGOMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="OGGETTO" visible="true" column="OGGETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="OPERATORE APERTURA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="OPERATORE APERTURA" visible="true" column="OPERATORE_APERTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="OPERATORE CHIUSURA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="OPERATORE CHIUSURA" visible="true" column="OPERATORE_CHIUSURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ORA APERTURA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="fascia_oraria" visible="true" column="FASCIA_ORARIA" uniqueMembers="false" caption="Fascia Oraria" description="Fascia Oraria dell&#39;apertura chiamata">
+      </Level>
+      <Level name="ORA APERTURA" visible="true" column="ORA_APERTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ORA CHIUSURA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="ORA CHIUSURA" visible="true" column="ORA_CHIUSURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="PROBLEMA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="PROBLEMA" visible="true" column="PROBLEMA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="REPERIBILITA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="REPERIBILITA" visible="true" column="REPERIBILITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="SEDE">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="SEDE" visible="true" column="SEDE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="URGENZA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="URGENZA" visible="true" column="URGENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="CHIAMANTE">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_CHIAMATE" schema="DWH">
+      </Table>
+      <Level name="CHIAMANTE" visible="true" column="CHIAMANTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Chiamate_SIA" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_CHIAMATE" schema="DWH">
+    </Table>
+    <DimensionUsage source="CDC" name="CDC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CHIUSA" name="CHIUSA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="INVENTARIO" name="INVENTARIO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="IP" name="IP" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="MAIL" name="MAIL" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NUMERO" name="NUMERO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="OGGETTO" name="OGGETTO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="OPERATORE APERTURA" name="OPERATORE APERTURA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="OPERATORE CHIUSURA" name="OPERATORE CHIUSURA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ORA APERTURA" name="ORA APERTURA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ORA CHIUSURA" name="ORA CHIUSURA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="PROBLEMA" name="PROBLEMA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="REPERIBILITA" name="REPERIBILITA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SEDE" name="SEDE" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="URGENZA" name="URGENZA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Apertura" name="T_Apertura" visible="true" foreignKey="DATA_APERTURA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Chiusura" name="T_Chiusura" visible="true" foreignKey="DATA_CHIUSURA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CHIAMANTE" name="CHIAMANTE" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo_giorno_ap" name="Tipo_giorno_ap" visible="true">
+    </DimensionUsage>
+    <Measure name="NUMERO" column="NUMERO" formatString="#" aggregator="count" caption="Numero">
+    </Measure>
+    <Measure name="t_servizio" column="TEMPO_SERVIZIO" aggregator="sum" caption="Tempo di servizio" description="giorni fra l&#39;apertura e la chiusura" visible="true">
+    </Measure>
+    <Measure name="t_medio" column="TEMPO_SERVIZIO" aggregator="avg" caption="Tempo medio di servizio" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

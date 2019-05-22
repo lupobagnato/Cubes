@@ -1,0 +1,434 @@
+<Schema name="CEDAP">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Parto" caption="Data Parto">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno parto">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese parto" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno parto" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Dimissione" description="Le gerarchie delle due dimensioni SDO_* e T_Dimissione sono viste come gerarchia unica in Pentaho perch&#233; le captions della GERARCHIE sono uguali">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY" caption="SDO collegata">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_dimissione">
+      </Table>
+      <Level name="Anno_dim" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno dimissione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese_dim" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese dimissione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno_dim" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno dimissione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_t_mese">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="eta_m" caption="Et&#224; Madre">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH" alias="dim_eta_m">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224; Madre">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="eta_p" caption="Et&#224; Padre">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA">
+      <Table name="VDIM_ETA" schema="DWH" alias="dim_eta_p">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224; Padre">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ABORTI SPONTANEI PREC" caption="Aborti spontanei prec.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="ABORTI SPONTANEI PREC" visible="true" column="ABORTI_SPONTANEI_PREC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Aborti spontanei prec.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DECORSO GRAVIDANZA" caption="Decorso gravidanza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="DECORSO GRAVIDANZA" visible="true" column="DECORSO_GRAVIDANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Decorso">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Parti_Prec">
+    <Hierarchy name="10_concepimenti_p" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Parti Precedenti">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CONCEP_PREC" visible="true" column="CONCEP_PREC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Concepimenti precedenti">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="20_parti_p" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Parti Precedenti">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="PARTI_PREC" visible="true" column="PARTI_PREC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Parti prec.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="21_parti_p_mod" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Parti Precedenti" description="vallore corretto x l&#39;invio (nella v_cedap_NC)">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="PARTI_PREC_MOD" visible="true" column="PARTI_PREC_MOD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Parti pr. modificato">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="30_cesarei_p" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Parti Precedenti">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CESAREI_PREC" visible="true" column="CESAREI_PREC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cesarei prec.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="40_nati_p" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Parti Precedenti">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="NR_NATI_PREC" visible="true" column="NR_NATI_PREC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nati prec.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="50_data_parto_p" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Parti Precedenti">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="FLAG_DATA_ULTIMO_P" visible="true" column="FLAG_DATA_ULTIMO_P" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Data ultimo parto valorizzata">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ETA GESTAZ">
+    <Hierarchy name="eta_gest" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Et&#224; Gestazionale">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="GRAV A TERMINE" visible="true" column="GRAV_A_TERMINE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Termine">
+      </Level>
+      <Level name="ETA GESTAZ" visible="true" column="ETA_GESTAZ" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224; Gest.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="eta_gest_ntsv" visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="Et&#224; Gestazionale" description="Et&#224; gestazionale usata nell&#39;indicatore NTSV">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="ETA_GEST_NTSV" visible="true" column="ETA_GEST_NTSV" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224; Gest. x NTSV">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="GENERE PARTO" caption="Genere parto">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="GENERE PARTO" visible="true" column="GENERE_PARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Genere">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="IVG PREC" caption="IVG prec.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="IVG PREC" visible="true" column="IVG_PREC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IVG prec.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="MODALITA PARTO" caption="Modalit&#224; parto">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="flag_cesareo" visible="true" column="FLAG_CESAREO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cesareo (Si/No)">
+      </Level>
+      <Level name="MODALITA PARTO" visible="true" column="MODALITA_PARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Modalit&#224; parto">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="MODALITA TRAVAGLIO" caption="Modalit&#224; travaglio">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="MODALITA TRAVAGLIO" visible="true" column="MODALITA_TRAVAGLIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Travaglio">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="NTSV">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="NTSV" visible="true" column="NTSV" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="OSPEDALE" caption="Ospedale">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="OSPEDALE" visible="true" column="OSPEDALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ospedale">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="PRES NEONATO" caption="Presentazione neonato">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="PRES NEONATO" visible="true" column="PRES_NEONATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Presentazione neonato">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="PROCREAZIONE ASSISTITA" caption="Procr. Assistita">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="PROCREAZIONE ASSISTITA" visible="true" column="PROCREAZIONE_ASSISTITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Assistita">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CITTADINANZA" caption="Cittadinanza madre">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cittadinanza">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="SDO_drg" description="Le gerarchie delle due dimensioni SDO_* e T_Dimissione sono viste come gerarchia unica in Pentaho perch&#233; le captions della GERARCHIE sono uguali">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="SDO collegata" description="informazioni prese dalla SDO collegata">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="sdo_drg" visible="true" column="SDO_COD_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DRG da sdo">
+        <Property name="descrizione_drg" column="SDO_DES_DRG" type="String">
+        </Property>
+        <Property name="int_p" column="SDO_INT_P" type="String">
+        </Property>
+        <Property name="diagnosi" column="SDO_DIAGNOSI" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="SDO_rep_dim">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE" caption="SDO collegata">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="sdo_rep_dim" visible="true" column="SDO_REP_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparto da sdo">
+      </Level>
+      <Level name="sdo_CF" visible="true" column="SDO_COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Fisc da SDO">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="anestesista" caption="Presenza Anestesista">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="ANESTESISTA" visible="true" column="ANESTESISTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Anestesista">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="spare04">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="spare05">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="spare06">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="dettagli">
+    <Hierarchy name="cognome_nome" visible="true" hasAll="true" caption="Dettagli Parto">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cognome">
+      </Level>
+      <Level name="nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="cod_fisc" visible="true" hasAll="true" caption="Dettagli Parto">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="cod_fisc" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="id_scheda" visible="true" hasAll="true" caption="Dettagli Parto">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="id_scheda" visible="true" column="ID_SCHEDA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Id Scheda">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Parti" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_PARTI" schema="DWH">
+    </Table>
+    <DimensionUsage source="T_Parto" name="T_Parto" visible="true" foreignKey="DATA_PARTO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_PARTO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DECORSO GRAVIDANZA" name="DECORSO GRAVIDANZA" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Parti_Prec" name="Parti_Prec" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ETA GESTAZ" name="ETA GESTAZ" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="GENERE PARTO" name="GENERE PARTO" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="IVG PREC" name="IVG PREC" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="MODALITA PARTO" name="MODALITA PARTO" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="MODALITA TRAVAGLIO" name="MODALITA TRAVAGLIO" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NTSV" name="NTSV" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="OSPEDALE" name="OSPEDALE" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="PRES NEONATO" name="PRES NEONATO" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="PROCREAZIONE ASSISTITA" name="PROCREAZIONE ASSISTITA" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CITTADINANZA" name="CITTADINANZA" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="eta_m" name="eta_m" visible="true" foreignKey="ETA_MADRE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="eta_p" name="eta_p" visible="true" foreignKey="ETA_PADRE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettagli" name="dettagli" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SDO_drg" name="SDO_drg" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ABORTI SPONTANEI PREC" name="ABORTI SPONTANEI PREC" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SDO_rep_dim" name="SDO_rep_dim" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Dimissione" name="T_Dimissione" visible="true" foreignKey="SDO_DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="anestesista" name="anestesista" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Nr Cesarei" column="NR_CESAREI" formatString="#" aggregator="sum">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Femmine" column="NR_FEMMINE" formatString="#" aggregator="sum">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Malformazioni" column="NR_MALFORMAZIONI" aggregator="sum">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Maschi" column="NR_MASCHI" formatString="#" aggregator="sum">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Parti" column="ID_SCHEDA" formatString="#" aggregator="count">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Neonati" formatString="#" aggregator="sum" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[NR_FEMMINE + NR_MASCHI]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Nr Deceduti" column="NR_DECEDUTI" aggregator="sum" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Immaturi" column="NR_IMMATURI" aggregator="sum" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr Immaturi dec" column="NR_IMMATURI_DEC" aggregator="sum" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="Nr SDO Parto" column="SDO_NR_PARTI" aggregator="sum" caption="SDO Parto collegate" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+  </Cube>
+</Schema>

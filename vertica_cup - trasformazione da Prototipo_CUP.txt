@@ -1,0 +1,6 @@
+Schema name="Prototipo_CUP"		--->	Schema name="vertica_cup"			(questo deve essere uguale al nome file)
+Cube name="Prototipo_CUP_Cube"	--->	Cube name="vertica_cup_cube"		(questo è per avere un nome cubo un po' più decente)
+
+Eliminata l'indicazione dello schema (in entrambi gli XML)
+	schema="DWH"					--->	schema="public"
+non serve più

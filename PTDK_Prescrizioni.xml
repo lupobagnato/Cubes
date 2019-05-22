@@ -1,0 +1,214 @@
+<Schema name="PTDK_prescrizioni">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_Data" caption="Data Ricetta">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_data">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_mese">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ANONIMO">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="ANONIMO" visible="true" column="ANONIMO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CDC">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="CDC" visible="true" column="CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CODICE_IMPEGNATIVA">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="CODICE_IMPEGNATIVA" visible="true" column="CODICE_IMPEGNATIVA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="COGNOME">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DATA">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="DATA" visible="true" column="DATA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DAY_SERVICE">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="DAY_SERVICE" visible="true" column="DAY_SERVICE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ESENTE">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="ESENTE" visible="true" column="ESENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="GRADO_URGENZA">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="GRADO_URGENZA" visible="true" column="GRADO_URGENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="LDAP_NAME">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="LDAP_NAME" visible="true" column="LDAP_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="NOME">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ORA">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="ORA" visible="true" column="ORA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ORIGINE_CDC">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="ORIGINE_CDC" visible="true" column="ORIGINE_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="SEDE">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="SEDE" visible="true" column="SEDE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="STATO_IMPEGNATIVA">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="STATO_IMPEGNATIVA" visible="true" column="STATO_IMPEGNATIVA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TESTO_QUESITO">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="TESTO_QUESITO" visible="true" column="TESTO_QUESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TIPO_IMPEGNATIVA" description="Specialistica / Farmaceutica">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="TIPO_IMPEGNATIVA" visible="true" column="TIPO_IMPEGNATIVA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Specialistica / Farmaceutica">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TIPO_PRESCRIZIONE" description="Eliminata dalle Dim Usage per evitare confusione, sarebbe Surrerita, R?, Altro">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="TIPO_PRESCRIZIONE" visible="true" column="TIPO_PRESCRIZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TIPO_PROVENIENZA">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="TIPO_PROVENIENZA" visible="true" column="TIPO_PROVENIENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="USER_ID">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="USER_ID" visible="true" column="USER_ID" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Property name="cognome" column="COGNOME" type="String">
+        </Property>
+        <Property name="nome" column="NOME" type="String">
+        </Property>
+        <Property name="ldap_name" column="LDAP_NAME" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="USER_NAME">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="USER_NAME" visible="true" column="USER_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="TIPO_RICETTA" description="Manuale, Elettronica, Dematerializzata">
+    <Hierarchy visible="true" hasAll="true">
+      <Level name="TIPO_RICETTA" visible="true" column="TIPO_RICETTA" uniqueMembers="false" description="Manuale, Elettronica, Dematerializzata">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="PTDK_Prescrizioni" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_PTDK_PRESCRIZIONI" schema="DWH">
+    </Table>
+    <DimensionUsage source="ANONIMO" name="ANONIMO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CDC" name="CDC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CODICE_IMPEGNATIVA" name="CODICE_IMPEGNATIVA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_Data" name="T_Data" visible="true" foreignKey="DATA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ESENTE" name="ESENTE" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="GRADO_URGENZA" name="GRADO_URGENZA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ORA" name="ORA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ORIGINE_CDC" name="ORIGINE_CDC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SEDE" name="SEDE" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="STATO_IMPEGNATIVA" name="STATO_IMPEGNATIVA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TESTO_QUESITO" name="TESTO_QUESITO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TIPO_IMPEGNATIVA" name="TIPO_IMPEGNATIVA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TIPO_PROVENIENZA" name="TIPO_PROVENIENZA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="USER_ID" name="USER_ID" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="USER_NAME" name="USER_NAME" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TIPO_RICETTA" name="TIPO_RICETTA" visible="true">
+    </DimensionUsage>
+    <Measure name="Num_Ricette" column="CODICE_IMPEGNATIVA" formatString="Standard" aggregator="count">
+    </Measure>
+  </Cube>
+</Schema>

@@ -1,0 +1,108 @@
+<Schema name="Prototipo_Fughe_SPEC">
+  <Dimension type="TimeDimension" highCardinality="false" name="T_DataPrest" caption="Data Prestazione">
+    <Hierarchy hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="tempo_data_prest">
+      </Table>
+      <Level name="Anno" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_t_mese">
+      </Table>
+      <Level name="mese" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Fughe_Spec" caption="Fughe Specialistica" cache="true" enabled="true">
+    <Table name="VCUBE_FUGHE_SPEC" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" highCardinality="false" name="Residenza" caption="Residenza assistito">
+      <Hierarchy hasAll="true">
+        <Level name="Distretto" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Comune" column="COMUNE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" highCardinality="false" name="Azienda" caption="Azienda Erogante">
+      <Hierarchy hasAll="true">
+        <Level name="Regione" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Addebitante">
+        </Level>
+        <Level name="Azienda" column="AZIENDA_DES" ordinalColumn="AZIENDA_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" highCardinality="false" name="Prestazione">
+      <Hierarchy hasAll="true">
+        <Level name="Gruppo" column="GRUPPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Classe" column="CLASSE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Prestazione" column="PRESTAZIONE" ordinalColumn="COD_PREST" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <Property name="codice" column="COD_PREST" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="T_DataPrest" name="T_DataPrest" foreignKey="DATA_PREST" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" foreignKey="ETA" highCardinality="false" name="Et&#224;">
+      <Hierarchy hasAll="true" primaryKey="ETA">
+        <Table name="VDIM_ETA" schema="DWH">
+        </Table>
+        <Level name="fascia" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia di Et&#224;">
+        </Level>
+        <Level name="eta" column="ETA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Et&#224;">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" highCardinality="false" name="Dettagli_ricetta" caption="Dettagli Ricetta">
+      <Hierarchy hasAll="true">
+        <Level name="ric" column="ID_RICETTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <Property name="cognome" column="COGNOME" type="String">
+          </Property>
+          <Property name="nome" column="NOME" type="String">
+          </Property>
+          <Property name="data_nasc" column="DATA_NASC" type="String">
+          </Property>
+          <Property name="cod_fisc" column="COD_FISC" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" foreignKey="DATA_PREST">
+    </DimensionUsage>
+    <Measure name="numero" column="QUANTITA" aggregator="sum" caption="Prestazioni" visible="true">
+    </Measure>
+    <Measure name="importo" column="IMPORTO" aggregator="sum" caption="Importo" visible="true">
+    </Measure>
+    <Measure name="ricette" column="ID_RICETTA" aggregator="distinct-count" caption="Ricette" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
