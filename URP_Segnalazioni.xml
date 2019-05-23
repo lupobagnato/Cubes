@@ -282,18 +282,22 @@
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="AAA_DEG_DIM_FK" highCardinality="false" name="struttura" caption="Struttura Interessata">
-      <Hierarchy name="struttura" visible="true" hasAll="true" caption="Struttura Interessata">
+      <Hierarchy name="struttura_cod" visible="true" hasAll="true" caption="Struttura Interessata">
         <Table name="VCUBE_SEGNALAZIONI" schema="DWH">
         </Table>
-        <Level name="id_struttura" visible="true" column="ID_STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="da V_URP_CENTRIDICOSTO ( v_cdc_organigramma  union ch_altricdc)">
+        <Level name="struttura_cod" visible="true" column="ID_STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="codice inserito nella Segnalazione">
         </Level>
-        <Level name="struttura" visible="true" column="STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Struttura">
+      </Hierarchy>
+      <Hierarchy name="struttura_desc" visible="true" hasAll="true" caption="Struttura Interessata">
+        <Table name="VCUBE_SEGNALAZIONI" schema="DWH">
+        </Table>
+        <Level name="struttura_desc" visible="true" column="STRUTTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="struttura_desc" description="Descrizione da vsrc_urp_cdc (PersWeb + URP_AltriCdC">
         </Level>
       </Hierarchy>
       <Hierarchy name="sede_cdc" visible="true" hasAll="true" caption="Struttura Interessata">
         <Table name="VCUBE_SEGNALAZIONI" schema="DWH">
         </Table>
-        <Level name="sede_cdc" visible="true" column="SEDE_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Sede identificata in base al 1&#176; carattere del CdC (20 cifre)">
+        <Level name="sede_cdc" visible="true" column="SEDE_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Sede identificata in base al 1&#176; carattere del CdC">
         </Level>
       </Hierarchy>
       <Hierarchy name="citta" visible="true" hasAll="true" caption="Struttura Interessata">
@@ -305,13 +309,19 @@
       <Hierarchy name="suddivisione_cdc" visible="true" hasAll="true" caption="Struttura Interessata">
         <Table name="VCUBE_SEGNALAZIONI" schema="DWH">
         </Table>
-        <Level name="suddivisione_cdc" visible="true" column="SUDDIVISIONE_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Ospedale / Territorio / Prevenzione da CdC (20 cifre)">
+        <Level name="suddivisione_cdc" visible="true" column="SUDDIVISIONE_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Ospedale / Territorio in base al 5&#176; carattere del CdC">
         </Level>
       </Hierarchy>
       <Hierarchy name="tipo_cdc" visible="true" hasAll="true" caption="Struttura Interessata">
         <Table name="VCUBE_SEGNALAZIONI" schema="DWH">
         </Table>
-        <Level name="tipo_cdc" visible="true" column="TIPO_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="da Organigramma / Personale o definito da URP (nell&#39;applicazione Segnalazioni)">
+        <Level name="tipo_cdc" visible="true" column="TIPO_CDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="da PersWeb o definito nella sia.URP_ALTRICDC">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="cdc_attivo" visible="true" hasAll="true" caption="Struttura Interessata">
+        <Table name="VCUBE_SEGNALAZIONI" schema="DWH">
+        </Table>
+        <Level name="cdc_attivo" visible="true" column="CDC_ATTIVO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="SR_DT_DISABLE per i CdC di PersWeb, colonna ATTIVO  per i CdC URP">
         </Level>
       </Hierarchy>
     </Dimension>
