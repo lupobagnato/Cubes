@@ -441,5 +441,21 @@
         </Annotation>
       </Annotations>
     </Measure>
+
+    <Measure name="gg_x_carico_soc" column="GG_X_CARICO_SOC" formatString="##0.0" aggregator="avg" caption="gg x Pr. Carico Soc" description="data Probl. Soc. - data Presa in Carico Soc." visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="gg_x_invio_com" column="GG_X_INVIO_COM" formatString="##0.0" aggregator="avg" caption="gg x Invio Comune" description="data Invio Comune - data Presa in Carico Soc." visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>	
+	
   </Cube>
 </Schema>
