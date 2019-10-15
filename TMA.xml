@@ -1,0 +1,128 @@
+<Schema name="TMA">
+  <Dimension visible="true" highCardinality="false" name="CATEGORIA TMA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="CATEGORIA TMA" visible="true" column="CATEGORIA_TMA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Property name="LIMITE B" column="LIMITE_B" type="Numeric" description="LC_VCUBE_TMA_LIMITE_B_OLAP_3">
+        </Property>
+        <Property name="LIMITE D" column="LIMITE_D" type="Numeric" description="LC_VCUBE_TMA_LIMITE_D_OLAP_3">
+        </Property>
+      </Level>
+      <Level name="NOMENCLATORE DES" visible="true" column="NOMENCLATORE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="PRESTAZIONE COD">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="PRESTAZIONE COD" visible="true" column="PRESTAZIONE_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="PRESTAZIONE DES">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="PRESTAZIONE DES" visible="true" column="PRESTAZIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TA OK CATEGORIA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="TA OK CATEGORIA" visible="true" column="TA_OK_CATEGORIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="D OK CATEGORIA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="D OK CATEGORIA" visible="true" column="D_OK_CATEGORIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="B OK CATEGORIA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="B OK CATEGORIA" visible="true" column="B_OK_CATEGORIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TMA B">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="TMA B" visible="true" column="TMA_B" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="TMA D">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="TMA D" visible="true" column="TMA_D" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="STRUTTURA CUP">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="STRUTTURA CUP" visible="true" column="STRUTTURA_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="UNITA CUP" visible="true" column="UNITA_CUP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="LOAD DATE">
+    <Hierarchy name="Caricamento Dati" visible="true" hasAll="true">
+      <Table name="VCUBE_TMA" schema="DWH">
+      </Table>
+      <Level name="Data Caricamento" visible="true" column="LOAD_DATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Data caricamento del file xlsx">
+      </Level>
+      <Level name="Nome File" visible="true" column="NOME_FILE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Data_Elab_TMA" visible="true" column="DATA_ELAB_TMA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Data Elaborazione" description="Data di elaborazione contenuta nel file xlsx (dopo la string &#34;Data Elaborazione: &#34;)">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="TMA" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_TMA" schema="DWH">
+    </Table>
+    <DimensionUsage source="CATEGORIA TMA" name="CATEGORIA TMA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="PRESTAZIONE COD" name="PRESTAZIONE COD" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="PRESTAZIONE DES" name="PRESTAZIONE DES" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TA OK CATEGORIA" name="TA OK CATEGORIA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="D OK CATEGORIA" name="D OK CATEGORIA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="B OK CATEGORIA" name="B OK CATEGORIA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TMA B" name="TMA B" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="TMA D" name="TMA D" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="STRUTTURA CUP" name="STRUTTURA CUP" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="LOAD DATE" name="LOAD DATE" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="C" column="C" formatString="#" aggregator="sum">
+    </Measure>
+    <Measure name="Tmax B" column="TMA_B" formatString="$#,###;($#,###)" aggregator="max">
+    </Measure>
+    <Measure name="Tmax D" column="TMA_D" formatString="$#,###;($#,###)" aggregator="max">
+    </Measure>
+    <Measure name="Tmin B" column="TMA_B" formatString="$#,###.00;($#,###.00)" aggregator="min">
+    </Measure>
+    <Measure name="Tmin D" column="TMA_D" formatString="$#,###.00;($#,###.00)" aggregator="min">
+    </Measure>
+  </Cube>
+</Schema>
