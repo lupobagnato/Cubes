@@ -362,6 +362,20 @@
       </Level>
     </Hierarchy>
   </Dimension>
+  <Dimension visible="true" highCardinality="false" name="PNGLA_REGIONE" caption="Prestazioni PNGLA regione" description="Elenco PNGLA usato da Regione (pu&#242; essere diverso da quello della rilevazione Ex Ante)">
+    <Hierarchy visible="true" hasAll="true" primaryKey="PREST_AMM_COD">
+      <Table name="VDIM_PNGLA_REGIONE">
+      </Table>
+      <Level name="Flag_PNGLA_Reg" visible="true" column="FLAG_PNGLA_REG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="flag_PNGLA_reg">
+      </Level>
+      <Level name="Nr_Ordine_Tipo" visible="true" column="NR_ORDINE_TIPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Tipo Ex Ante">
+      </Level>
+      <Level name="Prestazione" visible="true" column="PREST_AMM_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Codice" visible="true" column="PREST_AMM_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Dimension visible="true" highCardinality="false" name="Dettagli Ricetta">
     <Hierarchy visible="true" hasAll="true" primaryKey="STRUTT">
       <Table name="VIB_SPEC_ESTERNI">
@@ -700,19 +714,19 @@ end]]>
     <Hierarchy name="cur1" visible="true" hasAll="true" primaryKey="CUR_COD" caption="Catalogo CUR">
       <Table name="VDIM_CUR">
       </Table>
-      <Level name="cod" visible="true" column="CUR_COD" uniqueMembers="false" caption="codice CUR">
+      <Level name="cod" visible="true" column="CUR_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="codice CUR">
       </Level>
-      <Level name="des" visible="true" column="CUR_DES" uniqueMembers="false" caption="prestazione CUR">
+      <Level name="des" visible="true" column="CUR_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="prestazione CUR">
       </Level>
     </Hierarchy>
     <Hierarchy name="cur2" visible="true" hasAll="true" primaryKey="CUR_COD" caption="Catalogo CUR">
       <Table name="VDIM_CUR" alias="erogatori_esterni_sede">
       </Table>
-      <Level name="pngla" visible="true" column="FLAG_PNGLA" uniqueMembers="false" caption="flag PNGLA" description="&#34;Si&#34; per le prestazioni incluse nel PNGLA">
+      <Level name="pngla" visible="true" column="FLAG_PNGLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="flag PNGLA" description="&#34;Si&#34; per le prestazioni incluse nel PNGLA">
       </Level>
-      <Level name="nr_ordine" visible="true" column="NR_ORDINE_TIPO" uniqueMembers="false" caption="nr ord Tipologia" description="Numero d&#39;ordine della Tipologia Min">
+      <Level name="nr_ordine" visible="true" column="NR_ORDINE_TIPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="nr ord Tipologia" description="Numero d&#39;ordine della Tipologia Min">
       </Level>
-      <Level name="tipo_min" visible="true" column="TIPO_MINISTERO" uniqueMembers="false" caption="tipologia Ministeriale" description="Tipologia nel monitoraggio ministeriale dei TA">
+      <Level name="tipo_min" visible="true" column="TIPO_MINISTERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="tipologia Ministeriale" description="Tipologia nel monitoraggio ministeriale dei TA">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -791,7 +805,9 @@ end]]>
     </DimensionUsage>
     <DimensionUsage source="MEF" name="MEF" visible="true" foreignKey="ANNO" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="CUR" name="CUR" visible="true" foreignKey="CUR_COD">
+    <DimensionUsage source="CUR" name="CUR" visible="true" foreignKey="CUR_COD" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="PNGLA_REGIONE" name="PNGLA_REGIONE" visible="true" foreignKey="COD_PREST_PNGLA">
     </DimensionUsage>
     <Measure name="IMPORTO" column="IMPORTO" formatString="#" aggregator="sum" caption="Importo">
       <Annotations>
