@@ -115,7 +115,7 @@
       </Table>
       <Level name="tipo_giorno" visible="true" column="TIPO_GIORNO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="tipo Giorno" description="Giorno Feriale / Festivo">
       </Level>
-      <Level name="nome_giorno" visible="true" column="GG_SETTIMANA_NOME" ordinalColumn="GG_SETTIMANA_NUMERO" uniqueMembers="false" caption="nome Giorno">
+      <Level name="nome_giorno" visible="true" column="GG_SETTIMANA_NOME" ordinalColumn="GG_SETTIMANA_NUMERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="nome Giorno">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -189,9 +189,15 @@
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_CHIAMATE" schema="DWH">
       </Table>
-      <Level name="fascia_oraria" visible="true" column="FASCIA_ORARIA" uniqueMembers="false" caption="Fascia Oraria" description="Fascia Oraria dell&#39;apertura chiamata">
+      <Level name="fascia_oraria" visible="true" column="FASCIA_ORARIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia Oraria" description="Fascia Oraria dell&#39;apertura chiamata">
       </Level>
       <Level name="ORA APERTURA" visible="true" column="ORA_APERTURA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="hh" visible="true" hasAll="true" caption="ORA APERTURA">
+      <Table name="VCUBE_CHIAMATE" schema="DWH" alias="">
+      </Table>
+      <Level name="hh_chiamata" visible="true" column="HH_CHIAMATA" uniqueMembers="false">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -282,7 +288,7 @@
     </DimensionUsage>
     <DimensionUsage source="CHIAMANTE" name="CHIAMANTE" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Tipo_giorno_ap" name="Tipo_giorno_ap" visible="true">
+    <DimensionUsage source="Tipo_giorno_ap" name="Tipo_giorno_ap" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="NUMERO" column="NUMERO" formatString="#" aggregator="count" caption="Numero">
     </Measure>
