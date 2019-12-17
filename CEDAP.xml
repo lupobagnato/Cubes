@@ -262,6 +262,38 @@
       </Level>
     </Hierarchy>
   </Dimension>
+  <Dimension visible="false" highCardinality="false" name="analgesia" caption="Analgesia">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="ANALGESIA" visible="true" column="ANALGESIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Analgesia" description="FARMACOLOGICA  -  Non FARMACOLOGICA (Immersione in acqua, Tens, Agopuntura o digitopressione, Tecniche di rilassamento, Altre tecniche non farmacologiche)  -  NESSUNA ANALGESIA">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="spare01">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="spare02">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="spare03">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
+      <Table name="VCUBE_PARTI" schema="DWH">
+      </Table>
+      <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Dimension visible="true" highCardinality="false" name="spare04">
     <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
       <Table name="VCUBE_PARTI" schema="DWH">
@@ -354,6 +386,8 @@
     <DimensionUsage source="T_Dimissione" name="T_Dimissione" visible="true" foreignKey="SDO_DATA_DIM" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="anestesista" name="anestesista" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="analgesia" name="analgesia" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="Nr Cesarei" column="NR_CESAREI" formatString="#" aggregator="sum">
       <Annotations>
