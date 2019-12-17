@@ -781,7 +781,7 @@ end]]>
     </DimensionUsage>
     <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="LUOGO_COD" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Asl" name="Asl" visible="true" foreignKey="REGASL_COM" highCardinality="false">
+    <DimensionUsage source="Asl" name="Asl" visible="true" foreignKey="REGASL_COD" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="Agenda" name="Agenda" visible="true" foreignKey="COD_STZ" highCardinality="false">
     </DimensionUsage>
@@ -807,7 +807,7 @@ end]]>
     </DimensionUsage>
     <DimensionUsage source="CUR" name="CUR" visible="true" foreignKey="CUR_COD" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="PNGLA_REGIONE" name="PNGLA_REGIONE" visible="true" foreignKey="COD_PREST_PNGLA">
+    <DimensionUsage source="PNGLA_REGIONE" name="PNGLA_REGIONE" visible="true" foreignKey="COD_PREST_PNGLA" highCardinality="false">
     </DimensionUsage>
     <Measure name="IMPORTO" column="IMPORTO" formatString="#" aggregator="sum" caption="Importo">
       <Annotations>
