@@ -1,0 +1,1077 @@
+<Schema name="SDO_e_RicPatidok" description="Prototipo basato sulle VCUBE">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_ricovero" caption="Data Ricovero">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_r">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Ricovero">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Ricovero" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Ricovero" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_dimissione" caption="Data Dimissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_d">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Dimissione">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Dimissione" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Dimissione" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_giorno_dim" caption="Data Dimissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="VDIM_TEMPO_D1">
+      </Table>
+      <Level name="tipo_giorno_dim" visible="true" column="TIPO_GIORNO" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="tipo giorno dim">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="giorno_nome_dim" visible="true" column="GIORNO_NOME" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="giorno settimana dim">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM].[MM]]]>
+          </Annotation>
+        </Annotations>
+        <OrdinalExpression>
+          <SQL dialect="generic">
+            <![CDATA[to_char(VDIM_TEMPO_D1.GG_DATEKEY, 'D')]]>
+          </SQL>
+        </OrdinalExpression>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_giorno_ric" caption="Data Ricovero">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="VDIM_TEMPO_R1">
+      </Table>
+      <Level name="tipo_giorno_ric" visible="true" column="TIPO_GIORNO" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="tipo giorno ric">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="giorno_nome_ric" visible="true" column="GIORNO_NOME" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="giorno settimana ric">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM].[MM]]]>
+          </Annotation>
+        </Annotations>
+        <OrdinalExpression>
+          <SQL dialect="generic">
+            <![CDATA[to_char(VDIM_TEMPO_R1.GG_DATEKEY, 'D')]]>
+          </SQL>
+        </OrdinalExpression>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_lista" caption="Data ins. in Lista">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_l">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Lista Attesa">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Lista Attesa" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Lista Attesa" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_ws_in" caption="Data inizio WeekSurgery" description="Inizio 1&#176; appoggio in WeekSurgery">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_wsi">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno inizio WS">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese inizio WS" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno inizio WS" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_ws_out" caption="Data fine WeekSurgery" description="Fine 1&#176; appoggio in WeekSurgery">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_wso">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno fine WS">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese fine WS" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno fine WS" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_MeseFiltro" caption="tempo - filtro sul mese">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_t_mese">
+      </Table>
+      <Level name="mese" visible="true" column="MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Filtro" description="Serve per impostare filtri sugli stessi mesi di anni differenti">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="t_load" caption="Data Caricamento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
+      <Table name="VDIM_TEMPO_PASSATO" schema="DWH" alias="vdim_tempo_r">
+      </Table>
+      <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="Anno Load">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Mese" visible="true" column="ANNO_MESE_CIFRE" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mese Load" captionColumn="ANNO_MESE_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Giorno" visible="true" column="DATA_CIFRE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Giorno Load" captionColumn="DATA_NOME">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[yyyy-MM].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="rep_dim" caption="Reparto Dimissione">
+    <Hierarchy visible="true" hasAll="true" primaryKey="REPARTO_COD">
+      <Table name="VDIM_REPARTI" schema="DWH" alias="reparti_D">
+      </Table>
+      <Level name="Presidio" visible="true" column="PRESIDIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Presidio">
+      </Level>
+      <Level name="Reparto" visible="true" column="REPARTO_COD" nameColumn="REPARTO_DES" ordinalColumn="REPARTO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparto">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="rep_ingr" caption="Reparto Ingresso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="REPARTO_COD">
+      <Table name="VDIM_REPARTI" schema="DWH" alias="reparti_I">
+      </Table>
+      <Level name="Presidio" visible="true" column="PRESIDIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Presidio Ingresso">
+      </Level>
+      <Level name="Reparto" visible="true" column="REPARTO_COD" nameColumn="REPARTO_DES" ordinalColumn="REPARTO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparto Ingresso">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="fasce_eta" caption="Et&#224;">
+    <Hierarchy name="Base" visible="true" hasAll="true" primaryKey="ETA" caption="Et&#224; - fasce Base">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="FASCIA_BASE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="F10" visible="true" hasAll="true" primaryKey="ETA" caption="Et&#224; - fasce di 10 anni">
+      <Table name="VDIM_ETA" schema="DWH">
+      </Table>
+      <Level name="fascia" visible="true" column="F10" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="eta" visible="true" column="ETA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="dettaglio_sdo" caption="Dettagli Caso">
+    <Hierarchy visible="true" hasAll="true" primaryKey="NUM_PRAT">
+      <Table name="VCUBE_SDOPAC" schema="DWH">
+      </Table>
+      <Level name="cod_fisc" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod. Fiscale">
+      </Level>
+      <Level name="Cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="num_prat" visible="true" column="NUM_PRAT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Num. Pratica">
+        <Property name="DATA_NASCITA" column="DATA_NASCITA" type="String">
+        </Property>
+        <Property name="DATA_INGR" column="DATA_INGR" type="String">
+        </Property>
+        <Property name="DATA_DIM" column="DATA_DIM" type="String">
+        </Property>
+      </Level>
+      <Level name="cra" visible="true" column="CRA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod. Reg. Assistito">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Residenza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LUOGO_COD">
+      <Table name="VDIM_LUOGHI" alias="VDIM_LUOGHI_r">
+      </Table>
+      <Level name="Stato" visible="true" column="STATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Stato Residenza">
+      </Level>
+      <Level name="Regione" visible="true" column="REGIONE_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regione Residenza">
+      </Level>
+      <Level name="Provincia" visible="true" column="PROVINCIA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provincia Residenza">
+      </Level>
+      <Level name="Distretto" visible="true" column="DISTRETTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Distretto Residenza">
+      </Level>
+      <Level name="Comune" visible="true" column="LUOGO_COD" nameColumn="LUOGO_DES" ordinalColumn="LUOGO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comune - Stato Residenza">
+        <Property name="Codice" column="LUOGO_COD" type="String" caption="Codice Comune">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="false" highCardinality="false" name="Anagrafe_Contatti" caption="Anagrafe" description="dati anagrafici provenienti da Anagrafe piu&#39; Anagrafe Contatti">
+    <Hierarchy name="anag_dettaglio" visible="true" hasAll="true" primaryKey="PIN_AZIENDA" caption="Anagrafe Contatti">
+      <Table name="VDIM_ANAG_ESTESA" alias="anag_estesa_1">
+      </Table>
+      <Level name="cod_fiscale" visible="true" column="COD_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Fiscale da Anagrafe" description="C.F pi&#249; Dati Anagrafici di dettaglio">
+        <Property name="data_decesso" column="DATA_DECESSO" type="Date" caption="Data decesso da Anagrafe">
+        </Property>
+        <Property name="comune_residenza" column="COMUNE_RESIDENZA" type="String" caption="Comune Residenza da Anagrafe">
+        </Property>
+        <Property name="ind_residenza" column="RESIDENZA" type="String">
+        </Property>
+        <Property name="comune_domicilio" column="COMUNE_DOMICILIO" type="String">
+        </Property>
+        <Property name="ind_domicilio" column="DOMICILIO" type="String">
+        </Property>
+        <Property name="origine" column="ORIGINE" type="String" caption="Origine dato Anagrafico">
+        </Property>
+      </Level>
+      <Level name="pin_azienda" visible="true" column="PIN_AZIENDA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Pin Azienda">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="anag_deceduto" visible="true" hasAll="true" primaryKey="PIN_AZIENDA" caption="Anagrafe Contatti">
+      <Table name="VDIM_ANAG_ESTESA" schema="DWH" alias="anag_estesa_2">
+      </Table>
+      <Level name="flag_deceduto" visible="true" column="FLAG_DECEDUTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Deceduto" description="Deceduto Si/No da collegamento con l&#39;Anagrafe">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="anag_tipo_ass" visible="true" hasAll="true" primaryKey="PIN_AZIENDA" caption="Anagrafe Contatti">
+      <Table name="VDIM_ANAG_ESTESA" schema="DWH" alias="anag_estesa_3">
+      </Table>
+      <Level name="tipo_ass_cod" visible="true" column="COD_TIPO_ASSISTITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Assistito" description="codice Tipo Assistito da Anagrafe">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="anag_origine" visible="true" hasAll="true" primaryKey="PIN_AZIENDA" caption="Anagrafe Contatti">
+      <Table name="VDIM_ANAG_ESTESA" schema="DWH" alias="anag_estesa_4">
+      </Table>
+      <Level name="origine" visible="true" column="ORIGINE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Origine dati Anagrafici" description="Origine dei dati Anagrafe o Anagrafe Contatti">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ora_ricovero" caption="Ora Ricovero" description="Ora ricovero (ricavata dalla Ricoveri Patidok)">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_SDOPAC" schema="DWH">
+      </Table>
+      <Level name="fascia_acc" visible="true" column="FASCIA_ORARIA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia Oraria ricovero">
+      </Level>
+      <Level name="ora_acc" visible="true" column="ORA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ora ricovero">
+      </Level>
+      <Level name="hhmm_acc" visible="true" column="HHMM_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Orario ricovero">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ora_dimissione" caption="Ora Dimissione" description="Ora dimissione (ricavata dalla Ricoveri Patidok)">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_SDOPAC" schema="DWH">
+      </Table>
+      <Level name="fascia_dim" visible="true" column="FASCIA_ORARIA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia Oraria dimissione">
+      </Level>
+      <Level name="ora_dim" visible="true" column="ORA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ora dimissione">
+      </Level>
+      <Level name="hhmm_dim" visible="true" column="HHMM_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Orario dimissione">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ripetuti_MDC">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ID_RIP_MDC" caption="Ricoveri Ripetuti" description="Esiste un ric. successivo entro 30 gg con stessa MDC, escluse modalit&#224; dim. (&#39;Volontaria&#39;,&#39;Trasf Ist&#39;,&#39;Trasf Riab&#39;,&#39;Ordinaria ADI&#39;) , non dimessi da (&#39;28&#39;,&#39;56&#39;,&#39;60&#39;,&#39;75&#39;), esclusi DRG radioterapia (&#39;409&#39;,&#39;410&#39;,&#39;492&#39;)">
+      <Table name="VDIM_RIPETUTI_MDC" schema="DWH">
+      </Table>
+      <Level name="flag_ripetuto" visible="true" column="FLAG_RIP_MDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ripetuto (Si/No)" description="nuovamente ricoverato entro 30 gg">
+      </Level>
+      <Level name="rep_ingr_s" visible="true" column="REP_INGR_S" nameColumn="REP_INGR_S_DES" ordinalColumn="REP_INGR_S_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparto Ingr. ricov. succ.">
+      </Level>
+      <Level name="num_prat_s" visible="true" column="NUM_PRAT_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Num. Prat. ricov. succ.">
+      </Level>
+      <Level name="presidio_s" visible="true" column="PRESIDIO_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Presidio ricov. succ.">
+      </Level>
+      <Level name="data_ingr_s" visible="true" column="DATA_INGR_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Data Ingr. ricov. succ.">
+      </Level>
+      <Level name="drg_s" visible="true" column="COD_DRG_S" nameColumn="DRG_DESCR_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DRG ricov. succ.">
+      </Level>
+      <Level name="diagnosi_cod_s" visible="true" column="DIAGNOSI_COD_S" nameColumn="DIAGNOSI_DES_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Diagnosi P ricov. succ.">
+      </Level>
+      <Level name="intervento_cod_s" visible="true" column="INTERVENTO_COD_S" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Intervento P ricov. succ.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Sdo" caption="Analisi SDO e PAC" visible="true" description="Analisi dei ricoveri basata sul flusso SDO e PAC" cache="false" enabled="true">
+    <Table name="VCUBE_SDOPAC" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ASL" highCardinality="false" name="DegenDim">
+      <Hierarchy name="urg" visible="true" hasAll="true" caption="Urgenza">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="Urgenza" visible="true" column="URGENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Urgenza (Tipo Ricovero del flusso SDO)">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="pri" visible="true" hasAll="true" caption="Priorit&#224;">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="Priorita" visible="true" column="CLASSE_PRIORITA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Priorit&#224;">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="lista_diagnosi" visible="true" hasAll="true" caption="Diagnosi (lista per filtri)">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="cod_dia" visible="true" column="LISTA_DIAGNOSI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="lista cod diagnosi" description="Lista dei Codici Diagnosi  separati da &#34;-&#34;, da usare per impostari filtri di tipo : Contains -cod1- or -cod2-">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="lista_interventi" visible="true" hasAll="true" caption="Interventi (lista per filtri)">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="cod_int" visible="true" column="LISTA_INTERVENTI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="lista cod intervento" description="Lista dei Codici Intervento  separati da &#34;-&#34;, da usare per impostari filtri di tipo : Contains -cod1- or -cod2-">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="mod_dim" visible="true" hasAll="true" caption="Modalit&#224; Dimissione">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="modalita" visible="true" column="MOD_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Modalit&#224; Dimissione">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="tipo_med" visible="true" hasAll="true" caption="Tipo Prescrittore">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="tipo_med" visible="true" column="TIPO_MED" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Prescrittore">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="cedap_ospedale" visible="true" hasAll="true" caption="dati da Cedap">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="cedap_ospedale" visible="true" column="CEDAP_OSPEDALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Ospedale dalla scheda CEDAP collegata">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="cedap_anno" visible="true" hasAll="true" caption="dati da Cedap">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="cedap_anno" visible="true" column="CEDAP_ANNO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Anno Parto dalla scheda CEDAP collegata">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="COD_DRG" highCardinality="false" name="DRG">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="tipo_DRG" visible="true" column="TIPO_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Drg">
+        </Level>
+        <Level name="des_DRG" visible="true" column="DES_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Drg - descrizione">
+          <Property name="codice" column="COD_DRG" type="String">
+          </Property>
+          <Property name="peso" column="DRG_PESO_MCARE" type="String">
+          </Property>
+          <Property name="cod_mdc" column="DRG_COD_MDC" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CAT_0" highCardinality="false" name="Complex" caption="Complessit&#224;" description="- Classificazione in base alle Fasce Regionali di Complessit&#224;">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="Categoria" visible="true" column="DESCR_CAT_0" ordinalColumn="CAT_0" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Fascia" visible="true" column="CAT_1" nameColumn="DESCR_CAT_1" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fascia Complessit&#224;">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="REGIME_RICOVERO" highCardinality="false" name="Reg_Ricovero" caption="Regime di Ricovero">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="Tipo_Regime" visible="true" column="REG_RICOV" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Ordinario / Day">
+        </Level>
+        <Level name="Regime" visible="true" column="REGIME_RICOVERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="SESSO" highCardinality="false" name="Sesso">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="Sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="DRG_COD_MDC" highCardinality="false" name="MDC">
+      <Hierarchy visible="true" hasAll="true" primaryKey="COD_MDC">
+        <Table name="VDIM_MDC" schema="DWH">
+        </Table>
+        <Level name="mdc" visible="true" column="DES_MDC" ordinalColumn="COD_MDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Mdc - descrizione">
+          <Property name="codice" column="COD_MDC" type="String" caption="codice Mdc">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Durata_Ricovero" description="Esempio degenerate dimension creata senza FK e senza definire una Table">
+      <Hierarchy visible="true" hasAll="true" caption="Durata Ricovero">
+        <Level name="giorni" visible="true" column="GIORNI" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Durata Ricovero">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="NUM_PRAT" highCardinality="false" name="Dia_e_Int">
+      <Hierarchy name="dia" visible="true" hasAll="true" primaryKey="DIAGNOSI_COD" caption="Diagnosi Principale">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="diagnosi_grp" visible="true" column="DIAGNOSI_GRP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Gruppo Dia" description="Codice Gruppo (primi 3 caratteri del codice diagnosi)">
+        </Level>
+        <Level name="diagnosi" visible="true" column="DIAGNOSI_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Diagnosi">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA['[' || DIAGNOSI_COD || '] ' || DIAGNOSI_DES]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="int" visible="true" hasAll="true" primaryKey="INTERVENTO_COD" caption="Intervento Principale">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="intervento_grp" visible="true" column="INTERVENTO_GRP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Gruppo Int" description="Codice Gruppo (primi 3 caratteri del codice intervento)">
+        </Level>
+        <Level name="intervento" visible="true" column="INTERVENTO_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Intervento">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA['[' || INTERVENTO_COD || '] ' || INTERVENTO_DES]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="onere" caption="Onere della Degenza">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="onere" visible="true" column="ONERE_DEGENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Onere">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="flag_ENI_STP" caption="Stranieri Non Iscritti" description="campo valorizzato in base ai primi 3 caratteri del Cod. Reg. Assistito">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="flag_ENI_STP" visible="true" column="FLAG_ENI_STP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="campo valorizzato in base ai primi 3 caratteri del Cod. Reg. Assistito">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="pat_rep_acc" caption="Reparti da Patidok" description="nota: Codici Reparto da Patidok = HSP + Virtuali">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="codpat_rep_acc" visible="true" column="CODPAT_REP_ACC" ordinalColumn="DESPAT_REP_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Rep Accettazione Patidok">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[DESPAT_REP_ACC || ' [' || CODPAT_REP_ACC || ']']]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="pat_rep_dim" caption="Reparti da Patidok" description="nota: Codici Reparto da Patidok = HSP + Virtuali">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="codpat_rep_dim" visible="true" column="CODPAT_REP_DIM" ordinalColumn="DESPAT_REP_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Rep Dimissione Patidok">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[DESPAT_REP_DIM || ' [' || CODPAT_REP_DIM || ']']]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="cfr_sdo_pat1" caption="Reparti da Patidok" description="Confronto Reparto da SDO e da Patidok">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="acc_uguale" visible="true" column="ACC_UGUALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparti Acc coincidenti">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="cfr_sdo_pat2" caption="Reparti da Patidok" description="Confronto Reparto da SDO e da Patidok">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="dim_uguale" visible="true" column="DIM_UGUALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Reparti Dim coincidenti">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Custom_Condition" caption="condizione personalizzata">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_SDOPAC" schema="DWH">
+        </Table>
+        <Level name="Custom_Condition" visible="true" column="CUSTOM_CONDITION" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cond. Pers." description="condizione personalizzata calcolata nel Db (VCUBE_SDOPAC)">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="rep_dim" name="rep_dim" visible="true" foreignKey="REP_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="rep_ingr" name="rep_ingr" visible="true" foreignKey="REP_INGR" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="fasce_eta" name="fasce_eta" visible="true" foreignKey="ETA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_ricovero" name="t_ricovero" visible="true" foreignKey="DATA_INGR" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_dimissione" name="t_dimissione" visible="true" foreignKey="DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettaglio_sdo" name="dettaglio_sdo" visible="true" foreignKey="NUM_PRAT" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_lista" name="t_lista" visible="true" foreignKey="DATA_LISTA_ATT" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="COMUNE" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Anagrafe_Contatti" name="Anagrafe_Contatti" visible="true" foreignKey="PIN_AZIENDA" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ora_ricovero" name="ora_ricovero" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ora_dimissione" name="ora_dimissione" visible="true" foreignKey="ANNO" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_load" name="t_load" visible="true" foreignKey="LOAD_D" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Ripetuti_MDC" name="Ripetuti_MDC" visible="true" foreignKey="ID_RIP_MDC" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="num" column="NUM_PRAT" aggregator="count" caption="Numero" description="Numero Ricoveri" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="gg" column="GIORNI" aggregator="sum" caption="Giornate" description="Giornate di Degenza" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="imp" column="IMPORTO" aggregator="sum" caption="Importo" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="punti" column="PUNTI" aggregator="sum" caption="Punti Drg" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="count_lista" aggregator="sum" caption="sdo con data lista" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[( case when GG_ATTESA is null then Null else 1 end )]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="gg_attesa" column="GG_ATTESA" aggregator="sum" caption="gg_attesa SUM" description="usata dal CM attesa_cm (visibile solo da Admins)" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <Measure name="test_avg_attesa" column="GG_ATTESA" aggregator="avg" caption="test_avg_attesa" description="AVG(gg_attesa): usando AVG come aggregator TOTALI e SUBTOTALI sono calcolati senza pesare la media, stessa cosa per le dimensioni usate nei filtri" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </Measure>
+    <CalculatedMember name="attesa_cm" formatString="#,##0.00" caption="gg attesa Medi" description="Calculated Member: gg_attesa / count_lista" formula="([Measures].[gg_attesa] / [Measures].[count_lista])" dimension="Measures" visible="true">
+      <Annotations>
+        <Annotation name="AnalyzerBusinessGroup">
+          <![CDATA[misure]]>
+        </Annotation>
+      </Annotations>
+    </CalculatedMember>
+  </Cube>
+  <Cube name="Fughe" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="REGIONE" highCardinality="false" name="Regione" caption="Regione Addebitante">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="REGIONI" schema="DWH">
+        </Table>
+        <Level name="Regione" visible="true" column="COD_REG" nameColumn="DESC_REG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="regione che invia l&#39;addebito">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="DRG">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="tipo_DRG" visible="true" column="DRG_TIPO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Drg">
+        </Level>
+        <Level name="des_DRG" visible="true" column="COD_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Drg - descrizione" captionColumn="DRG_DESCR">
+          <Property name="codice" column="COD_DRG" type="String">
+          </Property>
+          <Property name="peso" column="DRG_PESO_MCARE" type="String">
+          </Property>
+          <Property name="cod_mdc" column="DRG_COD_MDC" type="String">
+          </Property>
+          <Property name="des_mdc" column="DRG_DES_MDC" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="DRG_COD_MDC" highCardinality="false" name="MDC">
+      <Hierarchy visible="true" hasAll="true" primaryKey="COD_MDC">
+        <Table name="VDIM_MDC" schema="DWH">
+        </Table>
+        <Level name="mdc" visible="true" column="DES_MDC" ordinalColumn="COD_MDC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Mdc - descrizione">
+          <Property name="codice" column="COD_MDC" type="String" caption="codice Mdc">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Regime">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="regime" visible="true" column="REG_RICOV" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Regime di Ricovero">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="DISCIPLINA" highCardinality="false" name="Disciplina">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_DISCIPLINE_OSP" schema="DWH">
+        </Table>
+        <Level name="Disciplina" visible="true" column="DISCIPLINA_COD" nameColumn="DISCIPLINA_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Dettagli" caption="Dettagli Caso">
+      <Hierarchy visible="true" hasAll="true" primaryKey="NUM_PRAT">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="nosologico" visible="true" column="NUM_PRAT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nosologico">
+          <Property name="diagnosi" column="DES_DIAGNOSI" type="String" caption="Diagnosi principale">
+          </Property>
+          <Property name="intervento" column="DES_INTERVENTO" type="String" caption="Intervento principale">
+          </Property>
+          <Property name="med_pres" column="MED_PRES" type="String" caption="Medico Prescrittore">
+          </Property>
+        </Level>
+        <Level name="nome" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nome Paziente">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[vcube_fughe_sdo.cognome || ' ' || vcube_fughe_sdo.nome]]>
+            </SQL>
+          </NameExpression>
+          <OrdinalExpression>
+            <SQL dialect="generic">
+              <![CDATA[vcube_fughe_sdo.cognome || ' ' || vcube_fughe_sdo.nome]]>
+            </SQL>
+          </OrdinalExpression>
+          <Property name="Nome" column="NOME" type="String" caption="Nome Assistito">
+          </Property>
+        </Level>
+        <Level name="cod_fisc" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Codice Fiscale">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Creditore" caption="Codici Creditore">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="Regione" visible="true" column="REGIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Asl" visible="true" column="ASL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Ospedale" visible="true" column="PRESIDIO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="NUM_PRAT" highCardinality="false" name="Dia_e_Int">
+      <Hierarchy name="dia" visible="true" hasAll="true" primaryKey="DIAGNOSI_COD" caption="Diagnosi Principale">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="diagnosi_grp" visible="true" column="DIAGNOSI_GRP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Gruppo" description="Codice Gruppo (primi 3 caratteri del codice diagnosi)">
+        </Level>
+        <Level name="diagnosi" visible="true" column="DIAGNOSI_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Diagnosi">
+          <Property name="diagnosi_des" column="DIAGNOSI_DES" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="int" visible="true" hasAll="true" primaryKey="INTERVENTO_COD" caption="Intervento Principale">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="intervento_grp" visible="true" column="INTERVENTO_GRP" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Gruppo" description="Codice Gruppo (primi 3 caratteri del codice intervento)">
+        </Level>
+        <Level name="intervento" visible="true" column="INTERVENTO_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod Intervento">
+          <Property name="intervento_des" column="INTERVENTO_DES" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Onere">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="tipo_onere" visible="true" column="TIPO_ONERE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Onere" description="il dwh Regionale considera solo il tipo SSN">
+        </Level>
+        <Level name="onere" visible="true" column="ONERE_DEGENZA" ordinalColumn="COD_ONERE_DEG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Onere Degenza">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Provenienza">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_FUGHE_SDO" schema="DWH">
+        </Table>
+        <Level name="provenienza" visible="true" column="PROVENIENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Provenienza paziente">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="t_ricovero" name="t_ricovero" visible="true" foreignKey="DATA_INGR" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_dimissione" name="t_dimissione" visible="true" foreignKey="DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="REGIONE" highCardinality="false" name="GeoRegione">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VDIM_GEOREGIONI" schema="DWH">
+        </Table>
+        <Level name="nome_reg" visible="true" column="COD_REG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="GeoRegione" captionColumn="COUNTRYSUBDIVISION">
+          <Annotations>
+            <Annotation name="Data.Role">
+              <![CDATA[Geography]]>
+            </Annotation>
+            <Annotation name="Geo.Role">
+              <![CDATA[CountrySubdivision]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Anagrafe_Contatti" name="Anagrafe_Contatti" visible="true" foreignKey="PIN_AZIENDA" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Numero" column="NUM_PRAT" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="Importo" column="IMPORTO" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Costo_Punto" caption="Costi Esami" visible="true" description="Costi mensili esami di laboratorio e radiologia (calcolo Costo/Punto DRG)" cache="true" enabled="true">
+    <Table name="VCUBE_COSTOPUNTO" schema="DWH">
+    </Table>
+    <Dimension type="TimeDimension" visible="true" foreignKey="Mese_numero" highCardinality="false" name="Anno_Mese">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_COSTOPUNTO" schema="DWH">
+        </Table>
+        <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[yyyy]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+        <Level name="Mese" visible="true" column="Mese_numero" nameColumn="Mese_nome" ordinalColumn="Mese_numero" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[yyyy].[yyyy-MM]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="rep_dim" name="rep_dim" visible="true" foreignKey="REP_DIM" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="punti" column="PUNTI" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="num_sdo" column="SDO" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="costo_lab" column="IMP_LAB" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="costo_rx" column="IMP_RX" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="ricoveri_patidok" caption="Ricoveri Patidok" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="COD_REP_ACC" highCardinality="false" name="rep_ingr" description="nota: Codici Reparto da Patidok = HSP + Virtuali">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="presidio_ingr" visible="true" column="PRESIDIO_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="reparto_ingr" visible="true" column="COD_REP_ACC" ordinalColumn="DES_REP_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[DES_REP_ACC || ' [' || COD_REP_ACC || ']']]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="COD_REP_DIM" highCardinality="false" name="rep_dim" description="nota: Codici Reparto da Patidok = HSP + Virtuali">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="presidio_dim" visible="true" column="PRESIDIO_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[nvl(PRESIDIO_DIM,'n/d')]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+        <Level name="reparto_dim" visible="true" column="COD_REP_DIM" ordinalColumn="DES_REP_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[NVL2(COD_REP_DIM,DES_REP_DIM || ' [' || COD_REP_DIM || ']','n/d')]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="COD_REP_COR" highCardinality="false" name="rep_cor" description="reparto Corrente per i pazienti degenti">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="presidio_cor" visible="true" column="PRESIDIO_COR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[nvl(PRESIDIO_COR,'n/d')]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+        <Level name="reparto_cor" visible="true" column="COD_REP_COR" ordinalColumn="DES_REP_COR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[NVL2(COD_REP_COR,DES_REP_COR || ' [' || COD_REP_COR || ']','n/d')]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="TIPO_RICOV" highCardinality="false" name="junk">
+      <Hierarchy name="tipo_ricov" visible="true" hasAll="true" caption="Tipo Ricovero">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="tipo_ricov" visible="true" column="TIPO_RICOV" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Ricovero">
+        </Level>
+        <Level name="mot_ricov_dh" visible="true" column="MOT_RICOV_DH" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Motivo ricovero DH">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="sesso" visible="true" hasAll="true" caption="Sesso">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="asl" visible="true" hasAll="true" caption="Asl">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="asl" visible="true" column="ASL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="num_caso" visible="true" hasAll="true">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="num_caso" visible="true" column="NUM_CASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+          <Property name="COGNOME" column="COGNOME" type="String">
+          </Property>
+          <Property name="NOME" column="NOME" type="String">
+          </Property>
+          <Property name="COD_FISC" column="COD_FISC" type="String">
+          </Property>
+          <Property name="DATA_NASCITA" column="DATA_NASCITA" type="String">
+          </Property>
+          <Property name="SDO_REP_INGR" column="SDO_REP_INGR" type="String">
+          </Property>
+          <Property name="SDO_REP_DIM" column="SDO_REP_DIM" type="String">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="dimessi" visible="true" hasAll="true" caption="Dimessi">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="dimessi" visible="true" column="DIMESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="sdo_drg" visible="true" hasAll="true" caption="DRG" description="Codice DRG da flusso SDO o PAC (collegati via num_caso)">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="sdo_drg" visible="true" column="SDO_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod DRG da SDO" description="Cod DRG da SDO o PAC collegati via num_caso">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="flag_WS" visible="true" hasAll="true" caption="Flag WeekSurgery" description="Caso con un appoggio in WS">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="flag_ws" visible="true" column="FLAG_WS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="WeekSurgery">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="cod_drg" visible="true" hasAll="true" caption="DRG">
+        <Table name="VCUBE_RICOVERI_PATIDOK" schema="DWH">
+        </Table>
+        <Level name="categoria_drg" visible="true" column="CATEGORIA_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Categoria DRG" description="Categoria del DRG  da Patidok (mancante, anomalo, ...)">
+        </Level>
+        <Level name="cod_drg" visible="true" column="COD_DRG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cod DRG" description="Cod DRG  da Patidok">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="t_ricovero" name="t_ricovero" visible="true" foreignKey="DATA_ACC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_dimissione" name="t_dimissione" visible="true" foreignKey="DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="T_MeseFiltro" name="T_MeseFiltro" visible="true" foreignKey="DATA_ACC" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_ws_in" name="t_ws_in" visible="true" foreignKey="DATA_WS_IN" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_ws_out" name="t_ws_out" visible="true" foreignKey="DATA_WS_OUT" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_giorno_dim" name="t_giorno_dim" visible="true" foreignKey="DATA_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="t_giorno_ric" name="t_giorno_ric" visible="true" foreignKey="DATA_ACC" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="num" column="NUM_CASO" aggregator="count" caption="ricoveri" visible="true">
+    </Measure>
+    <Measure name="gg_ws" column="GG_WS" aggregator="sum" caption="giornate WS" visible="true">
+    </Measure>
+    <Measure name="gg_ord" column="GG_ORD" aggregator="sum" caption="giornate ORD" description="Per i casi non sono ancora dimessi si conta dal ricovero ad oggi se ricoverati oggi e non dimessi contano 1  gli Ordinari In/Out stesso giorno contano 1" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="sdo_diagnosi" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_DIAGNOSI" schema="DWH">
+    </Table>
+    <Dimension type="TimeDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="t_dimissione" caption="Data Dim">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIAGNOSI" schema="DWH">
+        </Table>
+        <Level name="Anno" visible="true" column="ANNO" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[YYYY]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+        <Level name="Mese" visible="true" column="MESE_RIF" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+          <Annotations>
+            <Annotation name="AnalyzerDateFormat">
+              <![CDATA[[YYYY].[MM]]]>
+            </Annotation>
+          </Annotations>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="NUM_PRAT" highCardinality="false" name="Diagnosi">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_DIAGNOSI" schema="DWH">
+        </Table>
+        <Level name="cod_diagnosi" visible="true" column="COD_DIAG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="rep_dim" name="rep_dim" visible="true" foreignKey="REP_DIM" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dettaglio_sdo" name="dettaglio_sdo" visible="true" foreignKey="NUM_PRAT" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="num_sdo" column="NUM_PRAT" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="num_diagnosi" column="NUM_PRAT" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="num_diag_principali" column="NUM_DIAG_PRINCIPALI" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="num_diag_secondarie" column="NUM_DIAG_SECONDARIE" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
