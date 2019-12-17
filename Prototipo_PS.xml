@@ -334,8 +334,8 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="NROCASO" highCardinality="false" name="dettagli" caption="Dettagli Accesso">
-      <Hierarchy visible="true" hasAll="true">
+    <Dimension type="StandardDimension" visible="true" foreignKey="NROCASO" highCardinality="false" name="Dettagli" caption="Dettagli Accesso">
+      <Hierarchy name="caso" visible="true" hasAll="true" caption="Dettagli Accesso">
         <Table name="VCUBE_ACCESSI_PS" schema="DWH">
         </Table>
         <Level name="nrocaso" visible="true" column="NROCASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Numero Caso">
@@ -357,6 +357,20 @@
           </Property>
           <Property name="cra" column="CRA" type="String" caption="Cod. regionale">
           </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="dati anag" visible="true" hasAll="true" caption="Dettagli Accesso">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+        </Table>
+        <Level name="cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="nome" visible="true" column="NOME" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="sesso" visible="true" hasAll="true" caption="Dettagli Accesso">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+        </Table>
+        <Level name="sesso" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
