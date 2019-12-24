@@ -186,6 +186,49 @@
   <Cube name="Accessi" caption="Analisi Accessi in PS" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_ACCESSI_PS" schema="DWH">
     </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="DegenDim">
+      <Hierarchy name="attesa" visible="true" hasAll="true" caption="Tempi">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+        </Table>
+        <Level name="Attesa" visible="true" column="MINUTI_ATTESA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="attesa fra Triage e Visita">
+          <KeyExpression>
+            <SQL dialect="generic">
+              <![CDATA[case
+ when minuti_attesa is null then 'n/d'
+ when minuti_attesa <= 30 then '00 .. 30'
+ when minuti_attesa <= 60 then '31 .. 60'
+ when minuti_attesa <= 90 then '61 .. 90'
+ else '91 ..'
+end 
+]]>
+            </SQL>
+          </KeyExpression>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="permanenza" visible="true" hasAll="true" caption="Tempi">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+        </Table>
+        <Level name="Permanenza" visible="true" column="MINUTI_PERMANENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="permanenza fra Triage e Dimissione">
+          <KeyExpression>
+            <SQL dialect="generic">
+              <![CDATA[case
+ when minuti_permanenza is null then 'n/d'
+ when minuti_permanenza <= 60 then '000 .. 060'
+ when minuti_permanenza <= 120 then '061 .. 120'
+ when minuti_permanenza <= 240 then '121 .. 240'
+ else '241 ..'
+end]]>
+            </SQL>
+          </KeyExpression>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="spare" visible="false" hasAll="true">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+        </Table>
+        <Level name="Ricovero" visible="true" column="FLAG_RICOVERO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="ESITO_ACCESSO_DES" highCardinality="false" name="Esito">
       <Hierarchy visible="true" hasAll="true">
         <Table name="VCUBE_ACCESSI_PS" schema="DWH">
@@ -364,7 +407,7 @@
         </Table>
         <Level name="cognome" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="nome" visible="true" column="NOME" uniqueMembers="false">
+        <Level name="nome" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="sesso" visible="true" hasAll="true" caption="Dettagli Accesso">
