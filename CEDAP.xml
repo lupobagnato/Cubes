@@ -226,6 +226,8 @@
     <Hierarchy visible="true" hasAll="true" primaryKey="ETA_MADRE">
       <Table name="VCUBE_PARTI" schema="DWH">
       </Table>
+      <Level name="CITTADINA_ITA_STRA" visible="true" column="CITTADINA_ITA_STRA" uniqueMembers="false" caption="madre Italiana / Straniera">
+      </Level>
       <Level name="CITTADINANZA" visible="true" column="CITTADINANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Cittadinanza">
       </Level>
     </Hierarchy>
