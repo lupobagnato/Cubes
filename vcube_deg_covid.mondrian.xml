@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema name="vcube_deg_covid">
+  <Dimension name="COD COMUNE DOM">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COD COMUNE DOM" column="COD_COMUNE_DOM" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="DES COMUNE DOM" column="DES_COMUNE_DOM" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="COD COMUNE NAS">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COD COMUNE NAS" column="COD_COMUNE_NAS" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="COD COMUNE RES">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COD COMUNE RES" column="COD_COMUNE_RES" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="DES COMUNE RES" column="DES_COMUNE_RES" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="DATA ACC">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="DATA ACC" column="DATA_ACC" uniqueMembers="false">
+      </Level>
+      <Level name="ORA ACC" column="ORA_ACC" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="DATA RIC">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="DATA RIC" column="DATA_RIC" uniqueMembers="false">
+      </Level>
+      <Level name="ORA RIC" column="ORA_RIC" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="ASSISTITO">
+    <Hierarchy name="COD FISC" hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COD FISC" column="COD_FISC" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="ID ANAG PATIDOK" column="ID_ANAG_PATIDOK" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NOME" hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COGNOME" column="COGNOME" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="NOME" column="NOME" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SESSO" hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="SESSO" column="SESSO" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="NUM CASO">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="NUM CASO" column="NUM_CASO" type="Numeric" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="REPARTO RIC COD">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="REPARTO RIC COD" column="REPARTO_RIC_COD" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="REPARTO RIC DES" column="REPARTO_RIC_DES" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="STANZA">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="STANZA" column="STANZA" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="vcube_deg_covid">
+    <Table name="&quot;VCUBE_DEGENTI_COVID&quot;" schema="&quot;DWH&quot;"/>
+    <DimensionUsage name="COD COMUNE DOM" source="COD COMUNE DOM"/>
+    <DimensionUsage name="COD COMUNE NAS" source="COD COMUNE NAS"/>
+    <DimensionUsage name="COD COMUNE RES" source="COD COMUNE RES"/>
+    <DimensionUsage name="DATA ACC" source="DATA ACC"/>
+    <DimensionUsage name="DATA RIC" source="DATA RIC"/>
+    <DimensionUsage name="ASSISTITO" source="ASSISTITO"/>
+    <DimensionUsage name="NUM CASO" source="NUM CASO"/>
+    <DimensionUsage name="REPARTO RIC COD" source="REPARTO RIC COD"/>
+    <DimensionUsage name="STANZA" source="STANZA"/>
+    <Measure name="NUM CASO" column="NUM_CASO" aggregator="count" formatString="#"/>
+  </Cube>
+</Schema>

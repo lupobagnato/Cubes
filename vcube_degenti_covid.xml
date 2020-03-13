@@ -1,0 +1,162 @@
+<Schema name="vcube_degenti_covid">
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE DOM" caption="comune Domicilio">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="COD COMUNE DOM" visible="true" column="COD_COMUNE_DOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="DES COMUNE DOM" visible="true" column="DES_COMUNE_DOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Domicilio">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE NAS">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="COD COMUNE NAS" visible="true" column="COD_COMUNE_NAS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE RES" caption="comune Redidenza">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="COD COMUNE RES" visible="true" column="COD_COMUNE_RES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="DES COMUNE RES" visible="true" column="DES_COMUNE_RES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Residenza">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DATA ACC">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="DATA ACC" visible="true" column="DATA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ORA ACC" visible="true" column="ORA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DATA RIC">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="DATA RIC" visible="true" column="DATA_RIC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DataRicovero">
+      </Level>
+      <Level name="ORA RIC" visible="true" column="ORA_RIC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="OraRicovero">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ASSISTITO">
+    <Hierarchy name="COD FISC" visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="COD FISC" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ID ANAG PATIDOK" visible="true" column="ID_ANAG_PATIDOK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NOME" visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SESSO" visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="NUM CASO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="NUM CASO" visible="true" column="NUM_CASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="RepRicovero">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="RepRicovero COD" visible="true" column="REPARTO_RIC_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="RepRicovero" visible="true" column="REPARTO_RIC_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="RepDegenza">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="RepDegenza COD" visible="true" column="REPARTO_DEG_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="RepDegenza" visible="true" column="REPARTO_DEG_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Stanza">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="StanzaDegenza" visible="true" column="STANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="INTUBATO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="INTUBATO" visible="true" column="INTUBATO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="last_update" caption="aggiornamento dati">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="last_update" visible="true" column="LAST_UPDATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="aggiornato al">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ETA">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="ETA" visible="true" column="ETA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="vcube_degenti_covid" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+    </Table>
+    <DimensionUsage source="DATA ACC" name="DATA ACC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DATA RIC" name="DATA RIC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ASSISTITO" name="ASSISTITO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NUM CASO" name="NUM CASO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Stanza" name="Stanza" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="INTUBATO" name="INTUBATO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="last_update" name="last_update" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="RepDegenza" name="RepDegenza" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="RepRicovero" name="RepRicovero" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ETA" name="ETA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="degenti" column="NUM_CASO" formatString="#" aggregator="count">
+    </Measure>
+    <Measure name="ora_agg" column="LAST_MINUTE" datatype="Numeric" formatString="00000000" aggregator="min" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
