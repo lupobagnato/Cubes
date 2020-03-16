@@ -131,9 +131,39 @@
       </Level>
     </Hierarchy>
   </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="tampone">
+    <Hierarchy name="d_rich" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="data_richiesta" visible="true" column="T_DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="d_esito" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="data_esito" visible="true" column="T_DATA_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="esito" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="esito_tampone" visible="true" column="T_ESITO_TAMPONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="richiedente" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="richiedente_tampone" visible="true" column="T_RICHIEDENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Cube name="vcube_degenti_covid" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
     </Table>
+    <DimensionUsage source="COD COMUNE DOM" name="COD COMUNE DOM" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="COD COMUNE RES" name="COD COMUNE RES" visible="true" highCardinality="false">
+    </DimensionUsage>
     <DimensionUsage source="DATA ACC" name="DATA ACC" visible="true" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="DATA RIC" name="DATA RIC" visible="true" highCardinality="false">
@@ -153,6 +183,8 @@
     <DimensionUsage source="RepRicovero" name="RepRicovero" visible="true" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="ETA" name="ETA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="tampone" name="tampone" visible="true">
     </DimensionUsage>
     <Measure name="degenti" column="NUM_CASO" formatString="#" aggregator="count">
     </Measure>
