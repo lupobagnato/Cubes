@@ -67,11 +67,13 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="ESITO_COD">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ESITO_COD">
     <Hierarchy visible="true" hasAll="true">
-      <Table name="VCUBE_DIMESSI_COVID" schema="DWH" alias="">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
-      <Level name="ESITO_COD" visible="true" column="ESITO_COD" uniqueMembers="false">
+      <Level name="ESITO_COD" visible="true" column="ESITO_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ESITO_DES" visible="true" column="ESITO_DES" uniqueMembers="false">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -90,7 +92,7 @@
     </DimensionUsage>
     <DimensionUsage source="RepDimissione" name="RepDimissione" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="ESITO_COD" name="ESITO_COD" visible="true">
+    <DimensionUsage source="ESITO_COD" name="ESITO_COD" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="pazienti" column="NUM_CASO" formatString="#" aggregator="count">
     </Measure>
