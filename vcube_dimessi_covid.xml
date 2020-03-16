@@ -1,0 +1,100 @@
+<Schema name="vcube_dimessi_covid">
+  <Dimension visible="true" highCardinality="false" name="DATA ACC">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="DATA ACC" visible="true" column="DATA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ORA ACC" visible="true" column="ORA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DATA DIM">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="DATA DIM" visible="true" column="DATA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DataDimissione">
+      </Level>
+      <Level name="ORA DIM" visible="true" column="ORA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="OraDimissione">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ASSISTITO">
+    <Hierarchy name="COD FISC" visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="COD FISC" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ID ANAG PATIDOK" visible="true" column="ID_ANAG_PATIDOK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NOME" visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="SESSO" visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="NUM CASO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="NUM CASO" visible="true" column="NUM_CASO" type="String" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="RepDimissione">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="RepDimissione COD" visible="true" column="REPARTO_DIM_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="last_update" caption="aggiornamento dati">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="last_update" visible="true" column="LAST_UPDATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="aggiornato al">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="ESITO_COD">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH" alias="">
+      </Table>
+      <Level name="ESITO_COD" visible="true" column="ESITO_COD" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="vcube_dimessi_covid" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+    </Table>
+    <DimensionUsage source="DATA ACC" name="DATA ACC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DATA DIM" name="DATA DIM" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ASSISTITO" name="ASSISTITO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NUM CASO" name="NUM CASO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="last_update" name="last_update" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="RepDimissione" name="RepDimissione" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ESITO_COD" name="ESITO_COD" visible="true">
+    </DimensionUsage>
+    <Measure name="pazienti" column="NUM_CASO" formatString="#" aggregator="count">
+    </Measure>
+    <Measure name="ora_agg" column="LAST_MINUTE" datatype="Numeric" formatString="00000000" aggregator="min" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
