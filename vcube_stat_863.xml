@@ -29,6 +29,10 @@
       </Level>
       <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
+      <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="DATA_NASCITA" visible="true" column="DATA_NASCITA" type="Date" uniqueMembers="false">
+      </Level>
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="FONTE_DATI">
@@ -68,10 +72,28 @@
     </Hierarchy>
   </Dimension>
   <Dimension type="StandardDimension" visible="true" highCardinality="false" name="token">
-    <Hierarchy visible="true" hasAll="true">
+    <Hierarchy name="TokenA" visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
       <Level name="token" visible="true" column="TOKEN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="RelDay" visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="relative_day" visible="true" column="RELATIVE_DAY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="trun(sysdate) - trunc(data_esito)">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="RowNum" visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="day_row_num" visible="true" column="DAY_ROW_NUM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="N&#176; Paziente" description="progressivo esame all&#39;interno del giorno  - Analytic row_num()">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="IdAcc" visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_863" schema="DWH" alias="">
+      </Table>
+      <Level name="id_accettazione" visible="true" column="ID_ACCETTAZIONE" uniqueMembers="false">
       </Level>
     </Hierarchy>
   </Dimension>
