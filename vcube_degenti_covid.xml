@@ -156,6 +156,18 @@
       <Level name="richiedente_tampone" visible="true" column="T_RICHIEDENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
+    <Hierarchy name="ATT_d_rich" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="att_data_richiesta" visible="true" column="TA_DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="in Attesa - data">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ATT_richiedente" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="att_richiedente_tampone" visible="true" column="TA_RICHIEDENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="in Attesa - reparto">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Cube name="vcube_degenti_covid" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
@@ -184,7 +196,7 @@
     </DimensionUsage>
     <DimensionUsage source="ETA" name="ETA" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="tampone" name="tampone" visible="true">
+    <DimensionUsage source="tampone" name="tampone" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="degenti" column="NUM_CASO" formatString="#" aggregator="count">
     </Measure>
