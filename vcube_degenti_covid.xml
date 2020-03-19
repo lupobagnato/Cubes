@@ -17,13 +17,19 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension visible="true" highCardinality="false" name="COD COMUNE RES" caption="comune Redidenza">
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE RES" caption="comune Residenza">
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
       </Table>
       <Level name="COD COMUNE RES" visible="true" column="COD_COMUNE_RES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="DES COMUNE RES" visible="true" column="DES_COMUNE_RES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Residenza">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="naz" visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
+      </Table>
+      <Level name="NAZIONALITA" visible="true" column="NAZIONALITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nazionalita">
       </Level>
     </Hierarchy>
   </Dimension>
