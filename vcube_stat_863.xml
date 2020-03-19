@@ -31,7 +31,9 @@
       </Level>
       <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="DATA_NASCITA" visible="true" column="DATA_NASCITA" type="Date" uniqueMembers="false">
+      <Level name="DATA_NASCITA" visible="true" column="DATA_NASCITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="COGNOME_NOME" visible="true" column="COGNOME_NOME" uniqueMembers="false" description="per report Tamponi_Oggi">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -60,6 +62,8 @@
       <Level name="ESITO_COD" visible="true" column="ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="ESITO_DES" visible="true" column="VALORE_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ESITO_ABBR" visible="true" column="ESITO_ABBR" uniqueMembers="false" caption="Esito" description="Esito Abbreviato (NEG, POS o altro)">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -91,9 +95,9 @@
       </Level>
     </Hierarchy>
     <Hierarchy name="IdAcc" visible="true" hasAll="true">
-      <Table name="VCUBE_STAT_863" schema="DWH" alias="">
+      <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
-      <Level name="id_accettazione" visible="true" column="ID_ACCETTAZIONE" uniqueMembers="false">
+      <Level name="id_accettazione" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
