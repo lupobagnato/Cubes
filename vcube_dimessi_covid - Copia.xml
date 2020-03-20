@@ -73,21 +73,7 @@
       </Table>
       <Level name="ESITO_COD" visible="true" column="ESITO_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="ESITO_DES" visible="true" column="ESITO_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-    </Hierarchy>
-  </Dimension>
-  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="tamponi" caption="Tamponi">
-    <Hierarchy name="tampone_fatto" visible="true" hasAll="true">
-      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
-      </Table>
-      <Level name="last_t" visible="true" column="ULTIMOTAMPONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ultimo tampone">
-      </Level>
-    </Hierarchy>
-    <Hierarchy name="tampone_attesa" visible="true" hasAll="true">
-      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
-      </Table>
-      <Level name="last_a" visible="true" column="ULTIMOATTESA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="in attesa">
+      <Level name="ESITO_DES" visible="true" column="ESITO_DES" uniqueMembers="false">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -107,8 +93,6 @@
     <DimensionUsage source="RepDimissione" name="RepDimissione" visible="true" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="ESITO_COD" name="ESITO_COD" visible="true" highCardinality="false">
-    </DimensionUsage>
-    <DimensionUsage source="tamponi" name="tamponi" visible="true">
     </DimensionUsage>
     <Measure name="pazienti" column="NUM_CASO" formatString="#" aggregator="count">
     </Measure>
