@@ -35,20 +35,6 @@
       </Level>
       <Level name="COGNOME_NOME" visible="true" column="COGNOME_NOME" uniqueMembers="false" description="per report Tamponi_Oggi">
       </Level>
-	  
-      <Level name="residenza" visible="true" column="RESIDENZA" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="telefono" visible="true" column="TELEFONO" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="mmg" visible="true" column="MMG" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="tel_ises" visible="true" column="TEL_ISES" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="cell_ises" visible="true" column="CELL_ISES" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="altro" visible="true" column="COGNOME_NOME" uniqueMembers="false" description="-">
-      </Level>	  
-	  
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="FONTE_DATI">
