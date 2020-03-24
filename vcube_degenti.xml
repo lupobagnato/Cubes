@@ -1,4 +1,38 @@
-<Schema name="vcube_degenti">
+<Schema name="vcube_degenti" description="pazienti attualmente presenti in TUTTI i reparti (des dello schema, non si vede)">
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE DOM" caption="comune Domicilio">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="COD COMUNE DOM" visible="true" column="COD_COMUNE_DOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="DES COMUNE DOM" visible="true" column="DES_COMUNE_DOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Domicilio">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE NAS">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="COD COMUNE NAS" visible="true" column="COD_COMUNE_NAS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="COD COMUNE RES" caption="comune Residenza">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="COD COMUNE RES" visible="true" column="COD_COMUNE_RES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="DES COMUNE RES" visible="true" column="DES_COMUNE_RES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Residenza">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="naz" visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="NAZIONALITA" visible="true" column="NAZIONALITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nazionalita">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Dimension visible="true" highCardinality="false" name="DATA ACC">
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_DEGENTI" schema="DWH">
@@ -20,7 +54,7 @@
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="ASSISTITO">
-    <Hierarchy name="COD FISC" visible="true" hasAll="true">
+    <Hierarchy name="COD FISC" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_DEGENTI" schema="DWH">
       </Table>
       <Level name="COD FISC" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
@@ -28,7 +62,7 @@
       <Level name="ID ANAG PATIDOK" visible="true" column="ID_ANAG_PATIDOK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="NOME" visible="true" hasAll="true">
+    <Hierarchy name="NOME" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_DEGENTI" schema="DWH">
       </Table>
       <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
@@ -36,10 +70,18 @@
       <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="SESSO" visible="true" hasAll="true">
+    <Hierarchy name="SESSO" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_DEGENTI" schema="DWH">
       </Table>
       <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="x_Contatti" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="contatti" visible="true" column="CONTATTI_INFO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="data_compilazione" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data agg. contatti">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -95,17 +137,80 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="token">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ETA">
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_DEGENTI" schema="DWH">
       </Table>
-      <Level name="token" visible="true" column="TOKEN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="ETA" visible="true" column="ETA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Cube name="vcube_degenti" visible="true" cache="true" enabled="true">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="tampone">
+    <Hierarchy name="d_rich" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="data_richiesta" visible="true" column="T_DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="d_esito" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="data_esito" visible="true" column="T_DATA_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="esito" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="esito_tampone" visible="true" column="T_ESITO_TAMPONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="richiedente" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="richiedente_tampone" visible="true" column="T_RICHIEDENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ATT_d_rich" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="att_data_richiesta" visible="true" column="TA_DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="in Attesa - data">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ATT_richiedente" visible="true" hasAll="true" caption="Tampone">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="att_richiedente_tampone" visible="true" column="TA_RICHIEDENTE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="in Attesa - richiedente">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Trasferiti_IM" caption="Trasferimenti IM - SR">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_DEGENTI" schema="DWH">
+      </Table>
+      <Level name="data_out_im" visible="true" column="DATA_OUT_IM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data trasferimento">
+        <NameExpression>
+          <SQL dialect="generic">
+            <![CDATA[to_char(data_out_im,'dd.mm.yyyy')]]>
+          </SQL>
+        </NameExpression>
+      </Level>
+      <Level name="ora_out_im" visible="true" column="ORA_OUT_IM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ora trasferimento">
+      </Level>
+      <Level name="stanza_im" visible="true" column="STANZA_IM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="stanza di origine">
+      </Level>
+      <Level name="data_in_im" visible="true" column="DATA_IN_IM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ora_in_im" visible="true" column="ORA_IN_IM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="vcube_degenti" visible="true" description="pazienti attualmente presenti in TUTTI i reparti (des cubo)" cache="true" enabled="true">
     <Table name="VCUBE_DEGENTI" schema="DWH">
     </Table>
+    <DimensionUsage source="COD COMUNE DOM" name="COD COMUNE DOM" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="COD COMUNE RES" name="COD COMUNE RES" visible="true" highCardinality="false">
+    </DimensionUsage>
     <DimensionUsage source="DATA ACC" name="DATA ACC" visible="true" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="DATA RIC" name="DATA RIC" visible="true" highCardinality="false">
@@ -124,7 +229,11 @@
     </DimensionUsage>
     <DimensionUsage source="RepRicovero" name="RepRicovero" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="token" name="token" visible="true">
+    <DimensionUsage source="ETA" name="ETA" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="tampone" name="tampone" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Trasferiti_IM" name="Trasferiti_IM" visible="true">
     </DimensionUsage>
     <Measure name="degenti" column="NUM_CASO" formatString="#" aggregator="count">
     </Measure>
