@@ -76,14 +76,6 @@
       <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="InfoContatti" visible="true" hasAll="true">
-      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
-      </Table>
-      <Level name="contatti" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-      <Level name="data_compilazione" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-    </Hierarchy>	
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="NUM CASO">
     <Hierarchy visible="true" hasAll="true">
@@ -183,24 +175,6 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  
-  <Dimension visible="true" highCardinality="false" name="Trasferiti_IM">
-    <Hierarchy visible="true" hasAll="true">
-      <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
-      </Table>
-      <Level name="stanza_im" visible="true" column="REPARTO_DEG_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-      <Level name="data_in_im" visible="true" column="REPARTO_DEG_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-	  <Level name="ora_in_im" visible="true" column="REPARTO_DEG_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-	  <Level name="data_out_im" visible="true" column="REPARTO_DEG_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-	  <Level name="ora_out_im" visible="true" column="REPARTO_DEG_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-    </Hierarchy>
-  </Dimension>  
-  
   <Cube name="vcube_degenti_covid" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_DEGENTI_COVID" schema="DWH">
     </Table>
