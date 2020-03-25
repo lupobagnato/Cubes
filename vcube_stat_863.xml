@@ -16,13 +16,13 @@
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="ASSISTITO">
-    <Hierarchy name="COD FISC" visible="true" hasAll="true">
+    <Hierarchy name="COD FISC" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
       <Level name="COD FISC" visible="true" column="CODICE_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="NOME" visible="true" hasAll="true">
+    <Hierarchy name="NOME" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
       <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
@@ -50,6 +50,16 @@
       </Level>	  
 	  
     </Hierarchy>
+	
+    <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_STAT_863" schema="DWH" alias="">
+      </Table>
+      <Level name="dipartimento" visible="true" column="DIPARTIMENTO" uniqueMembers="false" caption="ASL1 dipartimento">
+      </Level>
+      <Level name="matricola" visible="true" column="MATRICOLA" uniqueMembers="false" caption="ASL1 matricola">
+      </Level>
+    </Hierarchy>	
+	
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="FONTE_DATI">
     <Hierarchy visible="true" hasAll="true">

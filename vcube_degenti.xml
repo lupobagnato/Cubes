@@ -84,6 +84,14 @@
       <Level name="data_compilazione" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data agg. contatti">
       </Level>
     </Hierarchy>
+    <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_DEGENTI" schema="DWH" alias="">
+      </Table>
+      <Level name="dipartimento" visible="true" column="DIPARTIMENTO" uniqueMembers="false" caption="ASL1 dipartimento">
+      </Level>
+      <Level name="matricola" visible="true" column="MATRICOLA" uniqueMembers="false" caption="ASL1 matricola">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="NUM CASO">
     <Hierarchy visible="true" hasAll="true">
