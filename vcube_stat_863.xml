@@ -33,33 +33,29 @@
       </Level>
       <Level name="DATA_NASCITA" visible="true" column="DATA_NASCITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="COGNOME_NOME" visible="true" column="COGNOME_NOME" uniqueMembers="false" description="per report Tamponi_Oggi">
+      <Level name="COGNOME_NOME" visible="true" column="COGNOME_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="per report Tamponi_Oggi">
       </Level>
-	  
-      <Level name="residenza" visible="true" column="RESIDENZA" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="telefono" visible="true" column="TELEFONO" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="mmg" visible="true" column="MMG" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="tel_ises" visible="true" column="TEL_ISES" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="cell_ises" visible="true" column="CELL_ISES" uniqueMembers="false" description="-">
-      </Level>	  
-	  <Level name="altro" visible="true" column="COGNOME_NOME" uniqueMembers="false" description="-">
-      </Level>	  
-	  
+      <Level name="residenza" visible="true" column="RESIDENZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="telefono" visible="true" column="TELEFONO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="mmg" visible="true" column="MMG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="tel_ises" visible="true" column="TEL_ISES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="cell_ises" visible="true" column="CELL_ISES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="altro" visible="true" column="COGNOME_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
     </Hierarchy>
-	
     <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Assistito">
-      <Table name="VCUBE_STAT_863" schema="DWH" alias="">
+      <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
-      <Level name="dipartimento" visible="true" column="DIPARTIMENTO" uniqueMembers="false" caption="ASL1 dipartimento">
+      <Level name="dipartimento" visible="true" column="DIPARTIMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 dipartimento">
       </Level>
-      <Level name="matricola" visible="true" column="MATRICOLA" uniqueMembers="false" caption="ASL1 matricola">
+      <Level name="matricola" visible="true" column="MATRICOLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 matricola">
       </Level>
-    </Hierarchy>	
-	
+    </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="FONTE_DATI">
     <Hierarchy visible="true" hasAll="true">
@@ -73,9 +69,9 @@
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
-      <Level name="ID_REPARTO" visible="true" column="ID_REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="ID_REPARTO" visible="true" column="ID_REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ID Richiedente">
       </Level>
-      <Level name="REPARTO" visible="true" column="REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="REPARTO" visible="true" column="REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Richiedente">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -87,7 +83,7 @@
       </Level>
       <Level name="ESITO_DES" visible="true" column="VALORE_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="ESITO_ABBR" visible="true" column="ESITO_ABBR" uniqueMembers="false" caption="Esito" description="Esito Abbreviato (NEG, POS o altro)">
+      <Level name="ESITO_ABBR" visible="true" column="ESITO_ABBR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Esito" description="Esito Abbreviato (NEG, POS o altro)">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -95,7 +91,45 @@
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
-      <Level name="last_update" visible="true" column="LAST_UPDATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="aggiornato al">
+      <Level name="last_update" visible="true" column="LAST_UPDATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="dati aggiornati alle">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="degenti">
+    <Hierarchy name="num_caso" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="deg_num_caso" visible="true" column="DEG_NUM_CASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="numero caso">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="reparto" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="deg_rep_cod" visible="true" column="DEG_REP_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="codice reparto">
+      </Level>
+      <Level name="deg_rep_des" visible="true" column="DEG_REP_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="reparto">
+      </Level>
+      <Level name="deg_stanza" visible="true" column="DEG_STANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="stanza">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="data_in" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="deg_data_in" visible="true" column="DEG_DATA_IN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data ricovero">
+      </Level>
+      <Level name="deg_ora_in" visible="true" column="DEG_ORA_IN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="orario ricovero">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="deg1" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="deg1" visible="true" column="DAY_ROW_NUM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="x_deg1">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="deg2" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="deg2" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="x_deg2">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -106,10 +140,34 @@
       <Level name="token" visible="true" column="TOKEN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="RelDay" visible="true" hasAll="true">
+    <Hierarchy name="RelDay" visible="true" hasAll="true" caption="ultimo referto">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
       <Level name="relative_day" visible="true" column="RELATIVE_DAY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="trun(sysdate) - trunc(data_esito)">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Esito_RelDay" visible="true" hasAll="true" caption="ultimo referto">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="esito_relative_day" visible="true" column="ESITO_RELATIVE_DAY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="giorni dall&#39;ultimo blocco di refertazione">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Ultimo" visible="true" hasAll="true" caption="ultimo referto">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="data_ultimo" visible="true" column="DATA_ULTIMO" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="data ultimo blocco di refertazione">
+      </Level>
+      <Level name="time_ultimo" visible="true" column="TIME_ULTIMO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="orario ultimo referto" description="data/ora ultimo referto">
+        <KeyExpression>
+          <SQL dialect="generic">
+            <![CDATA[to_char(TIME_ULTIMO, 'yyyy-mm-dd HH24:MI')]]>
+          </SQL>
+        </KeyExpression>
+        <NameExpression>
+          <SQL dialect="generic">
+            <![CDATA[to_char(TIME_ULTIMO, 'dd-mm-yyyy HH24:MI')]]>
+          </SQL>
+        </NameExpression>
       </Level>
     </Hierarchy>
     <Hierarchy name="RowNum" visible="true" hasAll="true">
@@ -143,6 +201,8 @@
     <DimensionUsage source="RepRicovero" name="RepRicovero" visible="true" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="token" name="token" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="degenti" name="degenti" visible="true">
     </DimensionUsage>
     <Measure name="esami" column="TOKEN" formatString="#" aggregator="count">
     </Measure>
