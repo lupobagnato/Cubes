@@ -1,17 +1,17 @@
 <Schema name="vcube_stat_863">
-  <Dimension visible="true" highCardinality="false" name="DATA ACC" caption="DATA_ESITO">
+  <Dimension visible="true" highCardinality="false" name="DATA ACC" caption="Data Esito">
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
-      <Level name="DATA_ESITO" visible="true" column="DATA_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="DATA_ESITO" visible="true" column="YYYYMMDD_ESITO" nameColumn="DATA_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension visible="true" highCardinality="false" name="DATA RIC" caption="DATA_RICHIESTA">
+  <Dimension visible="true" highCardinality="false" name="DATA RIC" caption="Data Richiesta">
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
-      <Level name="DATA_RICHIESTA" visible="true" column="DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="DATA_RICHIESTA" visible="true" column="YYYYMMDD_RICHIESTA" nameColumn="DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="colonna YYYYMMDD_richiesta e NameColumn Data_Richiesta (varchar con formato dd-mm-yyyy h24:mi)">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -53,7 +53,7 @@
       </Table>
       <Level name="dipartimento" visible="true" column="DIPARTIMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 dipartimento">
       </Level>
-	  <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
+      <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
       </Level>
       <Level name="matricola" visible="true" column="MATRICOLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 matricola">
       </Level>
@@ -184,6 +184,26 @@
       <Level name="id_accettazione" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
+    <Hierarchy name="numero_tamponi" visible="true" hasAll="true" caption="multi tampone">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="numero_tamponi" visible="true" column="NUMERO_TAMPONI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="numero_tamponi">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="lista" visible="true" hasAll="true" caption="multi tampone">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="lista_esiti" visible="true" column="LISTA_ESITI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lista_completa" visible="true" column="LISTA_COMPLETA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="doppio_neg" visible="true" hasAll="true" caption="multi tampone">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="doppio_neg" visible="true" column="DOPPIO_NEG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="ultimi 2 NEG e almeno 3 tamponi fatti">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Cube name="VCUBE_STAT_863" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_STAT_863" schema="DWH">
@@ -204,7 +224,7 @@
     </DimensionUsage>
     <DimensionUsage source="token" name="token" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="degenti" name="degenti" visible="true">
+    <DimensionUsage source="degenti" name="degenti" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="esami" column="TOKEN" formatString="#" aggregator="count">
     </Measure>
