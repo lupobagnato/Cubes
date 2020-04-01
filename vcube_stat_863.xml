@@ -81,11 +81,11 @@
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
+      <Level name="ESITO_ABBR" visible="true" column="ESITO_ABBR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Esito" description="Esito Abbreviato (NEG, POS o altro)">
+      </Level>
       <Level name="ESITO_COD" visible="true" column="ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="ESITO_DES" visible="true" column="VALORE_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-      <Level name="ESITO_ABBR" visible="true" column="ESITO_ABBR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Esito" description="Esito Abbreviato (NEG, POS o altro)">
       </Level>
     </Hierarchy>
   </Dimension>
