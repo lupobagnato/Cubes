@@ -3,7 +3,7 @@
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
-      <Level name="DATA ACC" visible="true" column="DATA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="DATA ACC" visible="true" column="YYYYMMDD_ACC" nameColumn="DATA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="ORA ACC" visible="true" column="ORA_ACC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
@@ -13,7 +13,7 @@
     <Hierarchy visible="true" hasAll="true">
       <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
-      <Level name="DATA DIM" visible="true" column="DATA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DataDimissione">
+      <Level name="DATA DIM" visible="true" column="YYYYMMDD_DIM" nameColumn="DATA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DataDimissione">
       </Level>
       <Level name="ORA DIM" visible="true" column="ORA_DIM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="OraDimissione">
       </Level>
@@ -108,7 +108,7 @@
     </DimensionUsage>
     <DimensionUsage source="ESITO_COD" name="ESITO_COD" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="tamponi" name="tamponi" visible="true">
+    <DimensionUsage source="tamponi" name="tamponi" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="pazienti" column="NUM_CASO" formatString="#" aggregator="count">
     </Measure>
