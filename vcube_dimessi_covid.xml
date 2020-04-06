@@ -20,7 +20,7 @@
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="ASSISTITO">
-    <Hierarchy name="COD FISC" visible="true" hasAll="true">
+    <Hierarchy name="COD FISC" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
       <Level name="COD FISC" visible="true" column="COD_FISC" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
@@ -28,7 +28,7 @@
       <Level name="ID ANAG PATIDOK" visible="true" column="ID_ANAG_PATIDOK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="NOME" visible="true" hasAll="true">
+    <Hierarchy name="NOME" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
       <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
@@ -36,10 +36,18 @@
       <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
-    <Hierarchy name="SESSO" visible="true" hasAll="true">
+    <Hierarchy name="SESSO" visible="true" hasAll="true" caption="Assistito">
       <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
       <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="telefoni" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="tel_all" visible="true" column="TEL_ALL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="telefono">
+      </Level>
+      <Level name="cell_all" visible="true" column="CELL_ALL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="cellulare">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -52,10 +60,18 @@
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="RepDimissione">
-    <Hierarchy visible="true" hasAll="true">
+    <Hierarchy name="1_reparto" visible="true" hasAll="true" caption="Reparto">
       <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
       </Table>
-      <Level name="RepDimissione COD" visible="true" column="REPARTO_DIM_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="RepDim" visible="true" column="REPARTO_DIM_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="2_stanza" visible="true" hasAll="true" caption="Reparto">
+      <Table name="VCUBE_DIMESSI_COVID" schema="DWH">
+      </Table>
+      <Level name="im_sr" visible="true" column="IM_SR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Im - Sr">
+      </Level>
+      <Level name="Stanza" visible="true" column="STANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
