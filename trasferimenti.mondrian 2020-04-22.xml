@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema name="trasferimenti">
+  <Dimension name="ANNO">
+    <Hierarchy name="AnnoMese" hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="ANNO" column="ANNO" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="MESE" column="MESE" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="COD PROV">
+    <Hierarchy name="Rep Provenienza" hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COD PROV" column="COD_PROV" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="Provenienza" column="DESCR_PROV" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="COD DEST">
+    <Hierarchy name="Rep Destinazione" hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="COD DEST" column="COD_DEST" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="Destinazione" column="DESCR_DEST" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="REP DIM COD">
+    <Hierarchy name="Rep Dimissione" hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="REP DIM COD" column="REP_DIM_COD" type="String" uniqueMembers="false">
+      </Level>
+      <Level name="REP DIM DES" column="REP_DIM_DES" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="ID TRASF">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="ID TRASF" column="ID_TRASF" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="NUM PRAT">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="NUM PRAT" column="NUM_PRAT" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="TRASF">
+    <Hierarchy name="Num Trasferimento" hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="Trasferimento" column="TRASF" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="DATA INGRESSO">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="DATA INGRESSO" column="DATA_INGRESSO" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="DATA USCITA">
+    <Hierarchy hasAll="true">
+      <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+      <Level name="DATA USCITA" column="DATA_USCITA" type="String" uniqueMembers="false">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="trasferimenti">
+    <Table name="&quot;VCUBE_TRASFERIMENTI&quot;" schema="&quot;DWH&quot;"/>
+    <DimensionUsage name="ANNO" source="ANNO"/>
+    <DimensionUsage name="COD PROV" source="COD PROV"/>
+    <DimensionUsage name="COD DEST" source="COD DEST"/>
+    <DimensionUsage name="REP DIM COD" source="REP DIM COD"/>
+    <DimensionUsage name="ID TRASF" source="ID TRASF"/>
+    <DimensionUsage name="NUM PRAT" source="NUM PRAT"/>
+    <DimensionUsage name="TRASF" source="TRASF"/>
+    <DimensionUsage name="DATA INGRESSO" source="DATA INGRESSO"/>
+    <DimensionUsage name="DATA USCITA" source="DATA USCITA"/>
+    <Measure name="numero" column="NUM_PRAT" aggregator="count" formatString="Standard"/>
+    <Measure name="gg_permanenza" column="GIORNATE" aggregator="sum" formatString="#"/>
+  </Cube>
+</Schema>
