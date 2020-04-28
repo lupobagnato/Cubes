@@ -135,6 +135,42 @@
       </Level>
     </Hierarchy>
   </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="dimessi">
+    <Hierarchy name="num_caso" visible="true" hasAll="true" caption="dimessi">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="dim_num_caso" visible="true" column="DIM_NUM_CASO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="numero caso">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="reparto" visible="true" hasAll="true" caption="dimessi">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="dim_reparto" visible="true" column="DIM_REP_OUT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="dim_stanza" visible="true" column="DIM_STANZA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="stanza">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="dim_data" visible="true" hasAll="true" caption="dimessi">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="dim_data" visible="true" column="DIM_DATA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data dimissione">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="mod_dim" visible="true" hasAll="true" caption="dimessi">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="dim_mod_cod" visible="true" column="DIM_MOD_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="dim_mod_des" visible="true" column="DIM_MOD_DES" uniqueMembers="false" caption="mod dimissione">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="dim2" visible="true" hasAll="true" caption="dimessi">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="dim2" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="x_dim">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Dimension type="StandardDimension" visible="true" highCardinality="false" name="token">
     <Hierarchy name="TokenA" visible="true" hasAll="true">
       <Table name="VCUBE_STAT_863" schema="DWH">
@@ -225,6 +261,8 @@
     <DimensionUsage source="token" name="token" visible="true" highCardinality="false">
     </DimensionUsage>
     <DimensionUsage source="degenti" name="degenti" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="dimessi" name="dimessi" visible="true">
     </DimensionUsage>
     <Measure name="esami" column="TOKEN" formatString="#" aggregator="count">
     </Measure>
