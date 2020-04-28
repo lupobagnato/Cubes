@@ -573,7 +573,17 @@ end]]>
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Custom_Condition" caption="condizione personalizzata">
+	
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Segni_Sintomi">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="VCUBE_ACCESSI_PS" schema="DWH">
+        </Table>
+        <Level name="Segni_Sintomi" visible="true" column="SEGNI_SINTOMI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Segni e Sintomi" description="campo libero dal FreeScreen Triage (usa il vecchio campo MOD_INVIO)">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Custom_Condition" caption="condizione personalizzata">
       <Hierarchy visible="true" hasAll="true">
         <Table name="VCUBE_ACCESSI_PS" schema="DWH">
         </Table>
@@ -581,7 +591,9 @@ end]]>
         </Level>
       </Hierarchy>
     </Dimension>
-    <DimensionUsage source="T_PagTicket" name="T_PagTicket" visible="true" foreignKey="PAG_DATA" highCardinality="false">
+	
+    
+	<DimensionUsage source="T_PagTicket" name="T_PagTicket" visible="true" foreignKey="PAG_DATA" highCardinality="false">
     </DimensionUsage>
     <Measure name="accessi" column="NROCASO" aggregator="count" visible="true">
       <Annotations>
