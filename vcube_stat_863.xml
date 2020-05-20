@@ -48,14 +48,18 @@
       <Level name="altro" visible="true" column="COGNOME_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
       </Level>
     </Hierarchy>
-    <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Assistito">
+    <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Dipendenti">
       <Table name="VCUBE_STAT_863" schema="DWH">
       </Table>
       <Level name="dipartimento" visible="true" column="DIPARTIMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 dipartimento">
       </Level>
-      <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
-      </Level>
       <Level name="matricola" visible="true" column="MATRICOLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 matricola">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="x_Dipendenti_qual" visible="true" hasAll="true" caption="Dipendenti">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
       </Level>
     </Hierarchy>
   </Dimension>

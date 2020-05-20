@@ -266,6 +266,18 @@
       <Level name="ema_esitog" visible="true" column="EMA_ESITOG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ultimo IGG">
       </Level>
     </Hierarchy>
+    <Hierarchy name="flag_xls" visible="true" hasAll="true" caption="Flag_XLS">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="0_flag_xls" visible="true" column="FLAG_XLS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Flag_XLS" description="vale &#39;ok&#39; se compreso negli ultimi 10.000 records circa (serve per export in Excel)">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="all_days_num" visible="true" hasAll="true" caption="Flag_XLS">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="1_all_days_num" visible="true" column="ALL_DAYS_NUM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="all_days_num" description="numero rec progressivo diviso giorno --&#62; rank() over (order by trunc(s.data_esito))">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Cube name="VCUBE_STAT_863" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_STAT_863" schema="DWH">
