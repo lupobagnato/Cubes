@@ -390,12 +390,6 @@
         <Level name="hh_mm_preno" visible="true" column="HH_MM_PRENO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Ora prenotazione">
         </Level>
       </Hierarchy>
-      <Hierarchy name="data_nascita_txt" visible="true" hasAll="true" description="Data Nascita in formato testo, dalla vcube, non dall vdim_anag_ISES">
-        <Table name="VCUBE_CUP_PRESTAZIONI">
-        </Table>
-        <Level name="data_nascita_txt" visible="true" column="DATA_NASCITA_TXT" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
     </Dimension>
     <DimensionUsage source="t_app" name="t_app" visible="true" foreignKey="DATA_APPUNTAMENTO" highCardinality="false">
     </DimensionUsage>
@@ -415,7 +409,7 @@
       <Hierarchy visible="true" hasAll="true">
         <Table name="VCUBE_CUP_PRESTAZIONI">
         </Table>
-        <Level name="tipo" visible="true" column="TIPO_SPORTELLO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="tipo">
+        <Level name="tipo" visible="true" column="TIPO_SPORTELLO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
         <Level name="punto" visible="true" column="PUNTO_PRENOTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -467,7 +461,7 @@
     </Dimension>
     <DimensionUsage source="prestazioni" name="prestazioni" visible="true" foreignKey="COD_PREST" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="tipo_unita" name="tipo_unita" visible="true" foreignKey="COD_STZ" highCardinality="false">
+    <DimensionUsage source="tipo_unita" name="tipo_unita" visible="true" foreignKey="COD_STZ">
     </DimensionUsage>
     <Measure name="Num" column="APPN0" aggregator="count" caption="Prestazioni" visible="true">
       <Annotations>
