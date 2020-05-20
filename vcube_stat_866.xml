@@ -1,0 +1,214 @@
+<Schema name="vcube_stat_866">
+  <Dimension visible="true" highCardinality="false" name="DATA ACC" caption="Data Esito">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="DATA_ESITO" visible="true" column="YYYYMMDD_ESITO" nameColumn="DATA_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="DATA RIC" caption="Data Richiesta">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="DATA_RICHIESTA" visible="true" column="YYYYMMDD_RICHIESTA" nameColumn="DATA_RICHIESTA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="colonna YYYYMMDD_richiesta e NameColumn Data_Richiesta (varchar con formato dd-mm-yyyy h24:mi)">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ASSISTITO">
+    <Hierarchy name="COD FISC" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="COD FISC" visible="true" column="CODICE_FISCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="NOME" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="COGNOME" visible="true" column="COGNOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="NOME" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="SESSO" visible="true" column="SESSO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="DATA_NASCITA" visible="true" column="DATA_NASCITA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="COGNOME_NOME" visible="true" column="COGNOME_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="per report Tamponi_Oggi">
+      </Level>
+      <Level name="residenza" visible="false" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="telefono" visible="false" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="mmg" visible="false" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="tel_ises" visible="false" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="cell_ises" visible="false" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+      <Level name="altro" visible="true" column="COGNOME_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Assistito">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="dipartimento" visible="true" column="DIPARTIMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 dipartimento">
+      </Level>
+      <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
+      </Level>
+      <Level name="matricola" visible="true" column="MATRICOLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 matricola">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="FONTE_DATI">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="FONTE_DATI" visible="true" column="FONTE_DATI" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="RepRichiedente" caption="REPARTO">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="ID_REPARTO" visible="true" column="ID_REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ID Richiedente">
+      </Level>
+      <Level name="REPARTO" visible="true" column="REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Richiedente">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="esiti">
+    <Hierarchy name="esito_abbr" visible="true" hasAll="true" caption="Esiti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="ESITO_ABBR" visible="true" column="ESITO_ABBR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Esito Sintetico" description="igm +/- igg +/-">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="esito_m" visible="true" hasAll="true" caption="Esiti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="ESITOM" visible="true" column="ESITOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IGM">
+      </Level>
+      <Level name="VALOREM" visible="true" column="VALOREM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="valoreM">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="esito_g" visible="true" hasAll="true" caption="Esiti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="ESITOG" visible="true" column="ESITOG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IGG">
+      </Level>
+      <Level name="VALOREG" visible="true" column="VALOREG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="valoreG">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="last_update" caption="aggiornamento dati">
+    <Hierarchy visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="last_update" visible="true" column="LAST_UPDATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="dati aggiornati alle">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="degenti">
+    <Hierarchy name="num_caso" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="deg_num_caso" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="numero caso">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="reparto" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="deg_rep_cod" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="codice reparto">
+      </Level>
+      <Level name="deg_rep_des" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="reparto">
+      </Level>
+      <Level name="deg_stanza" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="stanza">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="data_in" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="deg_data_in" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="data ricovero">
+      </Level>
+      <Level name="deg_ora_in" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="orario ricovero">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="deg1" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="deg1" visible="true" column="DAY_ROW_NUM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="x_deg1">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="deg2" visible="true" hasAll="true" caption="degenti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="deg2" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="x_deg2">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="token">
+    <Hierarchy name="TokenA" visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="token" visible="true" column="TOKEN" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="RelDay" visible="true" hasAll="true" caption="ultimo referto">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="relative_day" visible="true" column="RELATIVE_DAY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="trun(sysdate) - trunc(data_esito)">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="RowNum" visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="day_row_num" visible="true" column="DAY_ROW_NUM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="N&#176; Paziente" description="progressivo esame all&#39;interno del giorno  - Analytic row_num()">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="IdAcc" visible="true" hasAll="true">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="id_accettazione" visible="true" column="ID_ACCETTAZIONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="flag_xls" visible="true" hasAll="true" caption="Flag_XLS">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="0_flag_xls" visible="true" column="FLAG_XLS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Flag_XLS" description="vale &#39;ok&#39; se compreso negli ultimi 10.000 records circa (serve per export in Excel)">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="all_days_num" visible="true" hasAll="true" caption="Flag_XLS">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="1_all_days_num" visible="true" column="ALL_DAYS_NUM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="all_days_num" description="numero rec progressivo diviso giorno --&#62; rank() over (order by trunc(s.data_esito))">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="VCUBE_STAT_866" visible="true" cache="true" enabled="true">
+    <Table name="VCUBE_STAT_866" schema="DWH">
+    </Table>
+    <DimensionUsage source="DATA ACC" name="DATA ACC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DATA RIC" name="DATA RIC" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ASSISTITO" name="ASSISTITO" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="FONTE_DATI" name="FONTE_DATI" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="last_update" name="last_update" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="esiti" name="esiti" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="RepRichiedente" name="RepRichiedente" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="token" name="token" visible="true" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="degenti" name="degenti" visible="false" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="esami" column="TOKEN" formatString="#" aggregator="count">
+    </Measure>
+    <Measure name="ora_agg" column="LAST_MINUTE" datatype="Numeric" formatString="00000000" aggregator="min" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
