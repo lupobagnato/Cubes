@@ -161,7 +161,7 @@
       </Table>
       <Level name="dim_mod_cod" visible="true" column="DIM_MOD_COD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="dim_mod_des" visible="true" column="DIM_MOD_DES" uniqueMembers="false" caption="mod dimissione">
+      <Level name="dim_mod_des" visible="true" column="DIM_MOD_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="mod dimissione">
       </Level>
     </Hierarchy>
     <Hierarchy name="dim2" visible="true" hasAll="true" caption="dimessi">
@@ -240,6 +240,32 @@
       <Level name="doppio_neg" visible="true" column="DOPPIO_NEG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="ultimi 2 NEG e almeno 3 tamponi fatti">
       </Level>
     </Hierarchy>
+    <Hierarchy name="ema_data_esito" visible="true" hasAll="true" caption="Esami Ematici">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="ema_data_esito" visible="true" column="EMA_DATA_ESITO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Data Ematici">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ema_reparto" visible="true" hasAll="true" caption="Esami Ematici">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="ema_id_reparto" visible="true" column="EMA_ID_REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ema_reparto" visible="true" column="EMA_REPARTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Richiedente Ematici">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ema_esitom" visible="true" hasAll="true" caption="Esami Ematici">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="ema_esitom" visible="true" column="EMA_ESITOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ultimo IGM">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="ema_esitog" visible="true" hasAll="true" caption="Esami Ematici">
+      <Table name="VCUBE_STAT_863" schema="DWH">
+      </Table>
+      <Level name="ema_esitog" visible="true" column="EMA_ESITOG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ultimo IGG">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Cube name="VCUBE_STAT_863" visible="true" cache="true" enabled="true">
     <Table name="VCUBE_STAT_863" schema="DWH">
@@ -262,7 +288,7 @@
     </DimensionUsage>
     <DimensionUsage source="degenti" name="degenti" visible="true" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="dimessi" name="dimessi" visible="true">
+    <DimensionUsage source="dimessi" name="dimessi" visible="true" highCardinality="false">
     </DimensionUsage>
     <Measure name="esami" column="TOKEN" formatString="#" aggregator="count">
     </Measure>
