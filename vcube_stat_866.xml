@@ -48,14 +48,18 @@
       <Level name="altro" visible="true" column="COGNOME_NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="-">
       </Level>
     </Hierarchy>
-    <Hierarchy name="x_Dipendenti" visible="true" hasAll="true" caption="Assistito">
+    <Hierarchy name="x_Dipendenti_1" visible="true" hasAll="true" caption="Dipendenti">
       <Table name="VCUBE_STAT_866" schema="DWH">
       </Table>
       <Level name="dipartimento" visible="true" column="DIPARTIMENTO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 dipartimento">
       </Level>
-      <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
-      </Level>
       <Level name="matricola" visible="true" column="MATRICOLA" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 matricola">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="x_Dipendenti_2" visible="true" hasAll="true" caption="Dipendenti">
+      <Table name="VCUBE_STAT_866" schema="DWH">
+      </Table>
+      <Level name="qualifica" visible="true" column="POS_FUNZ_DES" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="ASL1 qualifica">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -87,17 +91,17 @@
     <Hierarchy name="esito_m" visible="true" hasAll="true" caption="Esiti">
       <Table name="VCUBE_STAT_866" schema="DWH">
       </Table>
-      <Level name="ESITOM" visible="true" column="ESITOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IGM">
+      <Level name="ESITOM" visible="true" column="ESITOM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IgM">
       </Level>
-      <Level name="VALOREM" visible="true" column="VALOREM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="valoreM">
+      <Level name="VALOREM" visible="true" column="VALOREM" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="valore IgM">
       </Level>
     </Hierarchy>
     <Hierarchy name="esito_g" visible="true" hasAll="true" caption="Esiti">
       <Table name="VCUBE_STAT_866" schema="DWH">
       </Table>
-      <Level name="ESITOG" visible="true" column="ESITOG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IGG">
+      <Level name="ESITOG" visible="true" column="ESITOG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IgG">
       </Level>
-      <Level name="VALOREG" visible="true" column="VALOREG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="valoreG">
+      <Level name="VALOREG" visible="true" column="VALOREG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="valore IgG">
       </Level>
     </Hierarchy>
   </Dimension>
