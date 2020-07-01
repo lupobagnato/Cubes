@@ -199,8 +199,7 @@
  when minuti_attesa <= 60 then '31 .. 60'
  when minuti_attesa <= 90 then '61 .. 90'
  else '91 ..'
-end 
-]]>
+end]]>
             </SQL>
           </KeyExpression>
         </Level>
@@ -573,7 +572,6 @@ end]]>
         </Level>
       </Hierarchy>
     </Dimension>
-	
     <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Segni_Sintomi">
       <Hierarchy visible="true" hasAll="true">
         <Table name="VCUBE_ACCESSI_PS" schema="DWH">
@@ -582,8 +580,7 @@ end]]>
         </Level>
       </Hierarchy>
     </Dimension>
-	
-	<Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Custom_Condition" caption="condizione personalizzata">
+    <Dimension type="StandardDimension" visible="true" foreignKey="ANNO" highCardinality="false" name="Custom_Condition" caption="condizione personalizzata">
       <Hierarchy visible="true" hasAll="true">
         <Table name="VCUBE_ACCESSI_PS" schema="DWH">
         </Table>
@@ -591,9 +588,7 @@ end]]>
         </Level>
       </Hierarchy>
     </Dimension>
-	
-    
-	<DimensionUsage source="T_PagTicket" name="T_PagTicket" visible="true" foreignKey="PAG_DATA" highCardinality="false">
+    <DimensionUsage source="T_PagTicket" name="T_PagTicket" visible="true" foreignKey="PAG_DATA" highCardinality="false">
     </DimensionUsage>
     <Measure name="accessi" column="NROCASO" aggregator="count" visible="true">
       <Annotations>
@@ -839,11 +834,13 @@ end]]>
         </Level>
       </Hierarchy>
     </Dimension>
+    <DimensionUsage source="Residenza" name="Residenza" visible="true" foreignKey="LUOGO_COD">
+    </DimensionUsage>
     <Measure name="accessi ripetuti" column="NROCASO" aggregator="count" description="Tutti gli accessi per cui il paziente &#232; successivamente tornato in PS senza limiti di tempo" visible="true">
     </Measure>
     <Measure name="h48" column="ENTRO_48H" aggregator="sum" caption="entro 48 ore" description="Accessi ripetuti entro 48 ore" visible="true">
     </Measure>
-	<Measure name="h72" column="ENTRO_72H" aggregator="sum" caption="entro 72 ore" description="Accessi ripetuti entro 72 ore" visible="true">
+    <Measure name="h72" column="ENTRO_72H" aggregator="sum" caption="entro 72 ore" description="Accessi ripetuti entro 72 ore" visible="true">
     </Measure>
     <Measure name="g7" column="ENTRO_7GG" aggregator="sum" caption="entro 7 giorni" description="Accessi ripetuti entro 7 giorni" visible="true">
     </Measure>

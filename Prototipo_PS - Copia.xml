@@ -843,6 +843,8 @@ end]]>
     </Measure>
     <Measure name="h48" column="ENTRO_48H" aggregator="sum" caption="entro 48 ore" description="Accessi ripetuti entro 48 ore" visible="true">
     </Measure>
+	<Measure name="h72" column="ENTRO_72H" aggregator="sum" caption="entro 72 ore" description="Accessi ripetuti entro 72 ore" visible="true">
+    </Measure>
     <Measure name="g7" column="ENTRO_7GG" aggregator="sum" caption="entro 7 giorni" description="Accessi ripetuti entro 7 giorni" visible="true">
     </Measure>
     <Measure name="tempo_ritorno" column="DELTA_GIORNI" aggregator="avg" description="numero medio di giorni prima dell&#39;accesso successivo (avg di delta_giorni)" visible="true">
