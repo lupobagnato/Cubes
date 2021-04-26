@@ -26,7 +26,7 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_registrazione" caption="Data Registrazione">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="T_registrazione" caption="Data di Registrazione">
     <Hierarchy visible="true" hasAll="true" primaryKey="GG_DATEKEY">
       <Table name="VDIM_TEMPO" schema="DWH" alias="tempo_reclamo">
       </Table>
